@@ -61,11 +61,10 @@ export default function Header() {
                 <div className="flex items-center gap-2">
                   <Link
                     to={item.href}
-                    className={`text-xs tracking-[0.25em] uppercase font-light transition-colors duration-300 ${
-                      active
+                    className={`text-xs tracking-[0.25em] uppercase font-light transition-colors duration-300 ${active
                         ? "text-[#c9b99a]"
                         : "text-white/80 hover:text-white"
-                    }`}
+                      }`}
                   >
                     {item.label}
                   </Link>
@@ -114,7 +113,7 @@ export default function Header() {
           {/* Instagram */}
           <li>
             <a
-              href="https://instagram.com/m3.ink"
+              href="https://instagram.com/efa_tattoo"
               target="_blank"
               rel="noopener noreferrer"
               className="text-white/60 hover:text-white transition-colors"
@@ -168,9 +167,8 @@ export default function Header() {
                       <div className="flex items-center justify-between gap-4">
                         <Link
                           to={item.href}
-                          className={`text-xs tracking-[0.3em] uppercase font-light ${
-                            isActive(item.href) ? "text-[#c9b99a]" : "text-white"
-                          }`}
+                          className={`text-xs tracking-[0.3em] uppercase font-light ${isActive(item.href) ? "text-[#c9b99a]" : "text-white"
+                            }`}
                         >
                           {item.label}
                         </Link>
@@ -217,9 +215,8 @@ export default function Header() {
                   ) : (
                     <Link
                       to={item.href}
-                      className={`text-xs tracking-[0.3em] uppercase font-light ${
-                        isActive(item.href) ? "text-[#c9b99a]" : "text-white"
-                      }`}
+                      className={`text-xs tracking-[0.3em] uppercase font-light ${isActive(item.href) ? "text-[#c9b99a]" : "text-white"
+                        }`}
                     >
                       {item.label}
                     </Link>
@@ -233,7 +230,7 @@ export default function Header() {
                 transition={{ delay: navItems.length * 0.06 }}
               >
                 <a
-                  href="https://instagram.com/m3.ink"
+                  href="https://instagram.com/efa_tattoo"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-white/55 text-xs tracking-[0.3em] uppercase font-light hover:text-white/80 transition-colors"

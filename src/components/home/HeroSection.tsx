@@ -90,7 +90,7 @@ export default function HeroSection() {
                 <span className="absolute -bottom-1 left-0 right-0 h-px bg-[#c9b99a] origin-left scale-x-0 transition-transform duration-300 ease-out group-hover:scale-x-100" />
               </Link>
             </div>
-            
+
             <div className="flex justify-center">
               <Link to="/gallery" className="relative group text-white/60 hover:text-[#c9b99a] text-[0.65rem] tracking-[0.3em] pl-[0.3em] uppercase transition-colors duration-300">
                 Galería

@@ -32,7 +32,7 @@ export default function FooterStrip() {
             </Link>
             <span className="text-white/20" aria-hidden="true">·</span>
             <a
-              href="https://instagram.com/m3.ink"
+              href="https://instagram.com/efa_tattoo"
               target="_blank"
               rel="noopener noreferrer"
               className="text-white/50 text-[0.7rem] tracking-[0.3em] uppercase hover:text-white/80 transition-colors"
