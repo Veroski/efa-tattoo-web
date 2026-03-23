@@ -65,25 +65,46 @@ export default function HeroSection() {
           Arte sobre la piel, hecho con criterio y precisión.
         </motion.p>
 
-        {/* CTAs */}
+        {/* Quick Nav & CTA */}
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 1.05 }}
-          className="flex items-center gap-5 mt-10"
+          className="flex flex-col items-center gap-8 mt-10 w-full max-w-2xl mx-auto"
         >
+          {/* Highlighted Booking CTA / CITAS */}
           <Link
             to="/tattoo"
-            className="border border-[#c9b99a] text-[#c9b99a] text-[0.7rem] tracking-[0.45em] uppercase px-8 py-3 hover:bg-[#c9b99a] hover:text-[#141210] transition-colors duration-300"
+            className="group relative flex items-center justify-center border border-[#c9b99a] bg-transparent px-10 py-4 overflow-hidden transition-all duration-500 hover:bg-[#c9b99a]"
           >
-            Ver galería
+            <span className="text-[#c9b99a] text-[0.7rem] tracking-[0.45em] pl-[0.45em] uppercase group-hover:text-[#141210] transition-colors duration-300 z-10 relative">
+              Reservar Cita
+            </span>
           </Link>
-          <Link
-            to="/tattoo#booking"
-            className="border border-white/30 text-white/80 text-[0.7rem] tracking-[0.45em] uppercase px-8 py-3 hover:bg-white hover:text-[#1a1814] transition-colors duration-300"
-          >
-            Reservar cita
-          </Link>
+
+          {/* Grid layout for perfect symmetry */}
+          <div className="grid grid-cols-3 w-full max-w-lg items-center text-center">
+            <div className="flex justify-center">
+              <Link to="/about" className="relative group text-white/60 hover:text-white text-[0.65rem] tracking-[0.3em] pl-[0.3em] uppercase transition-colors duration-300">
+                About
+                <span className="absolute -bottom-1 left-0 right-0 h-px bg-[#c9b99a] origin-left scale-x-0 transition-transform duration-300 ease-out group-hover:scale-x-100" />
+              </Link>
+            </div>
+            
+            <div className="flex justify-center">
+              <Link to="/gallery" className="relative group text-white/60 hover:text-[#c9b99a] text-[0.65rem] tracking-[0.3em] pl-[0.3em] uppercase transition-colors duration-300">
+                Galería
+                <span className="absolute -bottom-1 left-0 right-0 h-px bg-[#c9b99a] origin-left scale-x-0 transition-transform duration-300 ease-out group-hover:scale-x-100" />
+              </Link>
+            </div>
+
+            <div className="flex justify-center">
+              <Link to="/academy" className="relative group text-white/60 hover:text-white text-[0.65rem] tracking-[0.3em] pl-[0.3em] uppercase transition-colors duration-300">
+                Academy
+                <span className="absolute -bottom-1 left-0 right-0 h-px bg-[#c9b99a] origin-left scale-x-0 transition-transform duration-300 ease-out group-hover:scale-x-100" />
+              </Link>
+            </div>
+          </div>
         </motion.div>
       </div>
     </section>

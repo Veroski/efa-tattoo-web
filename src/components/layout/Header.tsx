@@ -9,8 +9,8 @@ const navItems = [
     label: "TATTOO",
     href: "/tattoo",
     children: [
-      { label: "Galería", href: "/tattoo" },
-      { label: "Reservar cita", href: "/tattoo#booking" },
+      { label: "Galería", href: "/gallery" },
+      { label: "Reservar cita", href: "/tattoo" },
     ],
   },
   { label: "ACADEMY", href: "/academy" },
@@ -87,28 +87,25 @@ export default function Header() {
 
                 {/* Dropdown */}
                 {item.children && (
-                  <motion.div
-                    initial={{ opacity: 0, y: -4 }}
-                    whileHover={{ opacity: 1, y: 0 }}
-                    className="pointer-events-none absolute left-1/2 top-full z-20 w-max min-w-0
-                      -translate-x-1/2 border border-white/10 bg-[#16130f]/95 p-1
-                      opacity-0 backdrop-blur-md transition-all duration-300
-                      group-hover:pointer-events-auto group-hover:opacity-100
-                      group-focus-within:pointer-events-auto group-focus-within:opacity-100"
-                    style={{ translateY: "8px" }}
-                  >
-                    {item.children.map((child) => (
-                      <Link
-                        key={child.label}
-                        to={child.href}
-                        className="block whitespace-nowrap border border-transparent px-4 py-2 text-xs uppercase
-                          tracking-[0.3em] text-white/70 transition-colors duration-300
-                          hover:border-white/10 hover:bg-white/5 hover:text-white"
-                      >
-                        {child.label}
-                      </Link>
-                    ))}
-                  </motion.div>
+                  <div className="absolute left-1/2 top-full z-20 w-max min-w-0 -translate-x-1/2 pt-1">
+                    <div
+                      className="pointer-events-none border border-white/10 bg-[#16130f]/95 p-1
+                        opacity-0 backdrop-blur-md transition-all duration-200
+                        group-hover:pointer-events-auto group-hover:opacity-100"
+                    >
+                      {item.children.map((child) => (
+                        <Link
+                          key={child.label}
+                          to={child.href}
+                          className="block whitespace-nowrap border border-transparent px-4 py-3 text-[0.65rem] uppercase
+                            tracking-[0.35em] text-white/70 transition-colors duration-300
+                            hover:border-white/10 hover:bg-white/5 hover:text-[#c9b99a]"
+                        >
+                          {child.label}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
                 )}
               </li>
             );

@@ -58,9 +58,9 @@ function AboutPage() {
   );
 }
 
-function TattooPage() {
+function GalleryPage() {
   return (
-    <Page title="Tattoo">
+    <Page title="Gallery">
       <Header />
       <PageHeader
         title="Tattoo Gallery"
@@ -69,6 +69,21 @@ function TattooPage() {
         bg="#2a2520"
       />
       <GalleryGrid items={tattooGalleryItems} />
+      <FooterStrip />
+    </Page>
+  );
+}
+
+function TattooPage() {
+  return (
+    <Page title="Tattoo">
+      <Header />
+      <PageHeader
+        title="Reservar cita"
+        subtitle="Solicitud de sesión"
+        size="half"
+        bg="#1e1c1a"
+      />
       <BookingSection />
       <FooterStrip />
     </Page>
@@ -103,6 +118,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/about" element={<AboutPage />} />
+        <Route path="/gallery" element={<GalleryPage />} />
         <Route path="/tattoo" element={<TattooPage />} />
         <Route path="/academy" element={<AcademyPage />} />
         <Route path="*" element={<NotFoundPage />} />
