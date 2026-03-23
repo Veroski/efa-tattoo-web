@@ -287,7 +287,7 @@ export default function AcademyPage() {
             transition={{ duration: 0.7, delay: 0.3 }}
             className="text-white/55 text-xs tracking-[0.5em] uppercase"
           >
-            Madrid · Barcelona · Valencia · Online
+            Barcelona
           </motion.p>
         </div>
       </section>

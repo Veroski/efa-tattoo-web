@@ -5,7 +5,7 @@ export default function HeroSection() {
   return (
     <section
       className="relative w-full h-screen overflow-hidden bg-[#141210]"
-      aria-label="Inicio — EFA Tattoo y Enric"
+      aria-label="Inicio — EFA Tattoo"
     >
       {/* Background gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-[#2a2520] via-[#1a1814] to-[#0e0c0a]" />
@@ -43,10 +43,6 @@ export default function HeroSection() {
           }}
         >
           EFA Tattoo
-          <br />
-          <span className="italic font-light" style={{ fontSize: "0.9em" }}>
-            y Enric
-          </span>
         </motion.h1>
 
         {/* Gold underline */}
