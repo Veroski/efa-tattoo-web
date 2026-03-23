@@ -203,7 +203,7 @@ export default function AboutContent() {
                   Desde el trabajo real en estudio hasta el método desarrollado en 7 años de práctica, Enric enseña con una sensibilidad profunda hacia el detalle, la higiene y la ética del tatuador.
                 </p>
                 <p>
-                  Con EFA Tatto y Enric, los alumnos no aprenden a imitar: aprenden a construir su propio criterio, con bases sólidas y un método que funciona en la realidad del estudio.
+                  Con Enric, los alumnos no aprenden a imitar: aprenden a construir su propio criterio, con bases sólidas y un método que funciona en la realidad del estudio.
                 </p>
               </motion.div>
 

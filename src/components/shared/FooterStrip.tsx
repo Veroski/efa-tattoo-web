@@ -13,7 +13,7 @@ export default function FooterStrip() {
             className="text-white/65 text-xs tracking-[0.4em] uppercase hover:text-white transition-colors"
             style={{ fontFamily: "var(--font-heading)" }}
           >
-            EFA Tatto y Enric
+            EFA Tattoo
           </Link>
 
           <nav aria-label="Footer" className="flex items-center gap-6">
@@ -52,7 +52,7 @@ export default function FooterStrip() {
         {/* Bottom row */}
         <div className="flex flex-col md:flex-row items-center justify-between gap-3 border-t border-white/5 pt-6">
           <p className="text-white/30 text-[0.65rem] tracking-wide">
-            © {year} EFA Tatto y Enric. Barcelona, España.
+            © {year} EFA Tattoo. Barcelona, España.
           </p>
           <p className="text-white/25 text-[0.65rem] tracking-wide">
             Fine Line · Micro-realismo · Seminarios

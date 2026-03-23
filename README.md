@@ -1,4 +1,4 @@
-# EFA Tatto y Enric
+# EFA Tattoo - Enric
 
 Sitio frontend migrado a `Vite + React + React Router + Tailwind CSS v4`.
 

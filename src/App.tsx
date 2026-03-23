@@ -12,7 +12,7 @@ import { tattooGalleryItems } from "@/components/tattoo/tattooGalleryData";
 
 function useDocumentTitle(title?: string) {
   useEffect(() => {
-    document.title = title ? `${title} | EFA Tatto y Enric` : "EFA Tatto y Enric";
+    document.title = title ? `${title} | EFA Tattoo` : "EFA Tattoo";
   }, [title]);
 }
 

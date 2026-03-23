@@ -5,7 +5,7 @@ export default function HeroSection() {
   return (
     <section
       className="relative w-full h-screen overflow-hidden bg-[#141210]"
-      aria-label="Inicio — EFA Tatto y Enric"
+      aria-label="Inicio — EFA Tattoo y Enric"
     >
       {/* Background gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-[#2a2520] via-[#1a1814] to-[#0e0c0a]" />
@@ -42,7 +42,7 @@ export default function HeroSection() {
             fontSize: "clamp(3rem, 9vw, 8.5rem)",
           }}
         >
-          EFA Tatto
+          EFA Tattoo
           <br />
           <span className="italic font-light" style={{ fontSize: "0.9em" }}>
             y Enric
@@ -90,24 +90,6 @@ export default function HeroSection() {
           </Link>
         </motion.div>
       </div>
-
-      {/* Scroll indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.7, delay: 1.4 }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
-        aria-hidden="true"
-      >
-        <span className="text-white/35 text-[0.6rem] tracking-[0.45em] uppercase">
-          Scroll
-        </span>
-        <motion.div
-          animate={{ y: [0, 6, 0] }}
-          transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
-          className="w-px h-8 bg-gradient-to-b from-white/30 to-transparent"
-        />
-      </motion.div>
     </section>
   );
 }
