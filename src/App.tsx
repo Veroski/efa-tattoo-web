@@ -2,13 +2,12 @@ import { useEffect, type ReactNode } from "react";
 import { Link, Route, Routes, useLocation } from "react-router-dom";
 import AboutContent from "@/components/about/AboutContent";
 import AcademyPage from "@/components/academy/AcademyPage";
+import GalleryView from "@/components/gallery/GalleryView";
 import HeroSection from "@/components/home/HeroSection";
 import Header from "@/components/layout/Header";
 import FooterStrip from "@/components/shared/FooterStrip";
-import GalleryGrid from "@/components/shared/GalleryGrid";
 import PageHeader from "@/components/shared/PageHeader";
 import BookingSection from "@/components/tattoo/BookingSection";
-import { tattooGalleryItems } from "@/components/tattoo/tattooGalleryData";
 
 function useDocumentTitle(title?: string) {
   useEffect(() => {
@@ -60,15 +59,15 @@ function AboutPage() {
 
 function GalleryPage() {
   return (
-    <Page title="Gallery">
+    <Page title="Galería">
       <Header />
       <PageHeader
-        title="Tattoo Gallery"
-        subtitle="Art on Skin"
+        title="Galería"
+        subtitle="400 trabajos seleccionados"
         size="half"
-        bg="#2a2520"
+        bg="#141210"
       />
-      <GalleryGrid items={tattooGalleryItems} />
+      <GalleryView />
       <FooterStrip />
     </Page>
   );

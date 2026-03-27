@@ -46,3 +46,12 @@ body {
   background: rgba(201, 185, 154, 0.22);
   color: #ffffff;
 }
+
+/* Hide scrollbar for horizontal tab strips */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

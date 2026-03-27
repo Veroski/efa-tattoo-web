@@ -1,12 +1,37 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 
-function Img({ height, bg = "#1e1c1a", className = "" }: { height: string; bg?: string; className?: string }) {
+function Img({
+  height,
+  bg = "#1e1c1a",
+  src,
+  alt = "",
+  objectPosition = "center",
+  scale = 1,
+  className = "",
+}: {
+  height: string;
+  bg?: string;
+  src?: string;
+  alt?: string;
+  objectPosition?: string;
+  scale?: number;
+  className?: string;
+}) {
   return (
     <div
       className={`relative w-full overflow-hidden ${className}`}
       style={{ height, backgroundColor: bg }}
     >
+      {src && (
+        <img
+          src={src}
+          alt={alt}
+          loading="lazy"
+          className="absolute inset-0 w-full h-full object-cover"
+          style={{ objectPosition, transform: `scale(${scale})`, transformOrigin: objectPosition }}
+        />
+      )}
       <div className="absolute inset-0 border border-white/5" />
     </div>
   );
@@ -67,7 +92,13 @@ export default function AboutContent() {
             transition={{ duration: 0.7, ease: "easeOut" }}
             className="mt-14 md:mt-0"
           >
-            <Img height="520px" bg="#2a2520" />
+            <Img
+              height="520px"
+              bg="#2a2520"
+              src="/img/img_2.webp"
+              alt="Enric en el estudio — EFA Tattoo Barcelona"
+              objectPosition="center 18%"
+            />
           </motion.div>
         </div>
       </section>
@@ -92,7 +123,13 @@ export default function AboutContent() {
               viewport={{ once: true }}
               transition={{ duration: 0.7, ease: "easeOut" }}
             >
-              <Img height="580px" bg="#1e1c1a" />
+              <Img
+                height="580px"
+                bg="#1e1c1a"
+                src="/img/img_1.webp"
+                alt="Enric en el estudio con monstera — EFA Tattoo"
+                objectPosition="center 65%"
+              />
             </motion.div>
 
             {/* Right — heading + features + CTA */}
@@ -172,7 +209,14 @@ export default function AboutContent() {
               viewport={{ once: true }}
               transition={{ duration: 0.7, ease: "easeOut" }}
             >
-              <Img height="640px" bg="#222020" />
+              <Img
+                height="640px"
+                bg="#222020"
+                src="/img/Proyectos%20grandes/proyectos_grandes_55.webp"
+                alt="Dragón con flores — proyecto grande EFA Tattoo"
+                objectPosition="62% 38%"
+                scale={1.45}
+              />
             </motion.div>
 
             {/* Right — content */}
