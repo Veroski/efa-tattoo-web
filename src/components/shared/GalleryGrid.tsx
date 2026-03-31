@@ -50,7 +50,7 @@ export default function GalleryGrid({ items }: GalleryGridProps) {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5, delay: i * 0.025 }}
-              className="relative w-full overflow-hidden group cursor-zoom-in break-inside-avoid block mb-[11px]"
+              className="relative w-full overflow-hidden group break-inside-avoid block mb-[11px]"
               style={{ backgroundColor: item.bg, height: item.height ?? "300px" }}
               onClick={() => setSelected(item.id)}
               aria-label={`Ver ${item.alt}`}
@@ -82,7 +82,7 @@ export default function GalleryGrid({ items }: GalleryGridProps) {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.25 }}
-            className="fixed inset-0 z-50 bg-black/96 flex items-center justify-center cursor-zoom-out p-6"
+            className="fixed inset-0 z-50 bg-black/96 flex items-center justify-center p-6"
             onClick={() => setSelected(null)}
           >
             {/* Close button — receives focus on open */}

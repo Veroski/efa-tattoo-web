@@ -67,7 +67,7 @@ export default function AboutContent() {
               className="text-white uppercase tracking-[0.22em] font-light leading-none"
               style={{ fontFamily: "var(--font-heading)", fontSize: "clamp(2.2rem, 5.5vw, 4.5rem)" }}
             >
-              Meet Enric
+              Conoce a Enric
             </motion.h2>
 
             <motion.div
@@ -76,10 +76,10 @@ export default function AboutContent() {
               className="space-y-5 text-white/70 text-sm leading-relaxed font-light tracking-wide max-w-[30rem]"
             >
               <p>
-                Enric es un artista afincado en Barcelona, enfermero de formación y tatuador especializado en fine line y micro-realismo. Su trabajo refleja una conexión profunda con el cuerpo humano y la narración personal a través del trazo.
+                Soy un artista afincado en Barcelona, enfermero de formación y tatuador especializado en fine line y micro-realismo. Mi trabajo nace de una conexión profunda con el cuerpo humano y con las historias personales que se cuentan a través del trazo.
               </p>
               <p>
-                Empezó tatuando mientras trabajaba en urgencias, traduciendo la precisión quirúrgica en un arte que no busca curar una herida, sino honrarla. Más de 7 años de práctica constante definen hoy su método: criterio, técnica y responsabilidad.
+                Empecé a tatuar mientras trabajaba en urgencias, trasladando la precisión quirúrgica a un arte que no busca curar una herida, sino honrarla. Más de 7 años de práctica constante definen hoy mi forma de trabajar: criterio, técnica y responsabilidad.
               </p>
             </motion.div>
           </div>
@@ -147,17 +147,17 @@ export default function AboutContent() {
                   {
                     num: "01",
                     title: "Diseños únicos",
-                    body: "Cada tatuaje es personalizado, capturando historias personales en trazo fino y preciso.",
+                    body: "Diseño cada tatuaje de forma personalizada para convertir historias personales en un trazo fino, preciso y con intención.",
                   },
                   {
                     num: "02",
                     title: "Precisión técnica",
-                    body: "Enric combina formación médica con dominio artístico en cada pieza. Siete años perfeccionando su técnica.",
+                    body: "Combino mi formación médica con el dominio artístico en cada pieza. Llevo más de siete años perfeccionando mi técnica.",
                   },
                   {
                     num: "03",
                     title: "Conexión personal",
-                    body: "Cada tatuaje refleja una colaboración profunda entre la visión del cliente y el criterio del artista.",
+                    body: "Cada tatuaje nace de una colaboración real entre tu visión y mi criterio para construir una pieza con sentido.",
                   },
                 ].map((item, i) => (
                   <motion.div
@@ -244,10 +244,10 @@ export default function AboutContent() {
                 className="space-y-5 text-white/65 text-sm leading-relaxed font-light tracking-wide max-w-[28rem]"
               >
                 <p>
-                  Desde el trabajo real en estudio hasta el método desarrollado en 7 años de práctica, Enric enseña con una sensibilidad profunda hacia el detalle, la higiene y la ética del tatuador.
+                  Desde el trabajo real en estudio hasta el método que he desarrollado en estos años de práctica, enseño con una sensibilidad profunda hacia el detalle, la higiene y la ética del tatuador.
                 </p>
                 <p>
-                  Con Enric, los alumnos no aprenden a imitar: aprenden a construir su propio criterio, con bases sólidas y un método que funciona en la realidad del estudio.
+                  Cuando enseño, no busco que mis alumnos imiten mi mano: busco que construyan su propio criterio, con bases sólidas y un método que funcione de verdad en la realidad del estudio.
                 </p>
               </motion.div>
 
@@ -310,12 +310,7 @@ export default function AboutContent() {
           <p className="text-white/60 text-sm leading-relaxed font-light tracking-wide">
             Ponte en contacto para comenzar tu proceso, ya sea a través de un tatuaje o de nuestros seminarios de formación.
           </p>
-          <a
-            href="mailto:info@efatatto.com"
-            className="inline-block text-white text-xs tracking-[0.55em] uppercase border-b border-[#c9b99a] pb-[3px] hover:text-[#c9b99a] transition-colors duration-300"
-          >
-            Ponerse en contacto
-          </a>
+          
         </motion.div>
       </section>
 

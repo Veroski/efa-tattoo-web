@@ -25,7 +25,7 @@ function LazyImage({
   return (
     <button
       type="button"
-      className="relative w-full overflow-hidden group cursor-zoom-in break-inside-avoid block mb-[10px] bg-[#1a1814]"
+      className="relative w-full overflow-hidden group break-inside-avoid block mb-[10px] bg-[#1a1814]"
       onClick={onClick}
       aria-label={`Ver ${alt}`}
     >

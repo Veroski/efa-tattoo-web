@@ -49,7 +49,7 @@ function HomePage() {
 
 function AboutPage() {
   return (
-    <Page title="Meet Enric">
+    <Page title="Conoce a Enric">
       <Header />
       <AboutContent />
       <FooterStrip />

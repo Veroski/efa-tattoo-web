@@ -20,7 +20,7 @@ const inputClass =
 
 const selectClass =
   "w-full bg-[#1a1814] border-b border-white/25 text-white/70 text-sm py-3 outline-none " +
-  "focus:border-[#c9b99a] transition-colors tracking-wide appearance-none cursor-pointer";
+  "focus:border-[#c9b99a] transition-colors tracking-wide appearance-none";
 
 const labelClass = "block text-white/60 text-[0.7rem] tracking-[0.35em] uppercase mb-1";
 

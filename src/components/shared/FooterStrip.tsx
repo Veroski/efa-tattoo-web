@@ -41,12 +41,7 @@ export default function FooterStrip() {
             </a>
           </nav>
 
-          <a
-            href="mailto:info@efatatto.com"
-            className="text-white/50 text-[0.7rem] tracking-[0.3em] uppercase hover:text-white/80 transition-colors"
-          >
-            info@efatatto.com
-          </a>
+
         </div>
 
         {/* Bottom row */}
