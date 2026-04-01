@@ -55,23 +55,6 @@ export default function BookingSection() {
 
   return (
     <section id="booking" className="px-[4vw] py-16 max-w-xl mx-auto scroll-mt-24">
-      {/* Info strip */}
-      <dl className="grid grid-cols-2 gap-6 mb-14 border border-white/10 p-6">
-        {[
-          { label: "Tiempo de respuesta", value: "3–5 días laborables" },
-          { label: "Depósito",            value: "Requerido al reservar" },
-          { label: "Consulta previa",     value: "Por email, gratuita"  },
-          { label: "Tamaño mínimo",       value: "2 cm"                 },
-        ].map((info) => (
-          <div key={info.label}>
-            <dt className="text-white/55 text-[0.7rem] tracking-[0.4em] uppercase mb-1">
-              {info.label}
-            </dt>
-            <dd className="text-white/80 text-sm tracking-wide">{info.value}</dd>
-          </div>
-        ))}
-      </dl>
-
       <SectionLabel text="Solicitar sesión" className="mb-10" />
 
       {submitted ? (
