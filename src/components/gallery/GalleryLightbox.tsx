@@ -113,6 +113,9 @@ export default function GalleryLightbox({
           key={images[currentIndex]}
           src={images[currentIndex]}
           alt={`${categoryTitle} — trabajo ${currentIndex + 1}`}
+          loading="eager"
+          fetchPriority="high"
+          decoding="async"
           custom={direction}
           initial={{ opacity: 0, x: direction * 20 }}
           animate={{ opacity: 1, x: 0 }}

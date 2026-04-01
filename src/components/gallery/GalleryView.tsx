@@ -4,21 +4,26 @@ import { categories } from "./galleryData";
 import GalleryLightbox from "./GalleryLightbox";
 
 const BATCH_SIZE = 24;
+const EAGER_IMAGES = 3;
+const GALLERY_IMAGE_WIDTH = 960;
+const GALLERY_IMAGE_HEIGHT = 1280;
 
 /* ────────────────────────────────────────────
- * LazyImage — fades in on load, hides on error
+ * LazyImage — responsive preview for masonry
  * ──────────────────────────────────────────── */
 function LazyImage({
   src,
   alt,
+  index,
   onClick,
 }: {
   src: string;
   alt: string;
+  index: number;
   onClick: () => void;
 }) {
-  const [loaded, setLoaded] = useState(false);
   const [error, setError] = useState(false);
+  const eager = index < EAGER_IMAGES;
 
   if (error) return null;
 
@@ -32,14 +37,16 @@ function LazyImage({
       <img
         src={src}
         alt={alt}
-        loading="lazy"
+        width={GALLERY_IMAGE_WIDTH}
+        height={GALLERY_IMAGE_HEIGHT}
+        loading={eager ? "eager" : "lazy"}
+        fetchPriority={eager ? "high" : "low"}
         decoding="async"
-        onLoad={() => setLoaded(true)}
         onError={() => setError(true)}
-        className={`w-full h-auto block transition-all duration-700 ease-out ${
-          loaded ? "opacity-100 scale-100" : "opacity-0 scale-[1.02]"
-        }`}
-        style={{ minHeight: "80px" }}
+        className="w-full h-auto block"
+        style={{
+          aspectRatio: `${GALLERY_IMAGE_WIDTH} / ${GALLERY_IMAGE_HEIGHT}`,
+        }}
       />
 
       {/* Hover overlay */}
@@ -206,6 +213,7 @@ export default function GalleryView() {
               key={src}
               src={src}
               alt={`${category.title} — trabajo ${i + 1}`}
+              index={i}
               onClick={() => setLightboxIndex(i)}
             />
           ))}

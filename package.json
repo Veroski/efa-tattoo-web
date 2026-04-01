@@ -6,7 +6,8 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "gallery:optimize": "python3 public/optimize_gallery_images.py"
   },
   "dependencies": {
     "framer-motion": "^12.38.0",
