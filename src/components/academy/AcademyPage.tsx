@@ -721,56 +721,6 @@ export default function AcademyPage() {
         </div>
       </section>
 
-      {/* ── Enric bio ── */}
-      <section className="py-18 md:py-24" style={{ backgroundColor: "#141210" }}>
-        <div className={`${sectionWidth} grid items-center gap-14 md:grid-cols-[0.92fr_1.08fr]`}>
-          <motion.div
-            {...fadeUp}
-            className="relative overflow-hidden border border-white/8 bg-[#1c1916] p-3"
-          >
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_55%_60%_at_20%_18%,rgba(201,185,154,0.12)_0%,transparent_72%)]" />
-            <img
-              src="/img/img_2.webp"
-              alt="Enric en el estudio"
-              className="relative h-[540px] w-full object-cover object-[center_18%] brightness-[0.9]"
-            />
-          </motion.div>
-
-          <div className="space-y-8">
-            <SectionHeading
-              eyebrow="Quién es Enric"
-              title="Enric, tatuador y enfermero de formación"
-              description="Empecé tatuando mientras trabajaba en urgencias, aprendiendo a base de errores, observación y mucha práctica. Con el tiempo entendí que tatuar bien no va de talento, sino de criterio, método y responsabilidad. Hoy llevo más de 7 años tatuando, especializado en fine line, y he creado estos seminarios para ayudar a otros tatuadores a acortar su camino y dejar de trabajar a ciegas."
-            />
-
-            <motion.blockquote
-              {...fadeUp}
-              transition={{ duration: 0.65, delay: 0.08 }}
-              className="border-l border-[#c9b99a]/45 pl-5 text-lg font-light italic leading-relaxed tracking-wide text-white/82"
-            >
-              "No se trata de hacer más, sino de hacer mejor."
-            </motion.blockquote>
-
-            <motion.div
-              {...fadeUp}
-              transition={{ duration: 0.65, delay: 0.12 }}
-              className="grid grid-cols-2 gap-3"
-            >
-              {["Técnica responsable", "Menos es más", "Claridad", "Profesionalidad"].map(
-                (item) => (
-                  <div
-                    key={item}
-                    className="flex min-h-[72px] items-center justify-center border border-white/8 bg-[#1a1714] px-4 text-center text-[0.72rem] uppercase tracking-[0.28em] text-white/68"
-                  >
-                    {item}
-                  </div>
-                )
-              )}
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
       {/* ── Features ── */}
       <section id="academy-info" className="py-18 md:py-24" style={{ backgroundColor: "#1a1714" }}>
         <div className={sectionWidth}>
