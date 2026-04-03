@@ -368,7 +368,7 @@ export default function BookingSection() {
                 tracking-[0.45em] uppercase py-3 hover:bg-transparent hover:text-white
                 transition-all duration-500 disabled:opacity-50 disabled:cursor-not-allowed mt-4 shadow-lg shadow-black/20"
             >
-              {status === "loading" ? "Enviando solicitud..." : "Solicitar cita"}
+              {status === "loading" ? "Enviando solicitud..." : "ENVIAR SOLICITUD"}
             </button>
           </form>
         </div>
