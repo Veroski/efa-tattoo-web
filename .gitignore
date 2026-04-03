@@ -39,3 +39,4 @@ yarn-error.log*
 *.tsbuildinfo
 .codex
 .claude
+.env*.local

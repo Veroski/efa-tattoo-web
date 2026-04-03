@@ -30,12 +30,19 @@ module.exports = async function handler(req, res) {
     const safeName = filename.replace(/[^a-zA-Z0-9._-]/g, "-");
     const pathname = `tattoo-refs/${Date.now()}-${safeName}`;
 
-    const blob = await put(pathname, buffer, {
-      access: "public",
-      contentType,
-    });
-
-    return res.status(200).json({ ok: true, url: blob.url });
+    try {
+      const blob = await put(pathname, buffer, {
+        access: "public",
+        contentType,
+      });
+      return res.status(200).json({ ok: true, url: blob.url });
+    } catch (blobError) {
+      console.error("Blob error:", blobError.message);
+      // Fallback: return a data URL so the booking endpoint can upload the
+      // original image directly into GHL's File Upload custom field.
+      const dataUrl = `data:${contentType};base64,${base64}`;
+      return res.status(200).json({ ok: true, url: dataUrl, fallback: true });
+    }
   } catch (error) {
     console.error("Upload error:", error);
     return res.status(500).json({ ok: false, error: "Upload failed" });

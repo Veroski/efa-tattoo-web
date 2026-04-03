@@ -56,9 +56,9 @@ Ve a **Settings → Custom Fields → Contacts** y crea los siguientes campos:
 
 ### 6. `tattoo_img`
 - **Nombre visible**: Imagen de referencia
-- **Tipo**: Text (URL)
+- **Tipo**: File Upload
 - **Field Key**: `tattoo_img`
-- **Descripción**: URL pública de la imagen de referencia subida por el cliente. El archivo se almacena en Vercel Blob y se envía aquí como link directo. Campo opcional — solo se envía si el cliente adjunta una imagen.
+- **Descripción**: Archivo de referencia adjunto al contacto. Este tipo es obligatorio si quieres que GHL muestre la previsualización/gestión del archivo dentro de la ficha del contacto.
 
 ---
 
@@ -80,29 +80,42 @@ Asegúrate de que estas variables estén configuradas en Vercel (o en `.env.loca
 ```
 GHL_PRIVATE_KEY=tu_private_api_key_de_ghl
 GHL_LOCATION_ID=tu_location_id_de_ghl
-BLOB_READ_WRITE_TOKEN=tu_token_de_vercel_blob
+GHL_TATTOO_IMG_FIELD_KEY=tattoo_img
 ```
 
-`GHL_PRIVATE_KEY` y `GHL_LOCATION_ID` son las mismas que ya usa el formulario de Academy. `BLOB_READ_WRITE_TOKEN` es nuevo y necesario para la subida de imágenes.
+`GHL_PRIVATE_KEY` y `GHL_LOCATION_ID` son las mismas que ya usa el formulario de Academy.
+
+`GHL_TATTOO_IMG_FIELD_KEY` también es opcional y por defecto vale `tattoo_img`.
+
+## Scopes requeridos en el token de GHL
+
+Si usas un **Private Integration Token**, asegúrate de que incluya al menos estos permisos:
+
+- `contacts.write`
+- `locations/customFields.write`
+
+Sin `locations/customFields.write`, el contacto se creará correctamente pero la imagen no podrá subirse al storage interno que usa GHL para este campo.
 
 ---
 
 ## Notas sobre imágenes de referencia
 
-El campo `tattoo_img` está completamente integrado. El flujo es:
+El campo `tattoo_img` está completamente integrado. El flujo actual es:
 
 1. El cliente selecciona una imagen en el formulario (PNG/JPG/JPEG, máx. 3 MB).
-2. Al enviar, el frontend convierte la imagen a base64 y la sube al endpoint `/api/upload-image`.
-3. Ese endpoint almacena la imagen en **Vercel Blob** y devuelve una URL pública.
-4. La URL se incluye en la llamada a `/api/ghl/booking` y se guarda en el campo `tattoo_img` del contacto de GHL.
+2. El frontend convierte la imagen a base64 y la envía al flujo actual.
+3. Si Vercel Blob está disponible, se puede usar una URL temporal/intermedia; si no lo está, `/api/upload-image` devuelve un `data:` URL como fallback.
+4. `/api/ghl/booking` hace el `upsert` del contacto en GHL.
+5. Después del `upsert`, el backend transforma la imagen recibida en binario y la sube al endpoint oficial `POST /locations/:locationId/customFields/upload` de HighLevel usando `id=contactId`.
+6. Ese endpoint devuelve una URL privada del storage interno de GHL.
+7. El backend guarda esa URL en el custom field `tattoo_img` del contacto.
+8. El campo queda poblado con una URL servida por el propio storage de GHL, sin depender de Vercel Blob para la persistencia final.
 
-### Variable de entorno adicional requerida
+### Importante
 
-```
-BLOB_READ_WRITE_TOKEN=tu_token_de_vercel_blob
-```
-
-Obtén este token en el dashboard de Vercel → Storage → Tu Blob store → Settings. Sin esta variable, la subida de imágenes fallará, pero el resto del formulario funcionará correctamente (el campo `tattoo_img` quedará vacío).
+- Un campo `Text` o `Text Area` con una URL/base64 no sirve para la previsualización nativa de archivos en GHL.
+- Para que la imagen se vea en GHL, `tattoo_img` debe ser `File Upload`.
+- Ya no dependemos de Vercel Blob para que la imagen aparezca en GHL.
 
 ---
 
