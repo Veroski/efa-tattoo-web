@@ -5,6 +5,9 @@ import AcademyPage from "@/components/academy/AcademyPage";
 import GalleryView from "@/components/gallery/GalleryView";
 import HeroSection from "@/components/home/HeroSection";
 import Header from "@/components/layout/Header";
+import AvisoLegalPage from "@/components/legal/AvisoLegalPage";
+import PrivacidadPage from "@/components/legal/PrivacidadPage";
+import CookieBanner from "@/components/shared/CookieBanner";
 import FooterStrip from "@/components/shared/FooterStrip";
 import PageHeader from "@/components/shared/PageHeader";
 import BookingSection from "@/components/tattoo/BookingSection";
@@ -114,12 +117,15 @@ export default function App() {
   return (
     <>
       <ScrollManager />
+      <CookieBanner />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/gallery" element={<GalleryPage />} />
         <Route path="/tattoo" element={<TattooPage />} />
         <Route path="/academy" element={<AcademyPage />} />
+        <Route path="/privacidad" element={<PrivacidadPage />} />
+        <Route path="/aviso-legal" element={<AvisoLegalPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </>

@@ -49,9 +49,21 @@ export default function FooterStrip() {
           <p className="text-white/30 text-[0.65rem] tracking-wide">
             © {year} EFA Tattoo. Barcelona, España.
           </p>
-          <p className="text-white/25 text-[0.65rem] tracking-wide">
-            Fine Line · Micro-realismo · Seminarios
-          </p>
+          <nav aria-label="Legal" className="flex items-center gap-4">
+            <Link
+              to="/privacidad"
+              className="text-white/25 text-[0.62rem] tracking-[0.2em] uppercase hover:text-white/50 transition-colors"
+            >
+              Privacidad
+            </Link>
+            <span className="text-white/15" aria-hidden="true">·</span>
+            <Link
+              to="/aviso-legal"
+              className="text-white/25 text-[0.62rem] tracking-[0.2em] uppercase hover:text-white/50 transition-colors"
+            >
+              Aviso legal
+            </Link>
+          </nav>
         </div>
       </div>
     </footer>
