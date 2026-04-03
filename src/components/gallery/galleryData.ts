@@ -53,7 +53,7 @@ export const categories: GalleryCategory[] = [
   },
   {
     id: "retratos-animales",
-    title: "Retratos Animales",
+    title: "Retratos Mascotas",
     description:
       "Microrealismo aplicado a la fauna, capturando la mirada y el alma animal",
     count: 25,
