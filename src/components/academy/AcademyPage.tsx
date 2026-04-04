@@ -349,7 +349,7 @@ function LocationCard() {
           <div className="space-y-8 p-8 md:p-12">
             <SectionHeading
               eyebrow="El espacio"
-              title="Lumbre Studios"
+              title="EFA Tattoo Studio"
               description="Un espacio creativo diseñado para la concentración, la precisión técnica y el trabajo profesional durante todo el fin de semana."
             />
             <div className="space-y-4 text-white/66">
@@ -389,7 +389,7 @@ function LocationCard() {
           <div className="relative min-h-[340px] border-t border-white/8 lg:border-l lg:border-t-0">
             <iframe
               src="https://maps.google.com/maps?q=Carrer+C%C3%B2rsega+167,+Barcelona&t=&z=15&ie=UTF8&iwloc=&output=embed"
-              title="Mapa ubicación Lumbre Studios"
+              title="Mapa ubicación EFA Tattoo Studio"
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
               className="absolute inset-0 h-full w-full"

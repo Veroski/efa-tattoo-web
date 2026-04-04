@@ -11,7 +11,7 @@ interface BookingFormData {
   city: CityOption;
   tattoo_idea: string;
   body_zone: string;
-  availability: string;
+  availability: "Lo antes posible" | "Próximas semanas" | "Fecha concreta" | "";
   additional_info: string;
 }
 
@@ -261,15 +261,21 @@ export default function BookingSection() {
               </div>
               <div>
                 <label htmlFor="b-availability" className={labelClass}>Disponibilidad</label>
-                <input
-                  id="b-availability"
-                  type="text"
-                  required
-                  placeholder="Ej. Próxima semana"
-                  value={form.availability}
-                  onChange={set("availability")}
-                  className={inputClass}
-                />
+                <div className="relative">
+                  <select
+                    id="b-availability"
+                    required
+                    value={form.availability}
+                    onChange={set("availability")}
+                    className={selectClass}
+                  >
+                    <option value="" disabled>¿Cuándo?</option>
+                    <option value="Lo antes posible">Lo antes posible</option>
+                    <option value="Próximas semanas">Próximas semanas</option>
+                    <option value="Fecha concreta">Fecha concreta</option>
+                  </select>
+                  <SelectChevron />
+                </div>
               </div>
             </div>
 
