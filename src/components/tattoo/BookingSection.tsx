@@ -12,6 +12,7 @@ interface BookingFormData {
   tattoo_idea: string;
   body_zone: string;
   availability: "Lo antes posible" | "Próximas semanas" | "Fecha concreta" | "";
+  specific_date: string;
   additional_info: string;
 }
 
@@ -26,6 +27,7 @@ const initial: BookingFormData = {
   tattoo_idea: "",
   body_zone: "",
   availability: "",
+  specific_date: "",
   additional_info: "",
 };
 
@@ -133,10 +135,16 @@ export default function BookingSection() {
         tattoo_img_url = uploadData.url ?? "";
       }
 
+      let availability = form.availability;
+      if (form.availability === "Fecha concreta" && form.specific_date) {
+        const [y, m, d] = form.specific_date.split("-");
+        availability = `Fecha concreta: ${d}/${m}/${y}`;
+      }
+
       const res = await fetch("/api/ghl/booking", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...form, tattoo_img_url }),
+        body: JSON.stringify({ ...form, availability, tattoo_img_url }),
       });
       if (!res.ok) throw new Error("Error");
       setStatus("success");
@@ -276,6 +284,17 @@ export default function BookingSection() {
                   </select>
                   <SelectChevron />
                 </div>
+                {form.availability === "Fecha concreta" && (
+                  <input
+                    id="b-specific-date"
+                    type="date"
+                    required
+                    value={form.specific_date}
+                    onChange={set("specific_date")}
+                    min={new Date().toISOString().split("T")[0]}
+                    className={`${inputClass} mt-2`}
+                  />
+                )}
               </div>
             </div>
 
