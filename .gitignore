@@ -40,3 +40,4 @@ yarn-error.log*
 .codex
 .claude
 .env*.local
+test-results/
