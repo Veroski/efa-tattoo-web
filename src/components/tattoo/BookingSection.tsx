@@ -148,6 +148,9 @@ export default function BookingSection() {
       });
       if (!res.ok) throw new Error("Error");
       setStatus("success");
+      if (typeof (window as any).fbq === "function") {
+        (window as any).fbq("track", "Lead");
+      }
     } catch {
       setStatus("error");
     }

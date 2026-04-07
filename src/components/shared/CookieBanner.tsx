@@ -32,9 +32,9 @@ function loadScripts(prefs: CookiePreferences) {
     }
   }
 
-  // Facebook Pixel — replace XXXXXXXXXXXXXXX with your actual Pixel ID
-  const FB_PIXEL_ID = (window as any).__FB_PIXEL_ID__ || "XXXXXXXXXXXXXXX";
-  if (prefs.marketing && FB_PIXEL_ID !== "XXXXXXXXXXXXXXX") {
+  // Facebook Pixel
+  const FB_PIXEL_ID = (window as any).__FB_PIXEL_ID__ || "135320694773663";
+  if (prefs.marketing) {
     if (!document.getElementById("fb-pixel-script")) {
       const inline = document.createElement("script");
       inline.id = "fb-pixel-script";
