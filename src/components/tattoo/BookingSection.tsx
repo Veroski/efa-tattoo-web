@@ -284,19 +284,26 @@ export default function BookingSection() {
                   </select>
                   <SelectChevron />
                 </div>
-                {form.availability === "Fecha concreta" && (
-                  <input
-                    id="b-specific-date"
-                    type="date"
-                    required
-                    value={form.specific_date}
-                    onChange={set("specific_date")}
-                    min={new Date().toISOString().split("T")[0]}
-                    className={`${inputClass} mt-2`}
-                  />
-                )}
               </div>
             </div>
+
+            {/* Selector de fecha — solo visible cuando se elige "Fecha concreta" */}
+            {form.availability === "Fecha concreta" && (
+              <div>
+                <label htmlFor="b-specific-date" className={labelClass}>
+                  ¿Qué fecha tienes en mente?
+                </label>
+                <input
+                  id="b-specific-date"
+                  type="date"
+                  required
+                  value={form.specific_date}
+                  onChange={set("specific_date")}
+                  min={new Date().toISOString().split("T")[0]}
+                  className={inputClass}
+                />
+              </div>
+            )}
 
             {/* Información adicional */}
             <div>
