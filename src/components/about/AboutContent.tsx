@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 function Img({
   height,
@@ -45,6 +46,9 @@ const fadeUp = {
 };
 
 export default function AboutContent() {
+  const { t } = useTranslation();
+  const features = t("about.features", { returnObjects: true }) as Array<{ num: string; title: string; body: string }>;
+
   return (
     <div className="overflow-hidden">
 
@@ -52,13 +56,12 @@ export default function AboutContent() {
       <section className="px-[4vw] py-16 md:py-24 max-w-[1500px] mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-[55%_45%] items-start">
 
-          {/* Left — text */}
           <div className="relative z-10 md:pr-20 space-y-8">
             <motion.p
               {...fadeUp}
               className="text-[#c9b99a] text-[0.7rem] tracking-[0.6em] uppercase"
             >
-              Historias a través del trazo y el conocimiento
+              {t("about.eyebrow")}
             </motion.p>
 
             <motion.h2
@@ -67,7 +70,7 @@ export default function AboutContent() {
               className="text-white uppercase tracking-[0.22em] font-light leading-none"
               style={{ fontFamily: "var(--font-heading)", fontSize: "clamp(2.2rem, 5.5vw, 4.5rem)" }}
             >
-              Conoce a Enric
+              {t("about.title")}
             </motion.h2>
 
             <motion.div
@@ -75,16 +78,11 @@ export default function AboutContent() {
               transition={{ duration: 0.65, delay: 0.2 }}
               className="space-y-5 text-white/70 text-sm leading-relaxed font-light tracking-wide max-w-[30rem]"
             >
-              <p>
-                Soy un artista afincado en Barcelona, enfermero de formación y tatuador especializado en fine line y micro-realismo. Mi trabajo nace de una conexión profunda con el cuerpo humano y con las historias personales que se cuentan a través del trazo.
-              </p>
-              <p>
-                Empecé a tatuar mientras trabajaba en urgencias, trasladando la precisión quirúrgica a un arte que no busca curar una herida, sino honrarla. Más de 7 años de práctica constante definen hoy mi forma de trabajar: criterio, técnica y responsabilidad.
-              </p>
+              <p>{t("about.p1")}</p>
+              <p>{t("about.p2")}</p>
             </motion.div>
           </div>
 
-          {/* Right — portrait */}
           <motion.div
             initial={{ opacity: 0, x: 18 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -96,7 +94,7 @@ export default function AboutContent() {
               height="520px"
               bg="#2a2520"
               src="/img/img_2.webp"
-              alt="Enric en el estudio — EFA Tattoo Barcelona"
+              alt={t("about.imgAlt1")}
               objectPosition="center 18%"
             />
           </motion.div>
@@ -111,12 +109,11 @@ export default function AboutContent() {
             {...fadeUp}
             className="text-white/40 text-[0.7rem] tracking-[0.6em] uppercase mb-10"
           >
-            Especialidad
+            {t("about.specialtyEyebrow")}
           </motion.p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-start">
 
-            {/* Left — image */}
             <motion.div
               initial={{ opacity: 0, x: -18 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -127,39 +124,24 @@ export default function AboutContent() {
                 height="580px"
                 bg="#1e1c1a"
                 src="/img/img_1.webp"
-                alt="Enric en el estudio con monstera — EFA Tattoo"
+                alt={t("about.imgAlt2")}
                 objectPosition="center 65%"
               />
             </motion.div>
 
-            {/* Right — heading + features + CTA */}
             <div className="space-y-12">
               <motion.h2
                 {...fadeUp}
                 className="text-white uppercase tracking-[0.22em] font-light leading-tight"
                 style={{ fontFamily: "var(--font-heading)", fontSize: "clamp(1.7rem, 3.5vw, 3.2rem)" }}
               >
-                Pasión por<br />el tatuaje
+                {t("about.passionTitle").split("\n").map((line, i) => (
+                  <span key={i}>{line}{i === 0 && <br />}</span>
+                ))}
               </motion.h2>
 
               <div className="space-y-0">
-                {[
-                  {
-                    num: "01",
-                    title: "Diseños únicos",
-                    body: "Diseño cada tatuaje de forma personalizada para convertir historias personales en un trazo fino, preciso y con intención.",
-                  },
-                  {
-                    num: "02",
-                    title: "Precisión técnica",
-                    body: "Combino mi formación médica con el dominio artístico en cada pieza. Llevo más de siete años perfeccionando mi técnica.",
-                  },
-                  {
-                    num: "03",
-                    title: "Conexión personal",
-                    body: "Cada tatuaje nace de una colaboración real entre tu visión y mi criterio para construir una pieza con sentido.",
-                  },
-                ].map((item, i) => (
+                {features.map((item, i) => (
                   <motion.div
                     key={item.num}
                     {...fadeUp}
@@ -189,7 +171,7 @@ export default function AboutContent() {
                   to="/tattoo"
                   className="inline-block border border-white/25 text-white text-xs tracking-[0.45em] uppercase py-4 px-10 hover:bg-white hover:text-[#1a1814] transition-colors duration-300"
                 >
-                  Reservar cita
+                  {t("about.bookingCta")}
                 </Link>
               </motion.div>
             </div>
@@ -202,7 +184,6 @@ export default function AboutContent() {
         <div className="px-[4vw] max-w-[1500px] mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-start">
 
-            {/* Left — tall image */}
             <motion.div
               initial={{ opacity: 0, x: -18 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -213,20 +194,19 @@ export default function AboutContent() {
                 height="640px"
                 bg="#222020"
                 src="/img/Proyectos%20grandes/proyectos_grandes_55.webp"
-                alt="Dragón con flores — proyecto grande EFA Tattoo"
+                alt={t("about.imgAlt3")}
                 objectPosition="62% 38%"
                 scale={1.45}
               />
             </motion.div>
 
-            {/* Right — content */}
             <div className="space-y-10 md:pt-10">
               <div className="space-y-6">
                 <motion.p
                   {...fadeUp}
                   className="text-white/40 text-[0.7rem] tracking-[0.55em] uppercase"
                 >
-                  Transmitiendo conocimiento
+                  {t("about.academyEyebrow")}
                 </motion.p>
                 <motion.h2
                   {...fadeUp}
@@ -234,7 +214,9 @@ export default function AboutContent() {
                   className="text-white uppercase tracking-[0.22em] font-light leading-tight"
                   style={{ fontFamily: "var(--font-heading)", fontSize: "clamp(1.7rem, 3.5vw, 3.2rem)" }}
                 >
-                  Enseñando<br />a tatuar mejor
+                  {t("about.academyTitle").split("\n").map((line, i) => (
+                    <span key={i}>{line}{i === 0 && <br />}</span>
+                  ))}
                 </motion.h2>
               </div>
 
@@ -243,17 +225,12 @@ export default function AboutContent() {
                 transition={{ duration: 0.65, delay: 0.15 }}
                 className="space-y-5 text-white/65 text-sm leading-relaxed font-light tracking-wide max-w-[28rem]"
               >
-                <p>
-                  Desde el trabajo real en estudio hasta el método que he desarrollado en estos años de práctica, enseño con una sensibilidad profunda hacia el detalle, la higiene y la ética del tatuador.
-                </p>
-                <p>
-                  Cuando enseño, no busco que mis alumnos imiten mi mano: busco que construyan su propio criterio, con bases sólidas y un método que funcione de verdad en la realidad del estudio.
-                </p>
+                <p>{t("about.academyP1")}</p>
+                <p>{t("about.academyP2")}</p>
               </motion.div>
 
-              {/* Animated taglines */}
               <div className="space-y-5 pt-2">
-                {["La técnica salva.", "El método libera."].map((line, i) => (
+                {([t("about.tagline1"), t("about.tagline2")] as string[]).map((line, i) => (
                   <motion.p
                     key={line}
                     initial={{ opacity: 0, x: -10 }}
@@ -284,7 +261,7 @@ export default function AboutContent() {
                   to="/academy"
                   className="inline-block border border-white/25 text-white text-xs tracking-[0.45em] uppercase py-4 px-10 hover:bg-white hover:text-[#1a1814] transition-colors duration-300"
                 >
-                  Explorar academia
+                  {t("about.academyCta")}
                 </Link>
               </motion.div>
             </div>
@@ -305,12 +282,11 @@ export default function AboutContent() {
             className="text-white uppercase tracking-[0.3em] font-light"
             style={{ fontFamily: "var(--font-heading)", fontSize: "clamp(1.5rem, 3vw, 2.6rem)" }}
           >
-            Creemos algo juntos
+            {t("about.finalTitle")}
           </h2>
           <p className="text-white/60 text-sm leading-relaxed font-light tracking-wide">
-            Ponte en contacto para comenzar tu proceso, ya sea a través de un tatuaje o de nuestros seminarios de formación.
+            {t("about.finalText")}
           </p>
-          
         </motion.div>
       </section>
 
