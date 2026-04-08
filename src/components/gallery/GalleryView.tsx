@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useTranslation } from "react-i18next";
 import { categories } from "./galleryData";
 import GalleryLightbox from "./GalleryLightbox";
 
@@ -22,6 +23,7 @@ function LazyImage({
   index: number;
   onClick: () => void;
 }) {
+  const { t } = useTranslation();
   const [error, setError] = useState(false);
   const eager = index < EAGER_IMAGES;
 
@@ -32,7 +34,7 @@ function LazyImage({
       type="button"
       className="relative w-full overflow-hidden group break-inside-avoid block mb-[10px] bg-[#1a1814]"
       onClick={onClick}
-      aria-label={`Ver ${alt}`}
+      aria-label={t("gallery.ariaOpen", { title: alt })}
     >
       <img
         src={src}
@@ -52,7 +54,7 @@ function LazyImage({
       {/* Hover overlay */}
       <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/0 to-black/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end justify-center pb-4">
         <span className="text-white/80 text-[0.55rem] tracking-[0.5em] uppercase translate-y-1 group-hover:translate-y-0 transition-transform duration-300">
-          Ver detalle
+          {t("gallery.verDetalle")}
         </span>
       </div>
 
@@ -66,6 +68,9 @@ function LazyImage({
  * GalleryView — tabs + masonry + lightbox
  * ──────────────────────────────────────────── */
 export default function GalleryView() {
+  const { t } = useTranslation();
+  const galleryCats = t("gallery.categories", { returnObjects: true }) as Record<string, { title: string; description: string }>;
+
   const [activeId, setActiveId] = useState(categories[0].id);
   const [visibleCount, setVisibleCount] = useState(BATCH_SIZE);
   const [fading, setFading] = useState(false);
@@ -75,6 +80,8 @@ export default function GalleryView() {
   const tabsRef = useRef<HTMLDivElement>(null);
 
   const category = categories.find((c) => c.id === activeId)!;
+  const catTitle = galleryCats[activeId]?.title ?? category.title;
+  const catDesc = galleryCats[activeId]?.description ?? category.description;
   const visibleImages = category.images.slice(0, visibleCount);
   const hasMore = visibleCount < category.images.length;
 
@@ -153,7 +160,7 @@ export default function GalleryView() {
                   className={`relative whitespace-nowrap px-4 py-3 text-[0.6rem] tracking-[0.3em] uppercase transition-colors duration-300
                     ${isActive ? "text-[#c9b99a]" : "text-white/35 hover:text-white/65"}`}
                 >
-                  {cat.title}
+                  {galleryCats[cat.id]?.title ?? cat.title}
                   <span
                     className={`ml-2 text-[0.5rem] tabular-nums ${
                       isActive ? "text-[#c9b99a]/50" : "text-white/20"
@@ -187,7 +194,7 @@ export default function GalleryView() {
               transition={{ duration: 0.2 }}
               className="text-white/25 text-[0.68rem] tracking-wide mt-4 font-light"
             >
-              {category.description}
+              {catDesc}
             </motion.p>
           </AnimatePresence>
         </div>
@@ -200,7 +207,7 @@ export default function GalleryView() {
        * ═══════════════════════════════════════════ */}
       <section
         className="px-[4vw] py-8 max-w-[1500px] mx-auto min-h-[50vh]"
-        aria-label={`Galería — ${category.title}`}
+        aria-label={t("gallery.ariaGallery", { title: catTitle })}
       >
         <div
           className={`columns-2 md:columns-3 xl:columns-4 transition-opacity duration-200 ${
@@ -212,7 +219,7 @@ export default function GalleryView() {
             <LazyImage
               key={src}
               src={src}
-              alt={`${category.title} — trabajo ${i + 1}`}
+              alt={t("gallery.imageAlt", { title: catTitle, num: i + 1 })}
               index={i}
               onClick={() => setLightboxIndex(i)}
             />
@@ -225,7 +232,7 @@ export default function GalleryView() {
             <div className="flex items-center gap-3">
               <div className="h-px w-8 bg-white/[0.06]" />
               <span className="text-white/20 text-[0.55rem] tracking-[0.35em] uppercase animate-pulse">
-                Cargando
+                {t("gallery.cargando")}
               </span>
               <div className="h-px w-8 bg-white/[0.06]" />
             </div>
@@ -237,7 +244,7 @@ export default function GalleryView() {
           <div className="flex items-center justify-center gap-4 py-14">
             <div className="h-px w-12 bg-white/[0.06]" />
             <span className="text-white/15 text-[0.55rem] tracking-[0.4em] uppercase">
-              {category.count} trabajos
+              {category.count} {t("gallery.trabajos")}
             </span>
             <div className="h-px w-12 bg-white/[0.06]" />
           </div>
@@ -253,7 +260,7 @@ export default function GalleryView() {
             key="lightbox"
             images={category.images}
             currentIndex={lightboxIndex}
-            categoryTitle={category.title}
+            categoryTitle={catTitle}
             onClose={() => setLightboxIndex(null)}
             onNavigate={handleLightboxNav}
           />

@@ -1,12 +1,13 @@
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 export default function FooterStrip() {
+  const { t } = useTranslation();
   const year = new Date().getFullYear();
 
   return (
     <footer className="border-t border-white/10 py-12 px-[4vw]">
       <div className="max-w-[1445px] mx-auto">
-        {/* Top row */}
         <div className="flex flex-col md:flex-row items-center justify-between gap-6 mb-8">
           <Link
             to="/"
@@ -21,14 +22,14 @@ export default function FooterStrip() {
               to="/tattoo#booking"
               className="text-white/50 text-[0.7rem] tracking-[0.3em] uppercase hover:text-white/80 transition-colors"
             >
-              Reservar cita
+              {t("footer.reservar")}
             </Link>
             <span className="text-white/20" aria-hidden="true">·</span>
             <Link
               to="/academy"
               className="text-white/50 text-[0.7rem] tracking-[0.3em] uppercase hover:text-white/80 transition-colors"
             >
-              Academia
+              {t("footer.academia")}
             </Link>
             <span className="text-white/20" aria-hidden="true">·</span>
             <a
@@ -40,28 +41,25 @@ export default function FooterStrip() {
               Instagram
             </a>
           </nav>
-
-
         </div>
 
-        {/* Bottom row */}
         <div className="flex flex-col md:flex-row items-center justify-between gap-3 border-t border-white/5 pt-6">
           <p className="text-white/30 text-[0.65rem] tracking-wide">
-            © {year} EFA Tattoo. Barcelona, España.
+            {t("footer.copyright", { year })}
           </p>
           <nav aria-label="Legal" className="flex items-center gap-4">
             <Link
               to="/privacidad"
               className="text-white/25 text-[0.62rem] tracking-[0.2em] uppercase hover:text-white/50 transition-colors"
             >
-              Privacidad
+              {t("footer.privacidad")}
             </Link>
             <span className="text-white/15" aria-hidden="true">·</span>
             <Link
               to="/aviso-legal"
               className="text-white/25 text-[0.62rem] tracking-[0.2em] uppercase hover:text-white/50 transition-colors"
             >
-              Aviso legal
+              {t("footer.avisoLegal")}
             </Link>
           </nav>
         </div>

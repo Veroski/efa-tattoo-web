@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
+import { useTranslation } from "react-i18next";
 
 interface CookiePreferences {
   analytics: boolean;
@@ -92,6 +93,7 @@ function Toggle({
 }
 
 export default function CookieBanner() {
+  const { t } = useTranslation();
   const [visible, setVisible] = useState(false);
   const [expanded, setExpanded] = useState(false);
   const [prefs, setPrefs] = useState<CookiePreferences>({
@@ -141,7 +143,7 @@ export default function CookieBanner() {
           transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
           className="fixed bottom-4 left-4 right-4 md:left-auto md:right-6 md:bottom-6 md:max-w-[440px] z-[9999]"
           role="dialog"
-          aria-label="Preferencias de cookies"
+          aria-label={t("cookie.title")}
           aria-modal="false"
         >
           <div
@@ -156,17 +158,16 @@ export default function CookieBanner() {
                     className="text-white text-sm tracking-[0.12em] uppercase mb-1"
                     style={{ fontFamily: "var(--font-heading)" }}
                   >
-                    Cookies
+                    {t("cookie.title")}
                   </p>
                   <p className="text-white/50 text-[0.7rem] leading-relaxed tracking-wide">
-                    Usamos cookies propias esenciales y, con tu permiso,
-                    cookies analíticas y de marketing.{" "}
+                    {t("cookie.text")}{" "}
                     <Link
                       to="/privacidad"
                       className="text-[#c9b99a]/70 hover:text-[#c9b99a] transition-colors underline underline-offset-2"
                       onClick={() => setVisible(false)}
                     >
-                      Política de privacidad
+                      {t("cookie.policyLink")}
                     </Link>
                   </p>
                 </div>
@@ -189,10 +190,10 @@ export default function CookieBanner() {
                     <div className="flex items-center justify-between gap-4">
                       <div>
                         <p className="text-white/80 text-[0.7rem] tracking-wide">
-                          Cookies esenciales
+                          {t("cookie.essential")}
                         </p>
                         <p className="text-white/35 text-[0.62rem] mt-0.5">
-                          Funcionamiento básico de la web. Siempre activas.
+                          {t("cookie.essentialDesc")}
                         </p>
                       </div>
                       <Toggle enabled={true} onChange={() => {}} disabled />
@@ -202,10 +203,10 @@ export default function CookieBanner() {
                     <div className="flex items-center justify-between gap-4">
                       <div>
                         <p className="text-white/80 text-[0.7rem] tracking-wide">
-                          Analítica — Google Analytics
+                          {t("cookie.analytics")}
                         </p>
                         <p className="text-white/35 text-[0.62rem] mt-0.5">
-                          Estadísticas anónimas de visitas.
+                          {t("cookie.analyticsDesc")}
                         </p>
                       </div>
                       <Toggle
@@ -220,10 +221,10 @@ export default function CookieBanner() {
                     <div className="flex items-center justify-between gap-4">
                       <div>
                         <p className="text-white/80 text-[0.7rem] tracking-wide">
-                          Marketing — Facebook Pixel
+                          {t("cookie.marketing")}
                         </p>
                         <p className="text-white/35 text-[0.62rem] mt-0.5">
-                          Seguimiento para anuncios en redes sociales.
+                          {t("cookie.marketingDesc")}
                         </p>
                       </div>
                       <Toggle
@@ -246,14 +247,14 @@ export default function CookieBanner() {
                   onClick={acceptAll}
                   className="flex-1 text-[0.65rem] tracking-[0.25em] uppercase bg-[#c9b99a]/15 border border-[#c9b99a]/30 text-[#c9b99a] py-2.5 rounded-lg hover:bg-[#c9b99a]/25 hover:border-[#c9b99a]/50 transition-all duration-200 cursor-pointer"
                 >
-                  Aceptar todas
+                  {t("cookie.acceptAll")}
                 </button>
                 <button
                   id="cookie-reject-all"
                   onClick={rejectAll}
                   className="flex-1 text-[0.65rem] tracking-[0.25em] uppercase text-white/40 border border-white/10 py-2.5 rounded-lg hover:text-white/65 hover:border-white/20 transition-all duration-200 cursor-pointer"
                 >
-                  Solo esenciales
+                  {t("cookie.essentialOnly")}
                 </button>
               </div>
 
@@ -263,7 +264,7 @@ export default function CookieBanner() {
                   onClick={() => setExpanded((e) => !e)}
                   className="text-white/30 text-[0.62rem] tracking-wide hover:text-white/55 transition-colors cursor-pointer"
                 >
-                  {expanded ? "Ocultar opciones ↑" : "Personalizar ↓"}
+                  {expanded ? t("cookie.hideOptions") : t("cookie.customize")}
                 </button>
                 {expanded && (
                   <button
@@ -271,7 +272,7 @@ export default function CookieBanner() {
                     onClick={saveCustom}
                     className="text-[#c9b99a]/60 text-[0.62rem] tracking-wide hover:text-[#c9b99a] transition-colors cursor-pointer"
                   >
-                    Guardar selección →
+                    {t("cookie.saveSelection")}
                   </button>
                 )}
               </div>

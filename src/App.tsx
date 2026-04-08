@@ -1,5 +1,6 @@
 import { useEffect, type ReactNode } from "react";
 import { Link, Route, Routes, useLocation } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import AboutContent from "@/components/about/AboutContent";
 import AcademyPage from "@/components/academy/AcademyPage";
 import GalleryView from "@/components/gallery/GalleryView";
@@ -51,8 +52,9 @@ function HomePage() {
 }
 
 function AboutPage() {
+  const { t } = useTranslation();
   return (
-    <Page title="Conoce a Enric">
+    <Page title={t("pages.aboutTitle")}>
       <Header />
       <AboutContent />
       <FooterStrip />
@@ -61,12 +63,13 @@ function AboutPage() {
 }
 
 function GalleryPage() {
+  const { t } = useTranslation();
   return (
-    <Page title="Galería">
+    <Page title={t("pages.galleryTitle")}>
       <Header />
       <PageHeader
-        title="Galería"
-        subtitle="400 trabajos seleccionados"
+        title={t("pages.galleryTitle")}
+        subtitle={t("pages.gallerySubtitle")}
         size="half"
         bg="#141210"
       />
@@ -77,12 +80,13 @@ function GalleryPage() {
 }
 
 function TattooPage() {
+  const { t } = useTranslation();
   return (
-    <Page title="Tattoo">
+    <Page title={t("pages.tattooTitle")}>
       <Header />
       <PageHeader
-        title="Reservar cita"
-        subtitle="Solicitud de sesión"
+        title={t("pages.tattooTitle")}
+        subtitle={t("pages.tattooSubtitle")}
         size="half"
         bg="#1e1c1a"
       />
@@ -93,19 +97,20 @@ function TattooPage() {
 }
 
 function NotFoundPage() {
+  const { t } = useTranslation();
   return (
-    <Page title="Not Found">
+    <Page title={t("pages.notFoundTitle")}>
       <Header />
-      <PageHeader title="Not Found" subtitle="La ruta que buscas no existe" size="half" bg="#1e1c1a" />
+      <PageHeader title={t("pages.notFoundTitle")} subtitle={t("pages.notFoundSubtitle")} size="half" bg="#1e1c1a" />
       <section className="px-[4vw] py-16 max-w-[1445px] mx-auto">
         <p className="text-white/45 text-sm tracking-wide">
-          Esta ruta no existe. Vuelve al inicio para seguir navegando.
+          {t("pages.notFoundText")}
         </p>
         <Link
           to="/"
           className="mt-8 inline-block text-white/60 text-[0.65rem] tracking-[0.35em] uppercase border-b border-white/20 pb-2 hover:text-white hover:border-white/60 transition-colors"
         >
-          Volver al inicio
+          {t("pages.notFoundLink")}
         </Link>
       </section>
       <FooterStrip />

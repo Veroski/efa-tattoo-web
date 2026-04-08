@@ -1,5 +1,6 @@
 import { useEffect, useCallback, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useTranslation } from "react-i18next";
 
 interface GalleryLightboxProps {
   images: string[];
@@ -16,6 +17,7 @@ export default function GalleryLightbox({
   onClose,
   onNavigate,
 }: GalleryLightboxProps) {
+  const { t } = useTranslation();
   const [direction, setDirection] = useState(0);
   const closeRef = useRef<HTMLButtonElement>(null);
   const touchStartX = useRef(0);
@@ -74,7 +76,7 @@ export default function GalleryLightbox({
     <motion.div
       role="dialog"
       aria-modal="true"
-      aria-label={`${categoryTitle} — imagen ${currentIndex + 1} de ${images.length}`}
+      aria-label={t("gallery.ariaModal", { title: categoryTitle, current: currentIndex + 1, total: images.length })}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
@@ -101,9 +103,9 @@ export default function GalleryLightbox({
             onClose();
           }}
           className="text-white/40 text-[0.6rem] tracking-[0.35em] uppercase hover:text-white transition-colors duration-300"
-          aria-label="Cerrar galería"
+          aria-label={t("gallery.cerrar")}
         >
-          Cerrar
+          {t("gallery.cerrar")}
         </button>
       </div>
 
@@ -112,7 +114,7 @@ export default function GalleryLightbox({
         <motion.img
           key={images[currentIndex]}
           src={images[currentIndex]}
-          alt={`${categoryTitle} — trabajo ${currentIndex + 1}`}
+          alt={t("gallery.imageAlt", { title: categoryTitle, num: currentIndex + 1 })}
           loading="eager"
           fetchPriority="high"
           decoding="async"
@@ -135,7 +137,7 @@ export default function GalleryLightbox({
             goPrev();
           }}
           className="absolute left-3 md:left-6 top-1/2 -translate-y-1/2 w-11 h-11 flex items-center justify-center text-white/20 hover:text-white/70 transition-colors duration-300"
-          aria-label="Imagen anterior"
+          aria-label={t("gallery.anterior")}
         >
           <svg
             width="18"
@@ -161,7 +163,7 @@ export default function GalleryLightbox({
             goNext();
           }}
           className="absolute right-3 md:right-6 top-1/2 -translate-y-1/2 w-11 h-11 flex items-center justify-center text-white/20 hover:text-white/70 transition-colors duration-300"
-          aria-label="Imagen siguiente"
+          aria-label={t("gallery.siguiente")}
         >
           <svg
             width="18"

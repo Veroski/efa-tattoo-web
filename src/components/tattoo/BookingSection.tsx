@@ -1,4 +1,5 @@
 import { useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 import SectionLabel from "@/components/shared/SectionLabel";
 
 type CityOption = "" | "barcelona" | "zurich";
@@ -87,15 +88,17 @@ export default function BookingSection() {
     (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) =>
       setForm((f) => ({ ...f, [k]: e.target.value }));
 
+  const { t } = useTranslation();
+
   const validateAndSetFile = (file: File | null) => {
     setImageError("");
     if (!file) return;
     if (!ALLOWED_TYPES.includes(file.type.toLowerCase())) {
-      setImageError("Solo se admiten PNG, JPG o JPEG.");
+      setImageError(t("booking.imageError1"));
       return;
     }
     if (file.size > MAX_FILE_BYTES) {
-      setImageError("El archivo no puede superar los 3 MB.");
+      setImageError(t("booking.imageError2"));
       return;
     }
     setImageFile(file);
@@ -161,10 +164,10 @@ export default function BookingSection() {
       <section className="px-[4vw] py-16 max-w-xl mx-auto">
         <div className="py-12 text-center space-y-3">
           <p className="text-[#c9b99a] text-xs tracking-[0.4em] uppercase">
-            Solicitud recibida
+            {t("booking.successTitle")}
           </p>
           <p className="text-white/60 text-sm tracking-wide font-light">
-            Te contactaremos por WhatsApp para revisar tu idea y disponibilidad.
+            {t("booking.successText")}
           </p>
         </div>
       </section>
@@ -184,19 +187,19 @@ export default function BookingSection() {
             {/* Nombre + Ciudad */}
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label htmlFor="b-name" className={labelClass}>Nombre y Apellidos</label>
+                <label htmlFor="b-name" className={labelClass}>{t("booking.name")}</label>
                 <input
                   id="b-name"
                   type="text"
                   required
-                  placeholder="Nombre completo"
+                  placeholder={t("booking.namePlaceholder")}
                   value={form.full_name}
                   onChange={set("full_name")}
                   className={inputClass}
                 />
               </div>
               <div>
-                <label htmlFor="b-city" className={labelClass}>Ciudad</label>
+                <label htmlFor="b-city" className={labelClass}>{t("booking.city")}</label>
                 <div className="relative">
                   <select
                     id="b-city"
@@ -205,7 +208,7 @@ export default function BookingSection() {
                     onChange={set("city")}
                     className={selectClass}
                   >
-                    <option value="" disabled>¿Donde?</option>
+                    <option value="" disabled>{t("booking.cityPlaceholder")}</option>
                     <option value="barcelona">Barcelona</option>
                     <option value="zurich">Zurich</option>
                   </select>
@@ -217,24 +220,24 @@ export default function BookingSection() {
             {/* Teléfono + Email */}
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label htmlFor="b-phone" className={labelClass}>WhatsApp / Tel.</label>
+                <label htmlFor="b-phone" className={labelClass}>{t("booking.phone")}</label>
                 <input
                   id="b-phone"
                   type="tel"
                   required
-                  placeholder="+34 000 000 000"
+                  placeholder={t("booking.phonePlaceholder")}
                   value={form.phone}
                   onChange={set("phone")}
                   className={inputClass}
                 />
               </div>
               <div>
-                <label htmlFor="b-email" className={labelClass}>Email</label>
+                <label htmlFor="b-email" className={labelClass}>{t("booking.email")}</label>
                 <input
                   id="b-email"
                   type="email"
                   required
-                  placeholder="tu@email.com"
+                  placeholder={t("booking.emailPlaceholder")}
                   value={form.email}
                   onChange={set("email")}
                   className={inputClass}
@@ -244,12 +247,12 @@ export default function BookingSection() {
 
             {/* Idea del tatuaje */}
             <div>
-              <label htmlFor="b-idea" className={labelClass}>Idea del tatuaje</label>
+              <label htmlFor="b-idea" className={labelClass}>{t("booking.idea")}</label>
               <textarea
                 id="b-idea"
                 rows={1}
                 required
-                placeholder="Descripción breve del diseño"
+                placeholder={t("booking.ideaPlaceholder")}
                 value={form.tattoo_idea}
                 onChange={set("tattoo_idea")}
                 className={`${inputClass} resize-none`}
@@ -259,19 +262,19 @@ export default function BookingSection() {
             {/* Zona del cuerpo + Disponibilidad */}
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label htmlFor="b-zone" className={labelClass}>Zona del cuerpo</label>
+                <label htmlFor="b-zone" className={labelClass}>{t("booking.zone")}</label>
                 <input
                   id="b-zone"
                   type="text"
                   required
-                  placeholder="Ej. Antebrazo"
+                  placeholder={t("booking.zonePlaceholder")}
                   value={form.body_zone}
                   onChange={set("body_zone")}
                   className={inputClass}
                 />
               </div>
               <div>
-                <label htmlFor="b-availability" className={labelClass}>Disponibilidad</label>
+                <label htmlFor="b-availability" className={labelClass}>{t("booking.availability")}</label>
                 <div className="relative">
                   <select
                     id="b-availability"
@@ -280,44 +283,39 @@ export default function BookingSection() {
                     onChange={set("availability")}
                     className={selectClass}
                   >
-                    <option value="" disabled>¿Cuándo?</option>
-                    <option value="Lo antes posible">Lo antes posible</option>
-                    <option value="Próximas semanas">Próximas semanas</option>
-                    <option value="Fecha concreta">Fecha concreta</option>
+                    <option value="" disabled>{t("booking.availabilityPlaceholder")}</option>
+                    <option value="Lo antes posible">{t("booking.availOpt1")}</option>
+                    <option value="Próximas semanas">{t("booking.availOpt2")}</option>
+                    <option value="Fecha concreta">{t("booking.availOpt3")}</option>
                   </select>
                   <SelectChevron />
                 </div>
+                {form.availability === "Fecha concreta" && (
+                  <input
+                    id="b-specific-date"
+                    type="date"
+                    required
+                    value={form.specific_date}
+                    onChange={set("specific_date")}
+                    min={new Date().toISOString().split("T")[0]}
+                    className={`${inputClass} mt-2`}
+                  />
+                )}
               </div>
             </div>
 
-            {/* Selector de fecha — solo visible cuando se elige "Fecha concreta" */}
-            {form.availability === "Fecha concreta" && (
-              <div>
-                <label htmlFor="b-specific-date" className={labelClass}>
-                  ¿Qué fecha tienes en mente?
-                </label>
-                <input
-                  id="b-specific-date"
-                  type="date"
-                  required
-                  value={form.specific_date}
-                  onChange={set("specific_date")}
-                  min={new Date().toISOString().split("T")[0]}
-                  className={inputClass}
-                />
-              </div>
-            )}
+
 
             {/* Información adicional */}
             <div>
               <label htmlFor="b-extra" className={labelClass}>
-                Información adicional{" "}
-                <span className="text-white/30 normal-case tracking-normal">(opcional)</span>
+                {t("booking.extra")}{" "}
+                <span className="text-white/30 normal-case tracking-normal">{t("booking.extraOptional")}</span>
               </label>
               <textarea
                 id="b-extra"
                 rows={1}
-                placeholder="Detalles adicionales (alergias, fechas...)"
+                placeholder={t("booking.extraPlaceholder")}
                 value={form.additional_info}
                 onChange={set("additional_info")}
                 className={`${inputClass} resize-none`}
@@ -327,8 +325,8 @@ export default function BookingSection() {
             {/* Imagen de referencia */}
             <div>
               <label className={labelClass}>
-                Imagen de referencia{" "}
-                <span className="text-white/30 normal-case tracking-normal">(opcional)</span>
+                {t("booking.imageLabel")}{" "}
+                <span className="text-white/30 normal-case tracking-normal">{t("booking.extraOptional")}</span>
               </label>
 
               {imageFile ? (
@@ -345,7 +343,7 @@ export default function BookingSection() {
                     type="button"
                     onClick={removeFile}
                     className="text-white/30 hover:text-white/70 transition-colors flex-shrink-0"
-                    aria-label="Eliminar imagen"
+                    aria-label={t("booking.imageRemove")}
                   >
                     <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
                       <path d="M2 2L10 10M10 2L2 10" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
@@ -371,7 +369,7 @@ export default function BookingSection() {
                     <path d="M3 14H15" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
                   </svg>
                   <span className="text-white/35 text-[0.65rem] tracking-[0.2em] uppercase">
-                    PNG, JPG · máx 3 MB
+                    {t("booking.imageHint")}
                   </span>
                 </div>
               )}
@@ -382,7 +380,7 @@ export default function BookingSection() {
                 accept=".png,.jpg,.jpeg,image/png,image/jpeg"
                 onChange={handleFileChange}
                 className="sr-only"
-                aria-label="Imagen de referencia"
+                aria-label={t("booking.imageLabel")}
               />
 
               {imageError && (
@@ -392,7 +390,7 @@ export default function BookingSection() {
 
             {status === "error" && (
               <p className="text-red-400/80 text-[0.65rem] tracking-wide text-center">
-                Error. Revisa los datos e inténtalo de nuevo.
+                {t("booking.errorMsg")}
               </p>
             )}
 
@@ -403,7 +401,7 @@ export default function BookingSection() {
                 tracking-[0.45em] uppercase py-3 hover:bg-transparent hover:text-white
                 transition-all duration-500 disabled:opacity-50 disabled:cursor-not-allowed mt-4 shadow-lg shadow-black/20"
             >
-              {status === "loading" ? "Enviando solicitud..." : "ENVIAR SOLICITUD"}
+              {status === "loading" ? t("booking.submitting") : t("booking.submit")}
             </button>
           </form>
         </div>
@@ -411,18 +409,16 @@ export default function BookingSection() {
         {/* Panel Informativo (Derecha) */}
         <div className="bg-[#0a0a0a]/80 border border-white/[0.05] p-6 sm:p-8 rounded-sm relative overflow-hidden flex flex-col justify-center backdrop-blur-md">
           <div className="absolute top-0 left-0 w-1/2 h-[1px] bg-gradient-to-r from-transparent via-[#c9b99a]/30 to-transparent" />
-          <h3 className="text-white/90 text-[0.7rem] tracking-[0.3em] uppercase mb-6 font-medium">Sobre tu solicitud</h3>
-          
+          <h3 className="text-white/90 text-[0.7rem] tracking-[0.3em] uppercase mb-6 font-medium">{t("booking.infoTitle")}</h3>
+
           <div className="space-y-6 text-white/50 text-[0.75rem] font-light leading-relaxed tracking-wide">
             <p>
-              Enviar este formulario <span className="text-[#c9b99a]">no confirma una reserva automática</span>. Es una solicitud inicial para evaluar la viabilidad de tu idea artística.
+              {t("booking.infoP1Pre")}<span className="text-[#c9b99a]">{t("booking.infoP1Highlight")}</span>{t("booking.infoP1Post")}
             </p>
             <p>
-              Nuestro equipo revisará tu propuesta cuidadosamente. Nos pondremos en contacto contigo directamente por <span className="text-[#c9b99a]">WhatsApp</span> para discutir el planteamiento visual, concretar fechas y presentarte un presupuesto a medida.
+              {t("booking.infoP2Pre")}<span className="text-[#c9b99a]">{t("booking.infoP2Highlight")}</span>{t("booking.infoP2Post")}
             </p>
-            <p>
-              Actualmente trabajamos con plazas muy limitadas por ciudad para asegurar la máxima exclusividad en cada obra.
-            </p>
+            <p>{t("booking.infoP3")}</p>
           </div>
         </div>
 

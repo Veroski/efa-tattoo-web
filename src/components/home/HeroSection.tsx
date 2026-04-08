@@ -1,18 +1,17 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
-/* ------------------------------------------------------------------ */
-/*  Hero                                                               */
-/* ------------------------------------------------------------------ */
 const EASE_SMOOTH = [0.25, 0.46, 0.45, 0.94] as const;
 
 export default function HeroSection() {
+  const { t } = useTranslation();
+
   return (
     <section
       className="relative w-full h-screen overflow-hidden bg-[#141210]"
-      aria-label="Inicio — EFA Tattoo"
+      aria-label={t("hero.ariaLabel")}
     >
-      {/* ── Single background image with subtle monochrome wash ── */}
       <motion.div
         initial={{ opacity: 0, scale: 1.04 }}
         animate={{ opacity: 1, scale: 1 }}
@@ -30,22 +29,15 @@ export default function HeroSection() {
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_55%_at_50%_42%,rgba(255,255,255,0.06)_0%,transparent_72%)] mix-blend-screen" />
       </motion.div>
 
-      {/* ── Ambient warm radials ── */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_25%_40%,rgba(201,185,154,0.04)_0%,transparent_70%)]" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_60%_at_78%_55%,rgba(201,185,154,0.025)_0%,transparent_60%)]" />
-
-      {/* ── Center readability zone (desktop) ── */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_38%_55%_at_50%_50%,rgba(20,18,16,0.76)_0%,rgba(20,18,16,0.26)_55%,transparent_80%)]" />
 
-      {/* Decorative horizontal lines */}
       <div className="absolute inset-x-0 top-[30%] h-px bg-white/[0.04]" />
       <div className="absolute inset-x-0 bottom-[25%] h-px bg-white/[0.04]" />
-
-      {/* Decorative vertical lines */}
       <div className="absolute inset-y-0 left-[8%] w-px bg-white/[0.03]" />
       <div className="absolute inset-y-0 right-[8%] w-px bg-white/[0.03]" />
 
-      {/* ── Main content ── */}
       <div className="absolute inset-0 z-10 flex flex-col items-center justify-center px-[4vw]">
         <motion.p
           initial={{ opacity: 0, y: 10 }}
@@ -53,7 +45,7 @@ export default function HeroSection() {
           transition={{ duration: 0.7, delay: 0.1 }}
           className="mb-8 select-none text-[0.7rem] uppercase tracking-[0.55em] text-[#c9b99a]"
         >
-          Barcelona · Fine Line · Micro-realismo
+          {t("hero.tagline")}
         </motion.p>
 
         <motion.h1
@@ -84,7 +76,7 @@ export default function HeroSection() {
           className="max-w-xs text-center text-sm font-light leading-relaxed tracking-[0.12em] text-white/65"
           style={{ fontFamily: "var(--font-body)" }}
         >
-          Arte sobre la piel, hecho con criterio y precisión.
+          {t("hero.subtitle")}
         </motion.p>
 
         <motion.div
@@ -98,7 +90,7 @@ export default function HeroSection() {
             className="group relative flex items-center justify-center overflow-hidden border border-[#c9b99a] bg-transparent px-10 py-4 transition-all duration-500 hover:bg-[#c9b99a]"
           >
             <span className="relative z-10 pl-[0.45em] text-[0.7rem] uppercase tracking-[0.45em] text-[#c9b99a] transition-colors duration-300 group-hover:text-[#141210]">
-              Reservar Cita
+              {t("hero.cta")}
             </span>
           </Link>
 
@@ -108,7 +100,7 @@ export default function HeroSection() {
                 to="/about"
                 className="relative group text-[0.65rem] uppercase tracking-[0.3em] pl-[0.3em] text-white/60 transition-colors duration-300 hover:text-white"
               >
-                About
+                {t("hero.navAbout")}
                 <span className="absolute left-0 right-0 -bottom-1 h-px origin-left scale-x-0 bg-[#c9b99a] transition-transform duration-300 ease-out group-hover:scale-x-100" />
               </Link>
             </div>
@@ -118,7 +110,7 @@ export default function HeroSection() {
                 to="/gallery"
                 className="relative group text-[0.65rem] uppercase tracking-[0.3em] pl-[0.3em] text-white/60 transition-colors duration-300 hover:text-[#c9b99a]"
               >
-                Galería
+                {t("hero.navGallery")}
                 <span className="absolute left-0 right-0 -bottom-1 h-px origin-left scale-x-0 bg-[#c9b99a] transition-transform duration-300 ease-out group-hover:scale-x-100" />
               </Link>
             </div>
@@ -128,7 +120,7 @@ export default function HeroSection() {
                 to="/academy"
                 className="relative group text-[0.65rem] uppercase tracking-[0.3em] pl-[0.3em] text-white/60 transition-colors duration-300 hover:text-white"
               >
-                Academy
+                {t("hero.navAcademy")}
                 <span className="absolute left-0 right-0 -bottom-1 h-px origin-left scale-x-0 bg-[#c9b99a] transition-transform duration-300 ease-out group-hover:scale-x-100" />
               </Link>
             </div>
