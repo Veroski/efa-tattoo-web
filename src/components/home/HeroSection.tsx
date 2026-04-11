@@ -43,7 +43,7 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.1 }}
-          className="mb-8 select-none text-[0.7rem] uppercase tracking-[0.55em] text-[#c9b99a]"
+          className="mb-6 select-none text-[0.7rem] uppercase tracking-[0.55em] text-[#c9b99a]"
         >
           {t("hero.tagline")}
         </motion.p>
@@ -62,69 +62,34 @@ export default function HeroSection() {
         </motion.h1>
 
         <motion.div
-          initial={{ scaleX: 0 }}
-          animate={{ scaleX: 1 }}
-          transition={{ duration: 1, delay: 0.6, ease: "easeOut" }}
-          style={{ originX: 0.5 }}
-          className="mt-7 mb-7 h-px w-48 bg-[#c9b99a]"
-        />
-
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.7, delay: 0.85 }}
-          className="max-w-xs text-center text-sm font-light leading-relaxed tracking-[0.12em] text-white/65"
-          style={{ fontFamily: "var(--font-body)" }}
-        >
-          {t("hero.subtitle")}
-        </motion.p>
-
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
+          initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 1.05 }}
-          className="mt-10 flex w-full max-w-2xl flex-col items-center gap-8 mx-auto"
+          transition={{ duration: 0.7, delay: 0.7 }}
+          className="mt-12 flex w-full max-w-lg flex-col items-center gap-4 sm:flex-row sm:gap-5"
         >
           <Link
             to="/tattoo"
-            className="group relative flex items-center justify-center overflow-hidden border border-[#c9b99a] bg-transparent px-10 py-4 transition-all duration-500 hover:bg-[#c9b99a]"
+            className="group relative flex w-full flex-col items-center justify-center overflow-hidden border border-[#c9b99a] bg-[#c9b99a]/10 px-8 py-5 transition-all duration-500 hover:bg-[#c9b99a] sm:w-1/2"
           >
-            <span className="relative z-10 pl-[0.45em] text-[0.7rem] uppercase tracking-[0.45em] text-[#c9b99a] transition-colors duration-300 group-hover:text-[#141210]">
-              {t("hero.cta")}
+            <span className="relative z-10 pl-[0.45em] text-[0.72rem] font-medium uppercase tracking-[0.4em] text-[#c9b99a] transition-colors duration-300 group-hover:text-[#141210]">
+              {t("hero.ctaBooking")}
+            </span>
+            <span className="relative z-10 mt-1.5 text-[0.6rem] tracking-[0.15em] text-white/50 transition-colors duration-300 group-hover:text-[#141210]/60">
+              {t("hero.ctaBookingDesc")}
             </span>
           </Link>
 
-          <div className="grid w-full max-w-lg grid-cols-3 items-center text-center">
-            <div className="flex justify-center">
-              <Link
-                to="/about"
-                className="relative group text-[0.65rem] uppercase tracking-[0.3em] pl-[0.3em] text-white/60 transition-colors duration-300 hover:text-white"
-              >
-                {t("hero.navAbout")}
-                <span className="absolute left-0 right-0 -bottom-1 h-px origin-left scale-x-0 bg-[#c9b99a] transition-transform duration-300 ease-out group-hover:scale-x-100" />
-              </Link>
-            </div>
-
-            <div className="flex justify-center">
-              <Link
-                to="/gallery"
-                className="relative group text-[0.65rem] uppercase tracking-[0.3em] pl-[0.3em] text-white/60 transition-colors duration-300 hover:text-[#c9b99a]"
-              >
-                {t("hero.navGallery")}
-                <span className="absolute left-0 right-0 -bottom-1 h-px origin-left scale-x-0 bg-[#c9b99a] transition-transform duration-300 ease-out group-hover:scale-x-100" />
-              </Link>
-            </div>
-
-            <div className="flex justify-center">
-              <Link
-                to="/academy"
-                className="relative group text-[0.65rem] uppercase tracking-[0.3em] pl-[0.3em] text-white/60 transition-colors duration-300 hover:text-white"
-              >
-                {t("hero.navAcademy")}
-                <span className="absolute left-0 right-0 -bottom-1 h-px origin-left scale-x-0 bg-[#c9b99a] transition-transform duration-300 ease-out group-hover:scale-x-100" />
-              </Link>
-            </div>
-          </div>
+          <Link
+            to="/academy"
+            className="group relative flex w-full flex-col items-center justify-center overflow-hidden border border-white/25 bg-white/[0.04] px-8 py-5 transition-all duration-500 hover:bg-white hover:border-white sm:w-1/2"
+          >
+            <span className="relative z-10 pl-[0.45em] text-[0.72rem] font-medium uppercase tracking-[0.4em] text-white transition-colors duration-300 group-hover:text-[#141210]">
+              {t("hero.ctaAcademy")}
+            </span>
+            <span className="relative z-10 mt-1.5 text-[0.6rem] tracking-[0.15em] text-white/50 transition-colors duration-300 group-hover:text-[#141210]/60">
+              {t("hero.ctaAcademyDesc")}
+            </span>
+          </Link>
         </motion.div>
       </div>
     </section>

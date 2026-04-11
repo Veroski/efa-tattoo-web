@@ -107,6 +107,19 @@ function BulletList({ items }: { items: string[] }) {
   );
 }
 
+function InlineCTA({ text }: { text: string }) {
+  return (
+    <motion.div {...fadeUp} className="mt-12 text-center">
+      <a
+        href="#academy-contact"
+        className="inline-flex items-center justify-center border border-[#c9b99a] px-8 py-3.5 text-[0.72rem] uppercase tracking-[0.38em] text-[#c9b99a] transition-colors hover:bg-[#c9b99a] hover:text-[#141210]"
+      >
+        {text}
+      </a>
+    </motion.div>
+  );
+}
+
 function SelectChevron() {
   return (
     <svg
@@ -259,9 +272,6 @@ function LocationCard() {
                   {t("academy.locationDistrict")}
                 </p>
               </div>
-              <p className="border-l border-[#c9b99a]/35 pl-4 text-sm italic leading-relaxed tracking-wide">
-                {t("academy.locationQuote")}
-              </p>
             </div>
             <div className="flex flex-col gap-3 sm:flex-row">
               <a
@@ -607,37 +617,6 @@ export default function AcademyPage() {
         </div>
       </section>
 
-      {/* ── La propuesta ── */}
-      <section className="py-18 md:py-24" style={{ backgroundColor: "#1a1714" }}>
-        <div className={`${sectionWidth} relative`}>
-          <div className="absolute left-1/2 top-0 hidden h-full w-px -translate-x-1/2 bg-white/5 md:block" />
-          <div className="mx-auto max-w-4xl text-center">
-            <motion.div
-              {...fadeUp}
-              className="mx-auto h-16 w-px bg-gradient-to-b from-transparent via-[#c9b99a]/45 to-transparent"
-            />
-            <SectionHeading
-              eyebrow={t("academy.proposalEyebrow")}
-              title={t("academy.proposalTitle")}
-              description={t("academy.proposalDesc")}
-              align="center"
-            />
-            <motion.p
-              {...fadeUp}
-              transition={{ duration: 0.65, delay: 0.1 }}
-              className="mx-auto mt-12 max-w-3xl text-xl font-light leading-relaxed tracking-wide text-white/84 md:text-2xl"
-            >
-              {t("academy.proposalQuote")}
-            </motion.p>
-            <motion.div
-              {...fadeUp}
-              transition={{ duration: 0.65, delay: 0.2 }}
-              className="mx-auto mt-12 h-16 w-px bg-gradient-to-b from-[#c9b99a]/45 to-transparent"
-            />
-          </div>
-        </div>
-      </section>
-
       {/* ── Features ── */}
       <section id="academy-info" className="py-18 md:py-24" style={{ backgroundColor: "#1a1714" }}>
         <div className={sectionWidth}>
@@ -668,6 +647,7 @@ export default function AcademyPage() {
               </motion.article>
             ))}
           </div>
+          <InlineCTA text={t("academy.ctaRequestSpot")} />
         </div>
       </section>
 
@@ -718,6 +698,34 @@ export default function AcademyPage() {
                 {t("academy.day2Quote")}
               </p>
             </motion.article>
+          </div>
+          <InlineCTA text={t("academy.ctaAttend")} />
+        </div>
+      </section>
+
+      {/* ── Photo break ── */}
+      <section className="py-12 md:py-16" style={{ backgroundColor: "var(--surface-warm)" }}>
+        <div className={sectionWidth}>
+          <div className="grid grid-cols-2 gap-px bg-white/8 md:grid-cols-3">
+            {[
+              { src: "/img/Linea Fina/linea_fina_1.webp", alt: "Fine line tattoo" },
+              { src: "/img/Microrealismo/microrealismo_1.webp", alt: "Micro-realism tattoo" },
+              { src: "/img/Linea Fina/linea_fina_10.webp", alt: "Fine line detail" },
+            ].map((img, i) => (
+              <motion.div
+                key={img.src}
+                {...fadeUp}
+                transition={{ duration: 0.55, delay: i * 0.08 }}
+                className={`relative overflow-hidden ${i === 2 ? "hidden md:block" : ""}`}
+              >
+                <img
+                  src={img.src}
+                  alt={img.alt}
+                  loading="lazy"
+                  className="h-full w-full object-cover aspect-[4/5]"
+                />
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>

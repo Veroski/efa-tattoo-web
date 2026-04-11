@@ -11,6 +11,7 @@ import PrivacidadPage from "@/components/legal/PrivacidadPage";
 import CookieBanner from "@/components/shared/CookieBanner";
 import FooterStrip from "@/components/shared/FooterStrip";
 import PageHeader from "@/components/shared/PageHeader";
+import WhatsAppButton from "@/components/shared/WhatsAppButton";
 import BookingSection from "@/components/tattoo/BookingSection";
 
 function useDocumentTitle(title?: string) {
@@ -86,8 +87,7 @@ function TattooPage() {
       <Header />
       <PageHeader
         title={t("pages.tattooTitle")}
-        subtitle={t("pages.tattooSubtitle")}
-        size="half"
+        size="compact"
         bg="#1e1c1a"
       />
       <BookingSection />
@@ -123,6 +123,7 @@ export default function App() {
     <>
       <ScrollManager />
       <CookieBanner />
+      <WhatsAppButton />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/about" element={<AboutPage />} />

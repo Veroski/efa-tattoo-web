@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 interface PageHeaderProps {
   title: string;
   subtitle?: string;
-  size?: "full" | "half";
+  size?: "full" | "half" | "compact";
   bg?: string;
 }
 
@@ -15,7 +15,7 @@ export default function PageHeader({
 }: PageHeaderProps) {
   return (
     <section
-      className={`relative w-full overflow-hidden ${size === "full" ? "h-screen" : "h-[55vh]"}`}
+      className={`relative w-full overflow-hidden ${size === "full" ? "h-screen" : size === "compact" ? "h-[35vh]" : "h-[55vh]"}`}
       style={{ backgroundColor: bg }}
     >
       <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/20" />

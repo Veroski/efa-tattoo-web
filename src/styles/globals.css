@@ -8,7 +8,8 @@
   --border: rgba(255, 255, 255, 0.12);
   --max-width: 1445px;
   --font-body: "Jost", "Helvetica Neue", Helvetica, sans-serif;
-  --font-heading: "Cormorant Garamond", Georgia, serif;
+  --font-heading: "Sora", "Helvetica Neue", Helvetica, sans-serif;
+  --surface-warm: #242018;
 }
 
 @theme inline {
