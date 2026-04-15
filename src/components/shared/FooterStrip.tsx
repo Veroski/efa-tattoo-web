@@ -12,7 +12,7 @@ export default function FooterStrip() {
           <Link
             to="/"
             className="text-white/65 text-xs tracking-[0.4em] uppercase hover:text-white transition-colors"
-            style={{ fontFamily: "var(--font-heading)" }}
+            style={{ fontFamily: "var(--font-body)" }}
           >
             EFA Tattoo
           </Link>

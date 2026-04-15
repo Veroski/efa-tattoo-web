@@ -75,7 +75,7 @@ function SectionHeading({
       )}
       <h2
         className="text-white uppercase tracking-[0.18em] font-light leading-[0.95]"
-        style={{ fontFamily: "var(--font-heading)", fontSize: "clamp(2rem, 4.2vw, 4.3rem)" }}
+        style={{ fontFamily: "var(--font-body)", fontSize: "clamp(2rem, 4.2vw, 4.3rem)" }}
       >
         {title}
       </h2>
@@ -361,7 +361,7 @@ function AcademyForm() {
         </p>
         <h3
           className="mt-4 text-white uppercase tracking-[0.16em] font-light"
-          style={{ fontFamily: "var(--font-heading)", fontSize: "clamp(1.4rem, 2.5vw, 2.2rem)" }}
+          style={{ fontFamily: "var(--font-body)", fontSize: "clamp(1.4rem, 2.5vw, 2.2rem)" }}
         >
           {t("academy.successTitle")}
         </h3>
@@ -576,7 +576,7 @@ export default function AcademyPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.08 }}
               className="mx-auto mt-8 max-w-5xl uppercase font-light leading-[0.9] tracking-[0.14em] text-white"
-              style={{ fontFamily: "var(--font-heading)", fontSize: "clamp(2.8rem, 8vw, 7rem)" }}
+              style={{ fontFamily: "var(--font-body)", fontSize: "clamp(2.8rem, 8vw, 7rem)" }}
             >
               {t("academy.heroTitle").split("\n").map((line, i, arr) => (
                 <span key={i}>{line}{i < arr.length - 1 && <br />}</span>
@@ -686,7 +686,10 @@ export default function AcademyPage() {
               </p>
               <h3
                 className="mt-5 text-white uppercase tracking-[0.16em] font-light"
-                style={{ fontFamily: "var(--font-heading)", fontSize: "clamp(1.7rem, 3vw, 2.8rem)" }}
+                style={{
+                  fontFamily: "var(--font-body)",
+                  fontSize: "clamp(1.7rem, 3vw, 2.8rem)",
+                }}
               >
                 {t("academy.day1Title")}
               </h3>
@@ -707,7 +710,10 @@ export default function AcademyPage() {
               </p>
               <h3
                 className="mt-5 text-white uppercase tracking-[0.16em] font-light"
-                style={{ fontFamily: "var(--font-heading)", fontSize: "clamp(1.7rem, 3vw, 2.8rem)" }}
+                style={{
+                  fontFamily: "var(--font-body)",
+                  fontSize: "clamp(1.7rem, 3vw, 2.8rem)",
+                }}
               >
                 {t("academy.day2Title")}
               </h3>
@@ -774,7 +780,7 @@ export default function AcademyPage() {
               <p className="text-[0.68rem] uppercase tracking-[0.5em] text-[#c9b99a]">{t("academy.contactEyebrow")}</p>
               <h2
                 className="mt-3 text-white uppercase tracking-[0.16em] font-light leading-[0.95]"
-                style={{ fontFamily: "var(--font-heading)", fontSize: "clamp(1.8rem, 3.5vw, 3rem)" }}
+                style={{ fontFamily: "var(--font-body)", fontSize: "clamp(1.8rem, 3.5vw, 3rem)" }}
               >
                 {t("academy.contactTitle")}
               </h2>
@@ -825,6 +831,48 @@ export default function AcademyPage() {
       </section>
 
       <FooterStrip />
+
+      {/* ============================================================
+          SHADOW CONTENT — Testimonios Academy
+          Para activar: cambiar `hidden` por el layout deseado
+          ============================================================ */}
+
+      {/*
+      const ACADEMY_TESTIMONIALS = [
+        {
+          id: 1,
+          name: "Laura M.",
+          rating: 5,
+          text: "El curso cambió completamente mi forma de entender el fine line. Grupos pequeños, mucha práctica real.",
+        },
+        {
+          id: 2,
+          name: "Carlos R.",
+          rating: 5,
+          text: "Vine sin experiencia y salí con técnica y confianza. La atención personalizada marcó la diferencia.",
+        },
+        {
+          id: 3,
+          name: "Sofía D.",
+          rating: 5,
+          text: "Aprendí más en un fin de semana que en meses por mi cuenta. Totalmente recomendado.",
+        },
+      ];
+
+      function AcademyTestimonials() {
+        return (
+          <div style={{ display: "none" }} aria-hidden="true">
+            {ACADEMY_TESTIMONIALS.map((t) => (
+              <div key={t.id}>
+                <p>{t.name}</p>
+                <p>{"★".repeat(t.rating)}</p>
+                <p>{t.text}</p>
+              </div>
+            ))}
+          </div>
+        );
+      }
+      */}
     </div>
   );
 }

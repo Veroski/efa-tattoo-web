@@ -1,0 +1,56 @@
+{
+  "projectName": "EFA Tattoo — Landing + Academy + Citas",
+  "version": "1.0",
+  "createdAt": "2026-04-15",
+  "workflow": {
+    "mode": "autonomous",
+    "approval_gate": "none",
+    "timeline": "high_urgency",
+    "deadline": "2026-04-18",
+    "parallel_phases": ["4", "5"]
+  },
+  "execution": {
+    "branch_strategy": "feature-branch",
+    "commit_per_phase": true,
+    "build_check": "after_each_phase",
+    "visual_regression_test": "browser_manual",
+    "auto_deploy": true
+  },
+  "scope": {
+    "primary_goal": "clean_hero_unify_fonts_add_academy_button",
+    "includes": [
+      "typography_unification",
+      "hero_cleanup",
+      "academy_button_parity",
+      "shadow_content_testimonials",
+      "shadow_content_reviews"
+    ],
+    "excludes": [
+      "backend_changes",
+      "new_dependencies",
+      "asset_deletions",
+      "breaking_changes"
+    ]
+  },
+  "team": {
+    "owner": "Veroski",
+    "reviewer": "autonomous",
+    "email": "guillemvera@gmail.com"
+  },
+  "files": {
+    "project_md": ".planning/PROJECT.md",
+    "requirements_md": ".planning/REQUIREMENTS.md",
+    "roadmap_md": ".planning/ROADMAP.md",
+    "research_dir": ".planning/research/",
+    "state_md": ".planning/STATE.md"
+  },
+  "acceptance_criteria": {
+    "font_audit": "zero Cormorant references",
+    "build_status": "zero errors, zero font warnings",
+    "hero_structure": "h1 + separator + 2 buttons only",
+    "button_parity": "Academy button matches Reservar Cita exactly",
+    "shadow_content": "invisible in production, properly structured",
+    "visual_regression": "manual browser check passes"
+  },
+  "next_command": "/gsd-plan-phase 1"
+}

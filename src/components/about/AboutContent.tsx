@@ -68,7 +68,7 @@ export default function AboutContent() {
               {...fadeUp}
               transition={{ duration: 0.65, delay: 0.1 }}
               className="text-white uppercase tracking-[0.22em] font-light leading-none"
-              style={{ fontFamily: "var(--font-heading)", fontSize: "clamp(2.2rem, 5.5vw, 4.5rem)" }}
+              style={{ fontFamily: "var(--font-body)", fontSize: "clamp(2.2rem, 5.5vw, 4.5rem)" }}
             >
               {t("about.title")}
             </motion.h2>
@@ -133,7 +133,7 @@ export default function AboutContent() {
               <motion.h2
                 {...fadeUp}
                 className="text-white uppercase tracking-[0.22em] font-light leading-tight"
-                style={{ fontFamily: "var(--font-heading)", fontSize: "clamp(1.7rem, 3.5vw, 3.2rem)" }}
+                style={{ fontFamily: "var(--font-body)", fontSize: "clamp(1.7rem, 3.5vw, 3.2rem)" }}
               >
                 {t("about.passionTitle").split("\n").map((line, i) => (
                   <span key={i}>{line}{i === 0 && <br />}</span>
@@ -212,7 +212,7 @@ export default function AboutContent() {
                   {...fadeUp}
                   transition={{ duration: 0.65, delay: 0.1 }}
                   className="text-white uppercase tracking-[0.22em] font-light leading-tight"
-                  style={{ fontFamily: "var(--font-heading)", fontSize: "clamp(1.7rem, 3.5vw, 3.2rem)" }}
+                  style={{ fontFamily: "var(--font-body)", fontSize: "clamp(1.7rem, 3.5vw, 3.2rem)" }}
                 >
                   {t("about.academyTitle").split("\n").map((line, i) => (
                     <span key={i}>{line}{i === 0 && <br />}</span>
@@ -238,7 +238,7 @@ export default function AboutContent() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: 0.2 + i * 0.15 }}
                     className="relative inline-block text-white text-base font-light tracking-wide"
-                    style={{ fontFamily: "var(--font-heading)" }}
+                    style={{ fontFamily: "var(--font-body)" }}
                   >
                     {line}
                     <motion.span
@@ -280,7 +280,7 @@ export default function AboutContent() {
         >
           <h2
             className="text-white uppercase tracking-[0.3em] font-light"
-            style={{ fontFamily: "var(--font-heading)", fontSize: "clamp(1.5rem, 3vw, 2.6rem)" }}
+            style={{ fontFamily: "var(--font-body)", fontSize: "clamp(1.5rem, 3vw, 2.6rem)" }}
           >
             {t("about.finalTitle")}
           </h2>

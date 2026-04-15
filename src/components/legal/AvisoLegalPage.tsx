@@ -48,7 +48,7 @@ export default function AvisoLegalPage() {
             >
               <h2
                 className="text-white/85 text-base font-light tracking-[0.12em] mb-3"
-                style={{ fontFamily: "var(--font-heading)" }}
+                style={{ fontFamily: "var(--font-body)" }}
               >
                 {s.title}
               </h2>

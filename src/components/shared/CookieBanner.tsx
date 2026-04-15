@@ -156,7 +156,7 @@ export default function CookieBanner() {
                 <div>
                   <p
                     className="text-white text-sm tracking-[0.12em] uppercase mb-1"
-                    style={{ fontFamily: "var(--font-heading)" }}
+                    style={{ fontFamily: "var(--font-body)" }}
                   >
                     {t("cookie.title")}
                   </p>

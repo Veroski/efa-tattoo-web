@@ -81,7 +81,7 @@ export default function Header() {
         <Link
           to="/"
           className="text-white text-xs tracking-[0.35em] uppercase font-light hover:opacity-70 transition-opacity"
-          style={{ fontFamily: "var(--font-heading)" }}
+          style={{ fontFamily: "var(--font-body)" }}
         >
           EFA Tattoo
         </Link>

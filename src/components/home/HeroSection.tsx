@@ -39,22 +39,13 @@ export default function HeroSection() {
       <div className="absolute inset-y-0 right-[8%] w-px bg-white/[0.03]" />
 
       <div className="absolute inset-0 z-10 flex flex-col items-center justify-center px-[4vw]">
-        <motion.p
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.1 }}
-          className="mb-8 select-none text-[0.7rem] uppercase tracking-[0.55em] text-[#c9b99a]"
-        >
-          {t("hero.tagline")}
-        </motion.p>
-
         <motion.h1
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.2, ease: "easeOut" }}
           className="select-none text-center font-light uppercase leading-none tracking-[0.2em] text-white"
           style={{
-            fontFamily: "var(--font-heading)",
+            fontFamily: "var(--font-body)",
             fontSize: "clamp(3rem, 9vw, 8.5rem)",
           }}
         >
@@ -66,24 +57,14 @@ export default function HeroSection() {
           animate={{ scaleX: 1 }}
           transition={{ duration: 1, delay: 0.6, ease: "easeOut" }}
           style={{ originX: 0.5 }}
-          className="mt-7 mb-7 h-px w-48 bg-[#c9b99a]"
+          className="mt-7 mb-10 h-px w-48 bg-[#c9b99a]"
         />
-
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.7, delay: 0.85 }}
-          className="max-w-xs text-center text-sm font-light leading-relaxed tracking-[0.12em] text-white/65"
-          style={{ fontFamily: "var(--font-body)" }}
-        >
-          {t("hero.subtitle")}
-        </motion.p>
 
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 1.05 }}
-          className="mt-10 flex w-full max-w-2xl flex-col items-center gap-8 mx-auto"
+          className="mt-10 flex flex-col items-center gap-4"
         >
           <Link
             to="/tattoo"
@@ -94,37 +75,14 @@ export default function HeroSection() {
             </span>
           </Link>
 
-          <div className="grid w-full max-w-lg grid-cols-3 items-center text-center">
-            <div className="flex justify-center">
-              <Link
-                to="/about"
-                className="relative group text-[0.65rem] uppercase tracking-[0.3em] pl-[0.3em] text-white/60 transition-colors duration-300 hover:text-white"
-              >
-                {t("hero.navAbout")}
-                <span className="absolute left-0 right-0 -bottom-1 h-px origin-left scale-x-0 bg-[#c9b99a] transition-transform duration-300 ease-out group-hover:scale-x-100" />
-              </Link>
-            </div>
-
-            <div className="flex justify-center">
-              <Link
-                to="/gallery"
-                className="relative group text-[0.65rem] uppercase tracking-[0.3em] pl-[0.3em] text-white/60 transition-colors duration-300 hover:text-[#c9b99a]"
-              >
-                {t("hero.navGallery")}
-                <span className="absolute left-0 right-0 -bottom-1 h-px origin-left scale-x-0 bg-[#c9b99a] transition-transform duration-300 ease-out group-hover:scale-x-100" />
-              </Link>
-            </div>
-
-            <div className="flex justify-center">
-              <Link
-                to="/academy"
-                className="relative group text-[0.65rem] uppercase tracking-[0.3em] pl-[0.3em] text-white/60 transition-colors duration-300 hover:text-white"
-              >
-                {t("hero.navAcademy")}
-                <span className="absolute left-0 right-0 -bottom-1 h-px origin-left scale-x-0 bg-[#c9b99a] transition-transform duration-300 ease-out group-hover:scale-x-100" />
-              </Link>
-            </div>
-          </div>
+          <Link
+            to="/academy"
+            className="group relative flex items-center justify-center overflow-hidden border border-[#c9b99a] bg-transparent px-10 py-4 transition-all duration-500 hover:bg-[#c9b99a]"
+          >
+            <span className="relative z-10 pl-[0.45em] text-[0.7rem] uppercase tracking-[0.45em] text-[#c9b99a] transition-colors duration-300 group-hover:text-[#141210]">
+              Academy
+            </span>
+          </Link>
         </motion.div>
       </div>
     </section>

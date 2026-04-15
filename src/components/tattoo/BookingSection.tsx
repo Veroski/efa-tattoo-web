@@ -423,6 +423,49 @@ export default function BookingSection() {
         </div>
 
       </div>
+
+      {/* ============================================================
+          SHADOW CONTENT — Reseñas Citas
+          Mismo schema que AcademyTestimonial para consistencia
+          Para activar: cambiar `display: none` o importar componente
+          ============================================================ */}
+
+      {/*
+      const BOOKING_REVIEWS = [
+        {
+          id: 1,
+          name: "Marta L.",
+          rating: 5,
+          text: "Proceso súper cuidado desde la consulta hasta el resultado. Mi tatuaje quedó exactamente como lo imaginé.",
+        },
+        {
+          id: 2,
+          name: "Jordi P.",
+          rating: 5,
+          text: "Atención al detalle increíble. El trazo fine line que pedí salió perfecto.",
+        },
+        {
+          id: 3,
+          name: "Elena V.",
+          rating: 5,
+          text: "Primera vez tatuándome y me sentí muy cómoda. Profesionalidad total.",
+        },
+      ];
+
+      function BookingReviews() {
+        return (
+          <div style={{ display: "none" }} aria-hidden="true">
+            {BOOKING_REVIEWS.map((r) => (
+              <div key={r.id}>
+                <p>{r.name}</p>
+                <p>{"★".repeat(r.rating)}</p>
+                <p>{r.text}</p>
+              </div>
+            ))}
+          </div>
+        );
+      }
+      */}
     </section>
   );
 }

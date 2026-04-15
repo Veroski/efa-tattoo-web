@@ -27,7 +27,7 @@ export default function PageHeader({
           transition={{ duration: 0.7, ease: "easeOut" }}
           className="text-white font-light tracking-[0.25em] uppercase text-center leading-none"
           style={{
-            fontFamily: "var(--font-heading)",
+            fontFamily: "var(--font-body)",
             fontSize: "clamp(2rem, 6vw, 5.5rem)",
           }}
         >
