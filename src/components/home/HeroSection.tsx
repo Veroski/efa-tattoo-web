@@ -84,6 +84,43 @@ export default function HeroSection() {
             </span>
           </Link>
         </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.7, delay: 1.3 }}
+          className="mt-10 grid w-full max-w-lg grid-cols-3 items-center text-center"
+        >
+          <div className="flex justify-center">
+            <Link
+              to="/about"
+              className="relative group text-[0.65rem] uppercase tracking-[0.3em] pl-[0.3em] text-white/60 transition-colors duration-300 hover:text-white"
+            >
+              {t("hero.navAbout")}
+              <span className="absolute left-0 right-0 -bottom-1 h-px origin-left scale-x-0 bg-[#c9b99a] transition-transform duration-300 ease-out group-hover:scale-x-100" />
+            </Link>
+          </div>
+
+          <div className="flex justify-center">
+            <Link
+              to="/gallery"
+              className="relative group text-[0.65rem] uppercase tracking-[0.3em] pl-[0.3em] text-white/60 transition-colors duration-300 hover:text-[#c9b99a]"
+            >
+              {t("hero.navGallery")}
+              <span className="absolute left-0 right-0 -bottom-1 h-px origin-left scale-x-0 bg-[#c9b99a] transition-transform duration-300 ease-out group-hover:scale-x-100" />
+            </Link>
+          </div>
+
+          <div className="flex justify-center">
+            <Link
+              to="/academy"
+              className="relative group text-[0.65rem] uppercase tracking-[0.3em] pl-[0.3em] text-white/60 transition-colors duration-300 hover:text-white"
+            >
+              {t("hero.navAcademy")}
+              <span className="absolute left-0 right-0 -bottom-1 h-px origin-left scale-x-0 bg-[#c9b99a] transition-transform duration-300 ease-out group-hover:scale-x-100" />
+            </Link>
+          </div>
+        </motion.div>
       </div>
     </section>
   );
