@@ -177,7 +177,7 @@ const es = {
     locationTitle: "EFA Tattoo Studio",
     locationDesc: "Un espacio creativo diseñado para la concentración, la precisión técnica y el trabajo profesional durante todo el fin de semana.",
     locationCity: "Barcelona, España",
-    locationAddress: "Carrer Còrsega 167",
+    locationAddress: "Carrer Còrsega 163",
     locationDistrict: "L'Eixample, Barcelona",
     locationQuote: '"Un espacio creativo diseñado para la inspiración, con iluminación cuidada y equipamiento de primer nivel."',
     locationDirections: "Cómo llegar",

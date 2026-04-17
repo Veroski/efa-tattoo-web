@@ -192,7 +192,7 @@ Añadir en `index.html` dentro de `<head>` antes de `</head>`:
   "description": "Estudio de tatuaje especializado en fine line y micro-realismo en Barcelona. Seminarios de formación para artistas.",
   "address": {
     "@type": "PostalAddress",
-    "streetAddress": "Carrer Còrsega 167",
+    "streetAddress": "Carrer Còrsega 163",
     "addressLocality": "Barcelona",
     "addressRegion": "Cataluña",
     "postalCode": "08029",
@@ -306,7 +306,7 @@ const courseSchema = {
       "name": "EFA Tattoo Studio",
       "address": {
         "@type": "PostalAddress",
-        "streetAddress": "Carrer Còrsega 167",
+        "streetAddress": "Carrer Còrsega 163",
         "addressLocality": "Barcelona",
         "addressCountry": "ES"
       }
@@ -470,7 +470,7 @@ Reemplazar `public/sitemap.xml`:
       "description": "Estudio de tatuaje especializado en fine line y micro-realismo en Barcelona.",
       "address": {
         "@type": "PostalAddress",
-        "streetAddress": "Carrer Còrsega 167",
+        "streetAddress": "Carrer Còrsega 163",
         "addressLocality": "Barcelona",
         "addressRegion": "Cataluña",
         "addressCountry": "ES"

@@ -241,11 +241,10 @@ function SegmentedChoices<T extends string>({
         return (
           <label
             key={option.value}
-            className={`flex-1 cursor-pointer border px-4 py-2.5 text-center transition-all duration-150 select-none ${
-              checked
+            className={`flex-1 cursor-pointer border px-4 py-2.5 text-center transition-all duration-150 select-none ${checked
                 ? "border-[#c9b99a] bg-[#c9b99a]/12 text-white"
                 : "border-white/18 bg-white/4 text-white/55 hover:border-white/35 hover:bg-white/8 hover:text-white/80"
-            }`}
+              }`}
           >
             <input
               type="radio"
@@ -269,7 +268,7 @@ function SegmentedChoices<T extends string>({
 function LocationCard() {
   const { t } = useTranslation();
   const [copied, setCopied] = useState(false);
-  const address = "Carrer Còrsega 167, Barcelona";
+  const address = "Carrer Còrsega 163, Barcelona";
   const googleMapsNavigationUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(address)}`;
 
   const handleCopy = async () => {
@@ -328,7 +327,7 @@ function LocationCard() {
           </div>
           <div className="relative min-h-[340px] border-t border-white/8 lg:border-l lg:border-t-0">
             <iframe
-              src="https://maps.google.com/maps?q=Carrer+C%C3%B2rsega+167,+Barcelona&t=&z=15&ie=UTF8&iwloc=&output=embed"
+              src="https://maps.google.com/maps?q=Carrer+C%C3%B2rsega+163,+Barcelona&t=&z=15&ie=UTF8&iwloc=&output=embed"
               title={`${t("academy.locationTitle")} — Barcelona`}
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
@@ -598,7 +597,7 @@ const courseSchema = {
       "name": "EFA Tattoo Studio",
       "address": {
         "@type": "PostalAddress",
-        "streetAddress": "Carrer Còrsega 167",
+        "streetAddress": "Carrer Còrsega 163",
         "addressLocality": "Barcelona",
         "addressCountry": "ES"
       }
@@ -918,10 +917,10 @@ export default function AcademyPage() {
             {t("academy.galleryTitle", "Dentro del Seminario")}
           </h2>
         </div>
-        <FocusRail 
-          items={ACADEMY_GALLERY_ITEMS} 
-          loop={true} 
-          className="max-w-[1920px] mx-auto !h-[650px]" 
+        <FocusRail
+          items={ACADEMY_GALLERY_ITEMS}
+          loop={true}
+          className="max-w-[1920px] mx-auto !h-[650px]"
         />
       </section>
 

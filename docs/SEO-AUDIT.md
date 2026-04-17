@@ -164,7 +164,7 @@ El sitio no tiene ningún schema markup. Como mínimo necesita:
   "description": "Estudio de tatuaje especializado en fine line y micro-realismo en Barcelona.",
   "address": {
     "@type": "PostalAddress",
-    "streetAddress": "Carrer Còrsega 167",
+    "streetAddress": "Carrer Còrsega 163",
     "addressLocality": "Barcelona",
     "addressRegion": "Cataluña",
     "addressCountry": "ES"
@@ -216,7 +216,7 @@ El sitio no tiene ningún schema markup. Como mínimo necesita:
     "name": "EFA Tattoo Studio",
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "Carrer Còrsega 167",
+      "streetAddress": "Carrer Còrsega 163",
       "addressLocality": "Barcelona",
       "addressCountry": "ES"
     }

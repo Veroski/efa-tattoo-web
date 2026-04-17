@@ -179,7 +179,7 @@ const en: Translations = {
     locationTitle: "EFA Tattoo Studio",
     locationDesc: "A creative space designed for concentration, technical precision and professional work throughout the weekend.",
     locationCity: "Barcelona, Spain",
-    locationAddress: "Carrer Còrsega 167",
+    locationAddress: "Carrer Còrsega 163",
     locationDistrict: "L'Eixample, Barcelona",
     locationQuote: '"A creative space designed for inspiration, with careful lighting and top-level equipment."',
     locationDirections: "Get directions",
