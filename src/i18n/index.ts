@@ -5,8 +5,8 @@ import en from "./en";
 
 const STORAGE_KEY = "efa_lang";
 
-const savedLang = localStorage.getItem(STORAGE_KEY);
-const browserLang = navigator.language.slice(0, 2);
+const savedLang = typeof localStorage !== "undefined" ? localStorage.getItem(STORAGE_KEY) : null;
+const browserLang = typeof navigator !== "undefined" ? navigator.language.slice(0, 2) : "es";
 const defaultLang = savedLang || (browserLang === "es" ? "es" : "en");
 
 i18next.use(initReactI18next).init({

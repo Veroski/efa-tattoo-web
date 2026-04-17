@@ -104,7 +104,7 @@ const en: Translations = {
     ariaOpen: "View {{title}}",
     ariaGallery: "Gallery — {{title}}",
     ariaModal: "{{title}} — image {{current}} of {{total}}",
-    imageAlt: "{{title}} — work {{num}}",
+    imageAlt: "{{title}} tattoo Barcelona — EFA Tattoo, work {{num}}",
     cerrar: "Close",
     anterior: "Previous image",
     siguiente: "Next image",

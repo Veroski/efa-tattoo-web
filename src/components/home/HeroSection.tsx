@@ -50,6 +50,7 @@ export default function HeroSection() {
           }}
         >
           EFA Tattoo
+          <span className="sr-only"> — Fine Line &amp; Microrealismo Barcelona</span>
         </motion.h1>
 
         <motion.div
@@ -64,23 +65,24 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 1.05 }}
-          className="mt-10 flex flex-col md:flex-row items-center justify-center gap-4 md:gap-6 w-full px-4 md:px-0"
+          className="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-8 w-full max-w-[480px] px-6"
         >
           <Link
             to="/tattoo"
-            className="group relative flex items-center justify-center overflow-hidden border border-[#c9b99a] bg-transparent px-10 py-4 transition-all duration-500 hover:bg-[#c9b99a] w-full md:w-52"
+            className="group relative flex items-center justify-center overflow-hidden border border-[#c9b99a] bg-[#c9b99a] py-4 transition-all duration-500 hover:bg-transparent w-full"
           >
-            <span className="relative z-10 pl-[0.45em] text-[0.7rem] uppercase tracking-[0.45em] text-[#c9b99a] transition-colors duration-300 group-hover:text-[#141210]">
-              Ver Cita
+            <span className="relative z-10 pl-[0.45em] text-[0.7rem] uppercase tracking-[0.45em] text-[#141210] transition-colors duration-300 group-hover:text-[#c9b99a]">
+              Pedir Cita
             </span>
           </Link>
 
           <Link
             to="/academy"
-            className="group relative flex items-center justify-center overflow-hidden border border-[#c9b99a] bg-[#c9b99a] px-10 py-4 transition-all duration-500 hover:bg-transparent w-full md:w-52"
+            className="group relative flex items-center justify-center overflow-hidden border border-white/20 bg-transparent py-4 transition-all duration-500 hover:border-[#c9b99a]/50 w-full"
           >
-            <span className="relative z-10 pl-[0.45em] text-[0.7rem] uppercase tracking-[0.45em] text-[#141210] transition-colors duration-300 group-hover:text-[#c9b99a]">
-              Ver Cursos
+            <div className="absolute inset-0 translate-y-[101%] bg-white/5 transition-transform duration-500 group-hover:translate-y-0" />
+            <span className="relative z-10 pl-[0.45em] text-[0.7rem] uppercase tracking-[0.45em] text-white/80 transition-colors duration-300 group-hover:text-[#c9b99a]">
+              Ver Academia
             </span>
           </Link>
         </motion.div>

@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
@@ -45,11 +46,27 @@ const fadeUp = {
   transition: { duration: 0.65, ease: "easeOut" as const },
 };
 
+const personSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Enric",
+  "jobTitle": "Tattoo Artist",
+  "description": "Tatuador especializado en fine line y micro-realismo en Barcelona, con formación de enfermero y más de 7 años de experiencia.",
+  "worksFor": { "@type": "Organization", "name": "EFA Tattoo", "url": "https://www.efa-tattoo.com" },
+  "url": "https://www.efa-tattoo.com/about",
+  "sameAs": ["https://www.instagram.com/efa_tattoo"],
+  "knowsAbout": ["Fine line tattoo", "Microrealismo", "Tatuaje Barcelona"],
+};
+
 export default function AboutContent() {
   const { t } = useTranslation();
   const features = t("about.features", { returnObjects: true }) as Array<{ num: string; title: string; body: string }>;
 
   return (
+    <>
+      <Helmet>
+        <script type="application/ld+json">{JSON.stringify(personSchema)}</script>
+      </Helmet>
     <div className="overflow-hidden">
 
       {/* ─── 1. HERO ─── */}
@@ -64,14 +81,14 @@ export default function AboutContent() {
               {t("about.eyebrow")}
             </motion.p>
 
-            <motion.h2
+            <motion.h1
               {...fadeUp}
               transition={{ duration: 0.65, delay: 0.1 }}
               className="text-white uppercase tracking-[0.22em] font-light leading-none"
               style={{ fontFamily: "var(--font-body)", fontSize: "clamp(2.2rem, 5.5vw, 4.5rem)" }}
             >
               {t("about.title")}
-            </motion.h2>
+            </motion.h1>
 
             <motion.div
               {...fadeUp}
@@ -83,21 +100,40 @@ export default function AboutContent() {
             </motion.div>
           </div>
 
-          <motion.div
-            initial={{ opacity: 0, x: 18 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, ease: "easeOut" }}
-            className="mt-14 md:mt-0"
-          >
-            <Img
-              height="520px"
-              bg="#2a2520"
-              src="/img/img_2.webp"
-              alt={t("about.imgAlt1")}
-              objectPosition="center 18%"
-            />
-          </motion.div>
+          <div className="relative mt-14 md:mt-0 h-[500px] md:h-[650px] w-full group">
+            <motion.div
+              initial={{ opacity: 0, x: 20, y: -20 }}
+              whileInView={{ opacity: 1, x: 0, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              className="absolute top-0 right-0 w-[75%] h-[75%] z-10 overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.5)]"
+            >
+              <Img
+                height="100%"
+                bg="#2a2520"
+                src="/img/img_2.webp"
+                alt={t("about.imgAlt1")}
+                objectPosition="center 18%"
+                className="transition-transform duration-[1.5s] group-hover:scale-105"
+              />
+            </motion.div>
+            <motion.div
+               initial={{ opacity: 0, x: -25, y: 25 }}
+               whileInView={{ opacity: 1, x: 0, y: 0 }}
+               viewport={{ once: true }}
+               transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+               className="absolute bottom-0 left-0 w-[60%] h-[55%] z-20 shadow-[0_20px_50px_rgba(0,0,0,0.7)] border-[8px] border-[#0c0a09] overflow-hidden"
+            >
+              <Img
+                height="100%"
+                bg="#1e1c1a"
+                src="/img/img_1.webp"
+                alt="Configuración del estudio EFA Tattoo — Barcelona"
+                objectPosition="center 20%"
+                className="transition-transform duration-[1.5s] group-hover:scale-105"
+              />
+            </motion.div>
+          </div>
         </div>
       </section>
 
@@ -119,13 +155,16 @@ export default function AboutContent() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7, ease: "easeOut" }}
+              className="group overflow-hidden rounded-sm shadow-2xl relative"
             >
+              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent z-10 pointer-events-none" />
               <Img
-                height="580px"
-                bg="#1e1c1a"
-                src="/img/img_1.webp"
+                height="620px"
+                bg="#1a1814"
+                src="/img/Proyectos%20grandes/proyectos_grandes_55.webp"
                 alt={t("about.imgAlt2")}
-                objectPosition="center 65%"
+                objectPosition="center 30%"
+                className="transition-transform duration-[1.5s] group-hover:scale-[1.03]"
               />
             </motion.div>
 
@@ -184,21 +223,56 @@ export default function AboutContent() {
         <div className="px-[4vw] max-w-[1500px] mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-start">
 
-            <motion.div
-              initial={{ opacity: 0, x: -18 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7, ease: "easeOut" }}
-            >
-              <Img
-                height="640px"
-                bg="#222020"
-                src="/img/Proyectos%20grandes/proyectos_grandes_55.webp"
-                alt={t("about.imgAlt3")}
-                objectPosition="62% 38%"
-                scale={1.45}
-              />
-            </motion.div>
+            <div className="relative h-[650px] md:h-[720px] w-full grid grid-cols-2 grid-rows-[2fr_1fr] gap-3 md:gap-4 group">
+              <motion.div
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, ease: "easeOut" }}
+                className="col-span-2 row-span-1 overflow-hidden rounded-sm shadow-xl relative"
+              >
+                <Img
+                  height="100%"
+                  bg="#222020"
+                  src="/img/Seminarios/practica.webp"
+                  alt="Seminario Práctica"
+                  objectPosition="center"
+                  className="transition-transform duration-[1.5s] group-hover:scale-[1.03]"
+                />
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.15, ease: "easeOut" }}
+                className="col-span-1 row-span-1 overflow-hidden rounded-sm shadow-xl relative"
+              >
+                <Img
+                  height="100%"
+                  bg="#222020"
+                  src="/img/Seminarios/items.webp"
+                  alt="Seminario Materiales"
+                  objectPosition="center"
+                  className="transition-transform duration-[1.5s] group-hover:scale-[1.05]"
+                />
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
+                className="col-span-1 row-span-1 overflow-hidden rounded-sm shadow-xl relative"
+              >
+                <Img
+                  height="100%"
+                  bg="#222020"
+                  src="/img/Seminarios/certificados.webp"
+                  alt="Seminario Certificados"
+                  objectPosition="center"
+                  className="transition-transform duration-[1.5s] group-hover:scale-[1.05]"
+                />
+              </motion.div>
+            </div>
 
             <div className="space-y-10 md:pt-10">
               <div className="space-y-6">
@@ -291,5 +365,6 @@ export default function AboutContent() {
       </section>
 
     </div>
+    </>
   );
 }

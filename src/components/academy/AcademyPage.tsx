@@ -1,8 +1,53 @@
 import { useState, type ChangeEvent, type FormEvent } from "react";
+import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import Header from "@/components/layout/Header";
 import FooterStrip from "@/components/shared/FooterStrip";
+import { FocusRail, type FocusRailItem } from "@/components/ui/focus-rail";
+
+const ACADEMY_GALLERY_ITEMS: FocusRailItem[] = [
+  {
+    id: 1,
+    title: "Práctica Real",
+    description: "Aplicación de técnicas de línea fina sobre piel real bajo supervisión directa.",
+    meta: "Día 2 • Práctica",
+    mediaSrc: "/img/Seminarios/practica.webp",
+    mediaType: "image",
+  },
+  {
+    id: 2,
+    title: "Materiales Premium",
+    description: "Conoce y prueba las agujas, tintas y máquinas que marcan la diferencia.",
+    meta: "Herramientas • Setup",
+    mediaSrc: "/img/Seminarios/items.webp",
+    mediaType: "image",
+  },
+  {
+    id: 3,
+    title: "El Estudio",
+    description: "Fórmate en un entorno profesional estructurado para el máximo confort y concentración.",
+    meta: "Instalaciones",
+    mediaSrc: "/img/img_1.webp",
+    mediaType: "image",
+  },
+  {
+    id: 4,
+    title: "Certificación",
+    description: "Obtén tu diploma acreditativo certificado por EFA al finalizar tu formación.",
+    meta: "Diploma • Oficial",
+    mediaSrc: "/img/Seminarios/certificados.webp",
+    mediaType: "image",
+  },
+  {
+    id: 5,
+    title: "Resultados Sanos",
+    description: "Las claves para un curado impecable y trazos sólidos duraderos en el tiempo.",
+    meta: "Técnica • Curación",
+    mediaSrc: "/img/Proyectos grandes/proyectos_grandes_55.webp",
+    mediaType: "image",
+  }
+];
 
 type TattooExperience = "" | "menos_6_meses" | "6_12_meses" | "mas_1_año";
 type MainDifficulty =
@@ -536,6 +581,63 @@ function AcademyForm() {
   );
 }
 
+const courseSchema = {
+  "@context": "https://schema.org",
+  "@type": "Course",
+  "name": "Seminario Fine Line EFA Tattoo",
+  "description": "Formación intensiva presencial de 2 días para tatuadores. Línea fina, microrealismo, práctica en piel real y profesionalización.",
+  "url": "https://www.efa-tattoo.com/academy",
+  "provider": { "@type": "Organization", "name": "EFA Tattoo", "url": "https://www.efa-tattoo.com" },
+  "courseMode": "onsite",
+  "educationalLevel": "Advanced",
+  "hasCourseInstance": {
+    "@type": "CourseInstance",
+    "courseMode": "onsite",
+    "location": {
+      "@type": "Place",
+      "name": "EFA Tattoo Studio",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Carrer Còrsega 167",
+        "addressLocality": "Barcelona",
+        "addressCountry": "ES"
+      }
+    }
+  }
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿El seminario EFA es para principiantes?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No, requiere experiencia mínima. No es un curso de iniciación para aprender a tatuar desde cero." }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Tatúo en piel real durante el seminario?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Sí, todos los alumnos trabajan en modelo real el segundo día bajo supervisión directa de Enric." }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Debo llevar mi propio material al seminario?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Solo necesitas llevar tu máquina y fuente. El resto está incluido: fungibles y caja de agujas FineLine." }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Se entrega certificado oficial al finalizar el seminario?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Sí, certificado oficial firmado por EFA Tattoo con reconocimiento de nivel profesional." }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Tengo acceso al contenido del seminario después?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Sí, acceso indefinido a la grabación del contenido teórico." }
+    }
+  ]
+};
+
 export default function AcademyPage() {
   const { t } = useTranslation();
 
@@ -547,6 +649,10 @@ export default function AcademyPage() {
 
   return (
     <div className="min-h-screen bg-[#141210] text-white">
+      <Helmet>
+        <script type="application/ld+json">{JSON.stringify(courseSchema)}</script>
+        <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
+      </Helmet>
       <Header />
 
       {/* ── Hero ── */}
@@ -578,7 +684,7 @@ export default function AcademyPage() {
               className="mx-auto mt-8 max-w-5xl uppercase font-light leading-[0.9] tracking-[0.14em] text-white"
               style={{ fontFamily: "var(--font-body)", fontSize: "clamp(2.8rem, 8vw, 7rem)" }}
             >
-              {t("academy.heroTitle").split("\n").map((line, i, arr) => (
+              {(t("academy.heroTitle") as string).split("\n").map((line: string, i: number, arr: string[]) => (
                 <span key={i}>{line}{i < arr.length - 1 && <br />}</span>
               ))}
             </motion.h1>
@@ -797,6 +903,26 @@ export default function AcademyPage() {
             </motion.div>
           </div>
         </div>
+      </section>
+
+      {/* ── Media Rail ── */}
+      <section className="bg-[#0A0A0A] py-16 md:py-20 border-t border-white/5">
+        <div className="mb-10 text-center px-6">
+          <p className="text-[0.68rem] uppercase tracking-[0.5em] text-[#c9b99a]">
+            {t("academy.galleryEyebrow", "La Experiencia")}
+          </p>
+          <h2
+            className="mt-3 text-white uppercase tracking-[0.16em] font-light leading-[0.95]"
+            style={{ fontFamily: "var(--font-body)", fontSize: "clamp(1.8rem, 3.5vw, 3rem)" }}
+          >
+            {t("academy.galleryTitle", "Dentro del Seminario")}
+          </h2>
+        </div>
+        <FocusRail 
+          items={ACADEMY_GALLERY_ITEMS} 
+          loop={true} 
+          className="max-w-[1920px] mx-auto !h-[650px]" 
+        />
       </section>
 
       <LocationCard />

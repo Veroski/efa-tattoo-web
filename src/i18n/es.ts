@@ -102,7 +102,7 @@ const es = {
     ariaOpen: "Ver {{title}}",
     ariaGallery: "Galería — {{title}}",
     ariaModal: "{{title}} — imagen {{current}} de {{total}}",
-    imageAlt: "{{title}} — trabajo {{num}}",
+    imageAlt: "Tatuaje {{title}} Barcelona — EFA Tattoo, trabajo {{num}}",
     cerrar: "Cerrar",
     anterior: "Imagen anterior",
     siguiente: "Imagen siguiente",
