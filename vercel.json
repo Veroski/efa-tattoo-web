@@ -1,11 +1,16 @@
 {
-  "routes": [
+  "redirects": [
     {
-      "handle": "filesystem"
-    },
+      "source": "/:path(.*)",
+      "has": [{ "type": "host", "value": "efa-tattoo.com" }],
+      "destination": "https://www.efa-tattoo.com/:path",
+      "permanent": true
+    }
+  ],
+  "rewrites": [
     {
-      "src": "/.*",
-      "dest": "/index.html"
+      "source": "/(.*)",
+      "destination": "/index.html"
     }
   ]
 }

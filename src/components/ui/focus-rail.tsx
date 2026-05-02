@@ -11,6 +11,7 @@ export type FocusRailItem = {
   title: string;
   description?: string;
   mediaSrc: string;
+  posterSrc?: string;
   mediaType?: "image" | "video";
   href?: string;
   meta?: string;
@@ -57,7 +58,11 @@ export function FocusRail({
 }: FocusRailProps) {
   const [active, setActive] = React.useState(initialIndex);
   const [isHovering, setIsHovering] = React.useState(false);
+  const [isInViewport, setIsInViewport] = React.useState(false);
+  const [audioOptIn, setAudioOptIn] = React.useState(false);
+  const [audioActive, setAudioActive] = React.useState(false);
   const lastWheelTime = React.useRef<number>(0);
+  const rootRef = React.useRef<HTMLDivElement | null>(null);
 
   const count = items.length;
   const activeIndex = wrap(0, count, active);
@@ -99,6 +104,27 @@ export function FocusRail({
     return () => clearInterval(timer);
   }, [autoPlay, isHovering, handleNext, interval]);
 
+  React.useEffect(() => {
+    const node = rootRef.current;
+    if (!node) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsInViewport(entry.isIntersecting),
+      { threshold: 0.55 }
+    );
+
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
+
+  React.useEffect(() => {
+    if (isInViewport) {
+      setAudioActive(audioOptIn);
+      return;
+    }
+    setAudioActive(false);
+  }, [isInViewport, audioOptIn]);
+
   const onKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === "ArrowLeft") handlePrev();
     if (e.key === "ArrowRight") handleNext();
@@ -121,18 +147,27 @@ export function FocusRail({
 
   const visibleIndices = [-2, -1, 0, 1, 2];
 
-  const renderMedia = (item: FocusRailItem, isBg: boolean = false) => {
+  const renderMedia = (
+    item: FocusRailItem,
+    { isBg = false, isActive = false }: { isBg?: boolean; isActive?: boolean } = {}
+  ) => {
     const isVideo = item.mediaType === "video" || item.mediaSrc.endsWith(".mp4") || item.mediaSrc.endsWith(".webm");
     const className = isBg ? "h-full w-full object-cover blur-3xl saturate-200" : "h-full w-full rounded-2xl object-cover pointer-events-none";
 
     if (isVideo) {
+      if (!isActive || isBg || !isInViewport) {
+        return <img src={item.posterSrc ?? item.mediaSrc} alt={item.title} className={className} loading="lazy" />;
+      }
       return (
         <video
+          key={item.mediaSrc}
           src={item.mediaSrc}
           autoPlay
-          muted
+          muted={!audioActive}
           loop
           playsInline
+          preload="metadata"
+          poster={item.posterSrc}
           className={className}
         />
       );
@@ -142,6 +177,7 @@ export function FocusRail({
 
   return (
     <div
+      ref={rootRef}
       className={cn(
         "group relative flex h-[600px] w-full flex-col overflow-hidden bg-[#0A0A0A] text-white outline-none select-none overflow-x-hidden rounded-sm border border-white/5",
         className
@@ -163,7 +199,7 @@ export function FocusRail({
             transition={{ duration: 0.8, ease: "easeOut" }}
             className="absolute inset-0"
           >
-            {renderMedia(activeItem, true)}
+            {renderMedia(activeItem, { isBg: true, isActive: true })}
             <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/70 to-[#0A0A0A]/40" />
           </motion.div>
         </AnimatePresence>
@@ -225,7 +261,21 @@ export function FocusRail({
                   if (offset !== 0) setActive((p) => p + offset);
                 }}
               >
-                {renderMedia(item)}
+                {renderMedia(item, { isActive: isCenter })}
+                {isCenter && isInViewport && item.mediaType === "video" && !audioOptIn && (
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setAudioOptIn(true);
+                      setAudioActive(true);
+                    }}
+                    className="absolute bottom-3 right-3 z-30 rounded-full border border-white/30 bg-black/65 px-3 py-1.5 text-[0.6rem] uppercase tracking-[0.2em] text-white backdrop-blur transition hover:border-white/50 hover:bg-black/80"
+                    aria-label="Activar sonido"
+                  >
+                    Tap sonido
+                  </button>
+                )}
 
                 {/* Lighting layers */}
                 <div className="absolute inset-0 rounded-2xl bg-gradient-to-b from-white/10 to-transparent pointer-events-none opacity-50" />

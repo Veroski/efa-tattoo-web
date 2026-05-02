@@ -1,4 +1,4 @@
-import { useState, type ChangeEvent, type FormEvent } from "react";
+﻿import { useState, type ChangeEvent, type FormEvent } from "react";
 import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
@@ -9,47 +9,52 @@ import { FocusRail, type FocusRailItem } from "@/components/ui/focus-rail";
 const ACADEMY_GALLERY_ITEMS: FocusRailItem[] = [
   {
     id: 1,
-    title: "Práctica Real",
-    description: "Aplicación de técnicas de línea fina sobre piel real bajo supervisión directa.",
-    meta: "Día 2 • Práctica",
-    mediaSrc: "/img/Seminarios/practica.webp",
-    mediaType: "image",
+    title: "Aprendizaje Real En Cabina",
+    description: "Los alumnos practican paso a paso sobre piel real con correccion directa del mentor.",
+    meta: "Practica Guiada",
+    mediaSrc: "/videos/academy/testimonio_1.mp4",
+    posterSrc: "/videos/academy/posters/testimonio_1.webp",
+    mediaType: "video",
   },
   {
     id: 2,
-    title: "Materiales Premium",
-    description: "Conoce y prueba las agujas, tintas y máquinas que marcan la diferencia.",
-    meta: "Herramientas • Setup",
-    mediaSrc: "/img/Seminarios/items.webp",
-    mediaType: "image",
+    title: "Tecnica Y Control De Material",
+    description: "Aprende a configurar maquina, agujas y tinta para conseguir lineas limpias y consistentes.",
+    meta: "Setup Profesional",
+    mediaSrc: "/videos/academy/testimonio_2.mp4",
+    posterSrc: "/videos/academy/posters/testimonio_2.webp",
+    mediaType: "video",
   },
   {
     id: 3,
-    title: "El Estudio",
-    description: "Fórmate en un entorno profesional estructurado para el máximo confort y concentración.",
-    meta: "Instalaciones",
-    mediaSrc: "/img/img_1.webp",
-    mediaType: "image",
+    title: "Entorno Profesional De Alto Nivel",
+    description: "Formacion en estudio real con flujo de trabajo ordenado, higiene y enfoque 100% practico.",
+    meta: "Metodo En Estudio",
+    mediaSrc: "/videos/academy/testimonio_3.mp4",
+    posterSrc: "/videos/academy/posters/testimonio_3.webp",
+    mediaType: "video",
   },
   {
     id: 4,
-    title: "Certificación",
-    description: "Obtén tu diploma acreditativo certificado por EFA al finalizar tu formación.",
-    meta: "Diploma • Oficial",
-    mediaSrc: "/img/Seminarios/certificados.webp",
-    mediaType: "image",
+    title: "Alumnos Satisfechos Y Confiados",
+    description: "Resultados visibles al terminar: mas precision, mas seguridad y criterio tecnico aplicable.",
+    meta: "Progreso Real",
+    mediaSrc: "/videos/academy/testimonio_4.mp4",
+    posterSrc: "/videos/academy/posters/testimonio_4.webp",
+    mediaType: "video",
   },
   {
     id: 5,
-    title: "Resultados Sanos",
-    description: "Las claves para un curado impecable y trazos sólidos duraderos en el tiempo.",
-    meta: "Técnica • Curación",
-    mediaSrc: "/img/Proyectos grandes/proyectos_grandes_55.webp",
-    mediaType: "image",
+    title: "Resultados Que Hablan Solos",
+    description: "Proceso completo de trazo, ejecucion y curacion para lograr trabajos finos y duraderos.",
+    meta: "Nivel Pro",
+    mediaSrc: "/videos/academy/testimonio_5.mp4",
+    posterSrc: "/videos/academy/posters/testimonio_5.webp",
+    mediaType: "video",
   }
 ];
 
-type TattooExperience = "" | "menos_6_meses" | "6_12_meses" | "mas_1_año";
+type TattooExperience = "" | "menos_6_meses" | "6_12_meses" | "mas_1_aÃ±o";
 type MainDifficulty =
   | ""
   | "trazo_limpio"
@@ -268,7 +273,7 @@ function SegmentedChoices<T extends string>({
 function LocationCard() {
   const { t } = useTranslation();
   const [copied, setCopied] = useState(false);
-  const address = "Carrer Còrsega 163, Barcelona";
+  const address = "Carrer CÃ²rsega 163, Barcelona";
   const googleMapsNavigationUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(address)}`;
 
   const handleCopy = async () => {
@@ -328,7 +333,7 @@ function LocationCard() {
           <div className="relative min-h-[340px] border-t border-white/8 lg:border-l lg:border-t-0">
             <iframe
               src="https://maps.google.com/maps?q=Carrer+C%C3%B2rsega+163,+Barcelona&t=&z=15&ie=UTF8&iwloc=&output=embed"
-              title={`${t("academy.locationTitle")} — Barcelona`}
+              title={`${t("academy.locationTitle")} â€” Barcelona`}
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
               className="absolute inset-0 h-full w-full"
@@ -352,7 +357,7 @@ function AcademyForm() {
   const experienceOptions: Option<TattooExperience>[] = [
     { value: "menos_6_meses", label: t("academy.expOpt1") },
     { value: "6_12_meses", label: t("academy.expOpt2") },
-    { value: "mas_1_año", label: t("academy.expOpt3") },
+    { value: "mas_1_aÃ±o", label: t("academy.expOpt3") },
   ];
 
   const difficultyOptions: Option<MainDifficulty>[] = [
@@ -584,7 +589,7 @@ const courseSchema = {
   "@context": "https://schema.org",
   "@type": "Course",
   "name": "Seminario Fine Line EFA Tattoo",
-  "description": "Formación intensiva presencial de 2 días para tatuadores. Línea fina, microrealismo, práctica en piel real y profesionalización.",
+  "description": "FormaciÃ³n intensiva presencial de 2 dÃ­as para tatuadores. LÃ­nea fina, microrealismo, prÃ¡ctica en piel real y profesionalizaciÃ³n.",
   "url": "https://www.efa-tattoo.com/academy",
   "provider": { "@type": "Organization", "name": "EFA Tattoo", "url": "https://www.efa-tattoo.com" },
   "courseMode": "onsite",
@@ -597,7 +602,7 @@ const courseSchema = {
       "name": "EFA Tattoo Studio",
       "address": {
         "@type": "PostalAddress",
-        "streetAddress": "Carrer Còrsega 163",
+        "streetAddress": "Carrer CÃ²rsega 163",
         "addressLocality": "Barcelona",
         "addressCountry": "ES"
       }
@@ -611,28 +616,28 @@ const faqSchema = {
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "¿El seminario EFA es para principiantes?",
-      "acceptedAnswer": { "@type": "Answer", "text": "No, requiere experiencia mínima. No es un curso de iniciación para aprender a tatuar desde cero." }
+      "name": "Â¿El seminario EFA es para principiantes?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No, requiere experiencia mÃ­nima. No es un curso de iniciaciÃ³n para aprender a tatuar desde cero." }
     },
     {
       "@type": "Question",
-      "name": "¿Tatúo en piel real durante el seminario?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Sí, todos los alumnos trabajan en modelo real el segundo día bajo supervisión directa de Enric." }
+      "name": "Â¿TatÃºo en piel real durante el seminario?",
+      "acceptedAnswer": { "@type": "Answer", "text": "SÃ­, todos los alumnos trabajan en modelo real el segundo dÃ­a bajo supervisiÃ³n directa de Enric." }
     },
     {
       "@type": "Question",
-      "name": "¿Debo llevar mi propio material al seminario?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Solo necesitas llevar tu máquina y fuente. El resto está incluido: fungibles y caja de agujas FineLine." }
+      "name": "Â¿Debo llevar mi propio material al seminario?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Solo necesitas llevar tu mÃ¡quina y fuente. El resto estÃ¡ incluido: fungibles y caja de agujas FineLine." }
     },
     {
       "@type": "Question",
-      "name": "¿Se entrega certificado oficial al finalizar el seminario?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Sí, certificado oficial firmado por EFA Tattoo con reconocimiento de nivel profesional." }
+      "name": "Â¿Se entrega certificado oficial al finalizar el seminario?",
+      "acceptedAnswer": { "@type": "Answer", "text": "SÃ­, certificado oficial firmado por EFA Tattoo con reconocimiento de nivel profesional." }
     },
     {
       "@type": "Question",
-      "name": "¿Tengo acceso al contenido del seminario después?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Sí, acceso indefinido a la grabación del contenido teórico." }
+      "name": "Â¿Tengo acceso al contenido del seminario despuÃ©s?",
+      "acceptedAnswer": { "@type": "Answer", "text": "SÃ­, acceso indefinido a la grabaciÃ³n del contenido teÃ³rico." }
     }
   ]
 };
@@ -654,7 +659,7 @@ export default function AcademyPage() {
       </Helmet>
       <Header />
 
-      {/* ── Hero ── */}
+      {/* â”€â”€ Hero â”€â”€ */}
       <section className="relative overflow-hidden bg-[#141210]">
         <div className="absolute inset-0">
           <img
@@ -712,7 +717,7 @@ export default function AcademyPage() {
         </div>
       </section>
 
-      {/* ── La propuesta ── */}
+      {/* â”€â”€ La propuesta â”€â”€ */}
       <section className="py-18 md:py-24" style={{ backgroundColor: "#1a1714" }}>
         <div className={`${sectionWidth} relative`}>
           <div className="absolute left-1/2 top-0 hidden h-full w-px -translate-x-1/2 bg-white/5 md:block" />
@@ -743,7 +748,7 @@ export default function AcademyPage() {
         </div>
       </section>
 
-      {/* ── Features ── */}
+      {/* â”€â”€ Features â”€â”€ */}
       <section id="academy-info" className="py-18 md:py-24" style={{ backgroundColor: "#1a1714" }}>
         <div className={sectionWidth}>
           <SectionHeading
@@ -776,7 +781,7 @@ export default function AcademyPage() {
         </div>
       </section>
 
-      {/* ── Day cards ── */}
+      {/* â”€â”€ Day cards â”€â”€ */}
       <section className="py-18 md:py-24" style={{ backgroundColor: "#11100e" }}>
         <div className={sectionWidth}>
           <SectionHeading
@@ -833,7 +838,7 @@ export default function AcademyPage() {
         </div>
       </section>
 
-      {/* ── Student profile ── */}
+      {/* â”€â”€ Student profile â”€â”€ */}
       <section className="py-18 md:py-24" style={{ backgroundColor: "#1a1714" }}>
         <div className={sectionWidth}>
           <SectionHeading
@@ -873,7 +878,7 @@ export default function AcademyPage() {
         </div>
       </section>
 
-      {/* ── Contact / Form ── */}
+      {/* â”€â”€ Contact / Form â”€â”€ */}
       <section
         id="academy-contact"
         className="py-8 md:py-10"
@@ -904,7 +909,7 @@ export default function AcademyPage() {
         </div>
       </section>
 
-      {/* ── Media Rail ── */}
+      {/* â”€â”€ Media Rail â”€â”€ */}
       <section className="bg-[#0A0A0A] py-16 md:py-20 border-t border-white/5">
         <div className="mb-10 text-center px-6">
           <p className="text-[0.68rem] uppercase tracking-[0.5em] text-[#c9b99a]">
@@ -926,7 +931,7 @@ export default function AcademyPage() {
 
       <LocationCard />
 
-      {/* ── FAQ ── */}
+      {/* â”€â”€ FAQ â”€â”€ */}
       <section className="py-18 md:py-24" style={{ backgroundColor: "#141210" }}>
         <div className={sectionWidth}>
           <SectionHeading
@@ -958,7 +963,7 @@ export default function AcademyPage() {
       <FooterStrip />
 
       {/* ============================================================
-          SHADOW CONTENT — Testimonios Academy
+          SHADOW CONTENT â€” Testimonios Academy
           Para activar: cambiar `hidden` por el layout deseado
           ============================================================ */}
 
@@ -968,19 +973,19 @@ export default function AcademyPage() {
           id: 1,
           name: "Laura M.",
           rating: 5,
-          text: "El curso cambió completamente mi forma de entender el fine line. Grupos pequeños, mucha práctica real.",
+          text: "El curso cambiÃ³ completamente mi forma de entender el fine line. Grupos pequeÃ±os, mucha prÃ¡ctica real.",
         },
         {
           id: 2,
           name: "Carlos R.",
           rating: 5,
-          text: "Vine sin experiencia y salí con técnica y confianza. La atención personalizada marcó la diferencia.",
+          text: "Vine sin experiencia y salÃ­ con tÃ©cnica y confianza. La atenciÃ³n personalizada marcÃ³ la diferencia.",
         },
         {
           id: 3,
-          name: "Sofía D.",
+          name: "SofÃ­a D.",
           rating: 5,
-          text: "Aprendí más en un fin de semana que en meses por mi cuenta. Totalmente recomendado.",
+          text: "AprendÃ­ mÃ¡s en un fin de semana que en meses por mi cuenta. Totalmente recomendado.",
         },
       ];
 
@@ -990,7 +995,7 @@ export default function AcademyPage() {
             {ACADEMY_TESTIMONIALS.map((t) => (
               <div key={t.id}>
                 <p>{t.name}</p>
-                <p>{"★".repeat(t.rating)}</p>
+                <p>{"â˜…".repeat(t.rating)}</p>
                 <p>{t.text}</p>
               </div>
             ))}
@@ -1001,3 +1006,4 @@ export default function AcademyPage() {
     </div>
   );
 }
+
