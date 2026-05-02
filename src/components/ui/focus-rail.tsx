@@ -11,6 +11,7 @@ export type FocusRailItem = {
   title: string;
   description?: string;
   mediaSrc: string;
+  mediaSrcMobile?: string;
   posterSrc?: string;
   mediaType?: "image" | "video";
   href?: string;
@@ -61,8 +62,11 @@ export function FocusRail({
   const [isInViewport, setIsInViewport] = React.useState(false);
   const [audioOptIn, setAudioOptIn] = React.useState(false);
   const [audioActive, setAudioActive] = React.useState(false);
+  const [preferLiteVideo, setPreferLiteVideo] = React.useState(false);
+  const [readyMap, setReadyMap] = React.useState<Record<string, boolean>>({});
   const lastWheelTime = React.useRef<number>(0);
   const rootRef = React.useRef<HTMLDivElement | null>(null);
+  const videoRefs = React.useRef<Record<string, HTMLVideoElement | null>>({});
 
   const count = items.length;
   const activeIndex = wrap(0, count, active);
@@ -105,12 +109,44 @@ export function FocusRail({
   }, [autoPlay, isHovering, handleNext, interval]);
 
   React.useEffect(() => {
+    const evaluate = () => {
+      const isSmallScreen = window.matchMedia("(max-width: 768px)").matches;
+      const nav = navigator as Navigator & {
+        connection?: {
+          saveData?: boolean;
+          effectiveType?: string;
+          addEventListener?: (type: string, listener: EventListener) => void;
+          removeEventListener?: (type: string, listener: EventListener) => void;
+        };
+      };
+      const conn = nav.connection;
+      const isConstrainedNetwork =
+        !!conn?.saveData || conn?.effectiveType === "2g" || conn?.effectiveType === "slow-2g" || conn?.effectiveType === "3g";
+      setPreferLiteVideo(isSmallScreen || isConstrainedNetwork);
+    };
+
+    evaluate();
+    window.addEventListener("resize", evaluate);
+    const nav = navigator as Navigator & {
+      connection?: {
+        addEventListener?: (type: string, listener: EventListener) => void;
+        removeEventListener?: (type: string, listener: EventListener) => void;
+      };
+    };
+    nav.connection?.addEventListener?.("change", evaluate as EventListener);
+    return () => {
+      window.removeEventListener("resize", evaluate);
+      nav.connection?.removeEventListener?.("change", evaluate as EventListener);
+    };
+  }, []);
+
+  React.useEffect(() => {
     const node = rootRef.current;
     if (!node) return;
 
     const observer = new IntersectionObserver(
-      ([entry]) => setIsInViewport(entry.isIntersecting),
-      { threshold: 0.55 }
+      ([entry]) => setIsInViewport(entry.isIntersecting && entry.intersectionRatio > 0.2),
+      { threshold: [0, 0.2, 0.35], rootMargin: "0px 0px -8% 0px" }
     );
 
     observer.observe(node);
@@ -124,6 +160,24 @@ export function FocusRail({
     }
     setAudioActive(false);
   }, [isInViewport, audioOptIn]);
+
+  React.useEffect(() => {
+    const activeKey = String(activeItem.id);
+    Object.entries(videoRefs.current).forEach(([key, node]) => {
+      if (!node) return;
+      if (key !== activeKey || !isInViewport) {
+        node.pause();
+        return;
+      }
+      node.muted = !audioActive;
+      const playPromise = node.play();
+      if (playPromise && typeof playPromise.catch === "function") {
+        playPromise.catch(() => {
+          setAudioActive(false);
+        });
+      }
+    });
+  }, [activeItem.id, isInViewport, audioActive]);
 
   const onKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === "ArrowLeft") handlePrev();
@@ -151,35 +205,59 @@ export function FocusRail({
     item: FocusRailItem,
     { isBg = false, isActive = false }: { isBg?: boolean; isActive?: boolean } = {}
   ) => {
-    const isVideo = item.mediaType === "video" || item.mediaSrc.endsWith(".mp4") || item.mediaSrc.endsWith(".webm");
+    const resolvedSrc = preferLiteVideo && item.mediaSrcMobile ? item.mediaSrcMobile : item.mediaSrc;
+    const isVideo = item.mediaType === "video" || resolvedSrc.endsWith(".mp4") || resolvedSrc.endsWith(".webm");
     const className = isBg ? "h-full w-full object-cover blur-3xl saturate-200" : "h-full w-full rounded-2xl object-cover pointer-events-none";
 
     if (isVideo) {
       if (!isActive || isBg || !isInViewport) {
         return <img src={item.posterSrc ?? item.mediaSrc} alt={item.title} className={className} loading="lazy" />;
       }
+      const itemKey = String(item.id);
+      const isReady = readyMap[itemKey];
       return (
-        <video
-          key={item.mediaSrc}
-          src={item.mediaSrc}
-          autoPlay
-          muted={!audioActive}
-          loop
-          playsInline
-          preload="metadata"
-          poster={item.posterSrc}
-          className={className}
-        />
+        <>
+          <video
+            key={resolvedSrc}
+            ref={(node) => {
+              videoRefs.current[itemKey] = node;
+            }}
+          src={resolvedSrc}
+            autoPlay
+            muted={!audioActive}
+            loop
+            playsInline
+            preload="auto"
+            poster={item.posterSrc}
+            className={className}
+            onLoadedData={() => {
+              setReadyMap((prev) => ({ ...prev, [itemKey]: true }));
+            }}
+          />
+          {!isReady && item.posterSrc && (
+            <img
+              src={item.posterSrc}
+              alt={item.title}
+              className={`${className} absolute inset-0`}
+              loading="lazy"
+            />
+          )}
+        </>
       );
     }
     return <img src={item.mediaSrc} alt={item.title} className={className} />;
   }
 
+  const preloadIndices = React.useMemo(() => {
+    if (count <= 1) return [activeIndex];
+    return [wrap(0, count, activeIndex - 1), activeIndex, wrap(0, count, activeIndex + 1)];
+  }, [activeIndex, count]);
+
   return (
     <div
       ref={rootRef}
       className={cn(
-        "group relative flex h-[600px] w-full flex-col overflow-hidden bg-[#0A0A0A] text-white outline-none select-none overflow-x-hidden rounded-sm border border-white/5",
+        "group relative flex h-[520px] w-full flex-col overflow-hidden bg-[#0A0A0A] text-white outline-none select-none overflow-x-hidden rounded-sm border border-white/5 md:h-[600px]",
         className
       )}
       onMouseEnter={() => setIsHovering(true)}
@@ -188,6 +266,24 @@ export function FocusRail({
       onKeyDown={onKeyDown}
       onWheel={onWheel}
     >
+      <div className="sr-only" aria-hidden="true">
+        {preloadIndices.map((index) => {
+          const item = items[index];
+          const src = preferLiteVideo && item.mediaSrcMobile ? item.mediaSrcMobile : item.mediaSrc;
+          const isVideo = item.mediaType === "video" || src.endsWith(".mp4") || src.endsWith(".webm");
+          if (!isVideo) return null;
+          return (
+            <video
+              key={`preload-${item.id}`}
+              src={src}
+              preload="metadata"
+              muted
+              playsInline
+            />
+          );
+        })}
+      </div>
+
       {/* Background Ambience */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <AnimatePresence mode="popLayout">
@@ -206,10 +302,10 @@ export function FocusRail({
       </div>
 
       {/* Main Stage */}
-      <div className="relative z-10 flex flex-1 flex-col justify-center px-4 md:px-8">
+      <div className="relative z-10 flex flex-1 flex-col justify-center px-3 md:px-8">
         {/* DRAGGABLE RAIL CONTAINER */}
         <motion.div
-          className="relative mx-auto flex h-[360px] w-full max-w-6xl items-center justify-center perspective-[1200px] cursor-grab active:cursor-grabbing"
+          className="relative mx-auto flex h-[300px] w-full max-w-6xl items-center justify-center perspective-[1200px] cursor-grab active:cursor-grabbing md:h-[360px]"
           drag="x"
           dragConstraints={{ left: 0, right: 0 }}
           dragElastic={0.2}
@@ -225,7 +321,7 @@ export function FocusRail({
             const isCenter = offset === 0;
             const dist = Math.abs(offset);
 
-            const xOffset = offset * 280; // slightly tighter for better fit
+            const xOffset = offset * 240;
             const zOffset = -dist * 180;
             const scale = isCenter ? 1 : 0.80; // a bit smaller back cards
             const rotateY = offset * -20;
@@ -238,7 +334,7 @@ export function FocusRail({
               <motion.div
                 key={absIndex}
                 className={cn(
-                  "absolute aspect-[4/5] w-[260px] md:w-[300px] rounded-2xl border-t border-white/15 bg-black shadow-2xl transition-shadow duration-300",
+                  "absolute aspect-[4/5] w-[210px] rounded-2xl border-t border-white/15 bg-black shadow-2xl transition-shadow duration-300 md:w-[300px]",
                   isCenter ? "z-20 shadow-[0_20px_50px_rgba(201,185,154,0.15)] ring-1 ring-white/10" : "z-10"
                 )}
                 initial={false}
@@ -286,8 +382,8 @@ export function FocusRail({
         </motion.div>
 
         {/* Info & Controls */}
-        <div className="mx-auto mt-12 flex w-full max-w-5xl flex-col items-center justify-between gap-6 md:flex-row pointer-events-auto">
-          <div className="flex flex-1 flex-col items-center text-center md:items-start md:text-left h-32 justify-center">
+        <div className="mx-auto mt-8 flex w-full max-w-5xl flex-col items-center justify-between gap-5 md:mt-12 md:gap-6 md:flex-row pointer-events-auto">
+          <div className="flex flex-1 flex-col items-center text-center md:items-start md:text-left min-h-28 md:h-32 justify-center">
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeItem.id}
@@ -302,11 +398,11 @@ export function FocusRail({
                     {activeItem.meta}
                   </span>
                 )}
-                <h2 className="text-2xl font-light tracking-widest uppercase md:text-3xl text-white font-body">
+                <h2 className="text-xl font-light tracking-widest uppercase md:text-3xl text-white font-body">
                   {activeItem.title}
                 </h2>
                 {activeItem.description && (
-                  <p className="max-w-md text-white/50 text-sm font-light leading-relaxed tracking-wide">
+                  <p className="max-w-md text-white/50 text-xs font-light leading-relaxed tracking-wide md:text-sm">
                     {activeItem.description}
                   </p>
                 )}
