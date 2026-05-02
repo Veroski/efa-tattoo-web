@@ -4,6 +4,7 @@ import * as React from "react";
 import { motion, AnimatePresence, PanInfo } from "framer-motion";
 import { ChevronLeft, ChevronRight, ArrowUpRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { cn } from "@/lib/utils";
 
 export type FocusRailItem = {
@@ -57,6 +58,7 @@ export function FocusRail({
   interval = 4000,
   className,
 }: FocusRailProps) {
+  const { t } = useTranslation();
   const [active, setActive] = React.useState(initialIndex);
   const [isHovering, setIsHovering] = React.useState(false);
   const [isInViewport, setIsInViewport] = React.useState(false);
@@ -305,7 +307,7 @@ export function FocusRail({
       <div className="relative z-10 flex flex-1 flex-col justify-center px-3 md:px-8">
         {/* DRAGGABLE RAIL CONTAINER */}
         <motion.div
-          className="relative mx-auto flex h-[300px] w-full max-w-6xl items-center justify-center perspective-[1200px] cursor-grab active:cursor-grabbing md:h-[360px]"
+          className="relative mx-auto flex h-[360px] w-full max-w-6xl items-center justify-center perspective-[1200px] cursor-grab active:cursor-grabbing md:h-[460px]"
           drag="x"
           dragConstraints={{ left: 0, right: 0 }}
           dragElastic={0.2}
@@ -334,7 +336,7 @@ export function FocusRail({
               <motion.div
                 key={absIndex}
                 className={cn(
-                  "absolute aspect-[4/5] w-[210px] rounded-2xl border-t border-white/15 bg-black shadow-2xl transition-shadow duration-300 md:w-[300px]",
+                  "absolute aspect-[9/16] w-[205px] rounded-2xl border-t border-white/15 bg-black shadow-2xl transition-shadow duration-300 md:w-[300px]",
                   isCenter ? "z-20 shadow-[0_20px_50px_rgba(201,185,154,0.15)] ring-1 ring-white/10" : "z-10"
                 )}
                 initial={false}
@@ -358,18 +360,27 @@ export function FocusRail({
                 }}
               >
                 {renderMedia(item, { isActive: isCenter })}
-                {isCenter && isInViewport && item.mediaType === "video" && !audioOptIn && (
+                {isCenter && isInViewport && item.mediaType === "video" && (
                   <button
                     type="button"
                     onClick={(e) => {
                       e.stopPropagation();
+                      if (audioOptIn && audioActive) {
+                        setAudioActive(false);
+                        return;
+                      }
                       setAudioOptIn(true);
                       setAudioActive(true);
+                      const activeNode = videoRefs.current[String(item.id)];
+                      if (activeNode) {
+                        activeNode.muted = false;
+                        activeNode.play().catch(() => setAudioActive(false));
+                      }
                     }}
                     className="absolute bottom-3 right-3 z-30 rounded-full border border-white/30 bg-black/65 px-3 py-1.5 text-[0.6rem] uppercase tracking-[0.2em] text-white backdrop-blur transition hover:border-white/50 hover:bg-black/80"
-                    aria-label="Activar sonido"
+                    aria-label={audioOptIn && audioActive ? t("academy.soundOff", "Silenciar") : t("academy.soundOn", "Tap sonido")}
                   >
-                    Tap sonido
+                    {audioOptIn && audioActive ? t("academy.soundOff", "Silenciar") : t("academy.soundOn", "Tap sonido")}
                   </button>
                 )}
 

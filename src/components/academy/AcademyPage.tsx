@@ -6,58 +6,38 @@ import Header from "@/components/layout/Header";
 import FooterStrip from "@/components/shared/FooterStrip";
 import { FocusRail, type FocusRailItem } from "@/components/ui/focus-rail";
 
-const ACADEMY_GALLERY_ITEMS: FocusRailItem[] = [
+const ACADEMY_GALLERY_MEDIA = [
   {
     id: 1,
-    title: "Aprendizaje Real En Cabina",
-    description: "Los alumnos practican paso a paso sobre piel real con correccion directa del mentor.",
-    meta: "Practica Guiada",
     mediaSrc: "/videos/academy/testimonio_1.mp4",
     mediaSrcMobile: "/videos/academy/testimonio_1.mobile.mp4",
     posterSrc: "/videos/academy/posters/testimonio_1.webp",
-    mediaType: "video",
   },
   {
     id: 2,
-    title: "Tecnica Y Control De Material",
-    description: "Aprende a configurar maquina, agujas y tinta para conseguir lineas limpias y consistentes.",
-    meta: "Setup Profesional",
     mediaSrc: "/videos/academy/testimonio_2.mp4",
     mediaSrcMobile: "/videos/academy/testimonio_2.mobile.mp4",
     posterSrc: "/videos/academy/posters/testimonio_2.webp",
-    mediaType: "video",
   },
   {
     id: 3,
-    title: "Entorno Profesional De Alto Nivel",
-    description: "Formacion en estudio real con flujo de trabajo ordenado, higiene y enfoque 100% practico.",
-    meta: "Metodo En Estudio",
     mediaSrc: "/videos/academy/testimonio_3.mp4",
     mediaSrcMobile: "/videos/academy/testimonio_3.mobile.mp4",
     posterSrc: "/videos/academy/posters/testimonio_3.webp",
-    mediaType: "video",
   },
   {
     id: 4,
-    title: "Alumnos Satisfechos Y Confiados",
-    description: "Resultados visibles al terminar: mas precision, mas seguridad y criterio tecnico aplicable.",
-    meta: "Progreso Real",
     mediaSrc: "/videos/academy/testimonio_4.mp4",
     mediaSrcMobile: "/videos/academy/testimonio_4.mobile.mp4",
     posterSrc: "/videos/academy/posters/testimonio_4.webp",
-    mediaType: "video",
   },
   {
     id: 5,
-    title: "Resultados Que Hablan Solos",
-    description: "Proceso completo de trazo, ejecucion y curacion para lograr trabajos finos y duraderos.",
-    meta: "Nivel Pro",
     mediaSrc: "/videos/academy/testimonio_5.mp4",
     mediaSrcMobile: "/videos/academy/testimonio_5.mobile.mp4",
     posterSrc: "/videos/academy/posters/testimonio_5.webp",
-    mediaType: "video",
   }
-];
+] as const;
 
 type TattooExperience = "" | "menos_6_meses" | "6_12_meses" | "mas_1_aÃ±o";
 type MainDifficulty =
@@ -650,6 +630,26 @@ const faqSchema = {
 export default function AcademyPage() {
   const { t } = useTranslation();
 
+  const galleryTextItems = t("academy.galleryVideoItems", { returnObjects: true }) as Array<{
+    title: string;
+    description: string;
+    meta: string;
+  }>;
+
+  const academyGalleryItems: FocusRailItem[] = ACADEMY_GALLERY_MEDIA.map((media, index) => {
+    const text = galleryTextItems[index];
+    return {
+      id: media.id,
+      title: text?.title ?? `Video ${index + 1}`,
+      description: text?.description ?? "",
+      meta: text?.meta ?? "",
+      mediaSrc: media.mediaSrc,
+      mediaSrcMobile: media.mediaSrcMobile,
+      posterSrc: media.posterSrc,
+      mediaType: "video",
+    };
+  });
+
   const featureItems = t("academy.features", { returnObjects: true }) as Array<{ title: string; description: string }>;
   const day1Items = t("academy.day1Items", { returnObjects: true }) as string[];
   const day2Items = t("academy.day2Items", { returnObjects: true }) as string[];
@@ -928,7 +928,7 @@ export default function AcademyPage() {
           </h2>
         </div>
         <FocusRail
-          items={ACADEMY_GALLERY_ITEMS}
+          items={academyGalleryItems}
           loop={true}
           className="max-w-[1920px] mx-auto !h-[650px]"
         />

@@ -186,6 +186,35 @@ const es = {
     faqEyebrow: "FAQ",
     faqTitle: "Preguntas frecuentes",
     faqDesc: "Todo lo que necesitas saber antes de asegurar tu plaza.",
+    galleryVideoItems: [
+      {
+        title: "Aprendizaje Real En Cabina",
+        description: "Los alumnos practican paso a paso sobre piel real con corrección directa del mentor.",
+        meta: "Práctica Guiada",
+      },
+      {
+        title: "Técnica Y Control De Material",
+        description: "Aprende a configurar máquina, agujas y tinta para conseguir líneas limpias y consistentes.",
+        meta: "Setup Profesional",
+      },
+      {
+        title: "Entorno Profesional De Alto Nivel",
+        description: "Formación en estudio real con flujo de trabajo ordenado, higiene y enfoque 100% práctico.",
+        meta: "Método En Estudio",
+      },
+      {
+        title: "Alumnos Satisfechos Y Confiados",
+        description: "Resultados visibles al terminar: más precisión, más seguridad y criterio técnico aplicable.",
+        meta: "Progreso Real",
+      },
+      {
+        title: "Resultados Que Hablan Solos",
+        description: "Proceso completo de trazo, ejecución y curación para lograr trabajos finos y duraderos.",
+        meta: "Nivel Pro",
+      },
+    ],
+    soundOn: "Activar sonido",
+    soundOff: "Silenciar",
     faqs: [
       { question: "¿Es para principiantes?", answer: "No, requiere experiencia mínima." },
       { question: "¿Tatúo sí o sí?", answer: "Sí, todos los alumnos trabajan en modelo real." },

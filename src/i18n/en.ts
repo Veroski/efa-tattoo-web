@@ -188,6 +188,35 @@ const en: Translations = {
     faqEyebrow: "FAQ",
     faqTitle: "Frequently asked questions",
     faqDesc: "Everything you need to know before securing your place.",
+    galleryVideoItems: [
+      {
+        title: "Real Learning In The Booth",
+        description: "Students practice step by step on real skin with direct correction from the mentor.",
+        meta: "Guided Practice",
+      },
+      {
+        title: "Technique And Material Control",
+        description: "Learn to set up machine, needles and ink for clean and consistent lines.",
+        meta: "Pro Setup",
+      },
+      {
+        title: "High-Level Professional Environment",
+        description: "Training in a real studio with an organized workflow, hygiene and a fully practical approach.",
+        meta: "Studio Method",
+      },
+      {
+        title: "Satisfied And Confident Students",
+        description: "Visible outcomes by the end: more precision, more confidence and usable technical judgement.",
+        meta: "Real Progress",
+      },
+      {
+        title: "Results That Speak For Themselves",
+        description: "Complete process of linework, execution and healing for refined and lasting work.",
+        meta: "Pro Level",
+      },
+    ],
+    soundOn: "Enable sound",
+    soundOff: "Mute",
     faqs: [
       { question: "Is it for beginners?", answer: "No, minimum experience is required." },
       { question: "Will I tattoo for sure?", answer: "Yes, all students work on a real model." },
