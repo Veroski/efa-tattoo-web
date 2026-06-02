@@ -619,11 +619,6 @@ const faqSchema = {
       "name": "Â¿Se entrega certificado oficial al finalizar el seminario?",
       "acceptedAnswer": { "@type": "Answer", "text": "SÃ­, certificado oficial firmado por EFA Tattoo con reconocimiento de nivel profesional." }
     },
-    {
-      "@type": "Question",
-      "name": "Â¿Tengo acceso al contenido del seminario despuÃ©s?",
-      "acceptedAnswer": { "@type": "Answer", "text": "SÃ­, acceso indefinido a la grabaciÃ³n del contenido teÃ³rico." }
-    }
   ]
 };
 
