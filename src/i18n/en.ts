@@ -29,8 +29,13 @@ const en: Translations = {
   about: {
     eyebrow: "Stories told through line and knowledge",
     title: "Meet Enric",
-    p1: "I am an artist based in Barcelona, trained as a nurse and specialised in fine line and micro-realism tattooing. My work is born from a deep connection with the human body and the personal stories told through the line.",
-    p2: "I started tattooing while working in emergency medicine, transferring surgical precision to an art that doesn't seek to heal a wound, but to honour it. Over 7 years of constant practice define the way I work today: judgement, technique and responsibility.",
+    intro: [
+      "I did not start out in the world of tattooing. I was first a nurse, a profession that taught me something which still defines the way I work today: precision, responsibility and care for people.",
+      "More than eight years ago, I decided to follow the passion I had always carried within me and turn it into my profession. Since then, I have devoted thousands of hours to perfecting my technique, specialising in fine line and micro-realism, always seeking an elegant, clean and timeless result.",
+      "For me, a tattoo is never just ink. It is a story, a memory, a person or a stage in life that deserves to be treated with respect. That is why I take the time to understand what lies behind every idea and to design each piece so it fits you—not just your skin, but also what you want to convey.",
+      "Over the years, I have had the opportunity to tattoo hundreds of people, build a community of thousands of followers and train other tattoo artists through seminars and mentoring. Above all, I still enjoy it exactly as much as I did on the first day, whenever someone trusts me to create something they will wear forever.",
+      "If you have made it this far, I hope you find not only a tattoo artist, but someone who values your story as much as you do and accompanies you throughout the process of turning an idea into a piece that will still make sense many years from now.",
+    ],
     imgAlt1: "Enric in the studio — EFA Tattoo Barcelona",
     imgAlt2: "Enric in the studio — EFA Tattoo",
     imgAlt3: "Dragon with flowers — large project EFA Tattoo",
@@ -213,6 +218,21 @@ const en: Translations = {
         title: "Results That Speak For Themselves",
         description: "Complete process of linework, execution and healing for refined and lasting work.",
         meta: "Pro Level",
+      },
+      {
+        title: "Felipe Gabriel · Brazil",
+        description: "Felipe shares his EFA seminar experience after travelling from Brazil.",
+        meta: "Student testimonial",
+      },
+      {
+        title: "Sandra · Basque Country",
+        description: "Sandra shares what she takes away from EFA training, coming from the Basque Country.",
+        meta: "Student testimonial",
+      },
+      {
+        title: "Yuki Seiko · Barcelona",
+        description: "Yuki shares how she experienced training designed to build professional judgement.",
+        meta: "Student testimonial",
       },
     ],
     soundOn: "Enable sound",

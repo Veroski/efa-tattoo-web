@@ -27,8 +27,13 @@ const es = {
   about: {
     eyebrow: "Historias a través del trazo y el conocimiento",
     title: "Conoce a Enric",
-    p1: "Soy un artista afincado en Barcelona, enfermero de formación y tatuador especializado en fine line y micro-realismo. Mi trabajo nace de una conexión profunda con el cuerpo humano y con las historias personales que se cuentan a través del trazo.",
-    p2: "Empecé a tatuar mientras trabajaba en urgencias, trasladando la precisión quirúrgica a un arte que no busca curar una herida, sino honrarla. Más de 7 años de práctica constante definen hoy mi forma de trabajar: criterio, técnica y responsabilidad.",
+    intro: [
+      "No empecé en el mundo del tatuaje. Antes fui enfermero, una profesión que me enseñó algo que hoy sigue definiendo mi forma de trabajar: la precisión, la responsabilidad y el cuidado por las personas.",
+      "Hace más de ocho años decidí seguir la pasión que siempre había llevado dentro y convertirla en mi profesión. Desde entonces he dedicado miles de horas a perfeccionar mi técnica, especializándome en el fine line y el microrealismo, buscando siempre un resultado elegante, limpio y atemporal.",
+      "Para mí, un tatuaje nunca es solo tinta. Es una historia, un recuerdo, una persona o una etapa de vida que merece ser tratada con respeto. Por eso dedico tiempo a entender qué hay detrás de cada idea y a diseñar cada pieza para que encaje contigo, no solo con tu piel, sino también con lo que quieres transmitir.",
+      "Con los años he tenido la oportunidad de tatuar a cientos de personas, construir una comunidad de miles de seguidores y formar a otros tatuadores a través de seminarios y mentorías. Pero, por encima de todo, sigo disfrutando exactamente igual que el primer día cuando alguien confía en mí para crear algo que llevará para siempre.",
+      "Si has llegado hasta aquí, espero que encuentres no solo un tatuador, sino alguien que valore tu historia tanto como tú y que te acompañe durante todo el proceso para convertir una idea en una pieza que siga teniendo sentido dentro de muchos años.",
+    ],
     imgAlt1: "Enric en el estudio — EFA Tattoo Barcelona",
     imgAlt2: "Enric en el estudio con monstera — EFA Tattoo",
     imgAlt3: "Dragón con flores — proyecto grande EFA Tattoo",
@@ -211,6 +216,21 @@ const es = {
         title: "Resultados Que Hablan Solos",
         description: "Proceso completo de trazo, ejecución y curación para lograr trabajos finos y duraderos.",
         meta: "Nivel Pro",
+      },
+      {
+        title: "Felipe Gabriel · Brasil",
+        description: "Felipe comparte su experiencia en el seminario EFA tras viajar desde Brasil.",
+        meta: "Testimonio de alumno",
+      },
+      {
+        title: "Sandra · País Vasco",
+        description: "Sandra cuenta qué se lleva de la formación EFA desde País Vasco.",
+        meta: "Testimonio de alumna",
+      },
+      {
+        title: "Yuki Seiko · Barcelona",
+        description: "Yuki comparte cómo vivió una formación diseñada para avanzar con criterio.",
+        meta: "Testimonio de alumna",
       },
     ],
     soundOn: "Activar sonido",

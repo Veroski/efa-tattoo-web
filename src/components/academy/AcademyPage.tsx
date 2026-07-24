@@ -36,6 +36,24 @@ const ACADEMY_GALLERY_MEDIA = [
     mediaSrc: "/videos/academy/testimonio_5.mp4",
     mediaSrcMobile: "/videos/academy/testimonio_5.mobile.mp4",
     posterSrc: "/videos/academy/posters/testimonio_5.webp",
+  },
+  {
+    id: 6,
+    mediaSrc: "/videos/academy/testimonio_6.mp4",
+    mediaSrcMobile: "/videos/academy/testimonio_6.mobile.mp4",
+    posterSrc: "/videos/academy/posters/testimonio_6.webp",
+  },
+  {
+    id: 7,
+    mediaSrc: "/videos/academy/testimonio_7.mp4",
+    mediaSrcMobile: "/videos/academy/testimonio_7.mobile.mp4",
+    posterSrc: "/videos/academy/posters/testimonio_7.webp",
+  },
+  {
+    id: 8,
+    mediaSrc: "/videos/academy/testimonio_8.mp4",
+    mediaSrcMobile: "/videos/academy/testimonio_8.mobile.mp4",
+    posterSrc: "/videos/academy/posters/testimonio_8.webp",
   }
 ] as const;
 
