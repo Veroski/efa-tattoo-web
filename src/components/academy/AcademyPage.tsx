@@ -39,21 +39,21 @@ const ACADEMY_GALLERY_MEDIA = [
   },
   {
     id: 6,
-    mediaSrc: "/videos/academy/testimonio_6.mp4",
-    mediaSrcMobile: "/videos/academy/testimonio_6.mobile.mp4",
-    posterSrc: "/videos/academy/posters/testimonio_6.webp",
+    mediaSrc: "/videos/academy/testimonio_6-v2.mp4",
+    mediaSrcMobile: "/videos/academy/testimonio_6-v2.mobile.mp4",
+    posterSrc: "/videos/academy/posters/testimonio_6-v2.webp",
   },
   {
     id: 7,
-    mediaSrc: "/videos/academy/testimonio_7.mp4",
-    mediaSrcMobile: "/videos/academy/testimonio_7.mobile.mp4",
-    posterSrc: "/videos/academy/posters/testimonio_7.webp",
+    mediaSrc: "/videos/academy/testimonio_7-v2.mp4",
+    mediaSrcMobile: "/videos/academy/testimonio_7-v2.mobile.mp4",
+    posterSrc: "/videos/academy/posters/testimonio_7-v2.webp",
   },
   {
     id: 8,
-    mediaSrc: "/videos/academy/testimonio_8.mp4",
-    mediaSrcMobile: "/videos/academy/testimonio_8.mobile.mp4",
-    posterSrc: "/videos/academy/posters/testimonio_8.webp",
+    mediaSrc: "/videos/academy/testimonio_8-v2.mp4",
+    mediaSrcMobile: "/videos/academy/testimonio_8-v2.mobile.mp4",
+    posterSrc: "/videos/academy/posters/testimonio_8-v2.webp",
   }
 ] as const;
 
