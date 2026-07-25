@@ -60,6 +60,7 @@ const personSchema = {
 
 export default function AboutContent() {
   const { t } = useTranslation();
+  const intro = t("about.intro", { returnObjects: true }) as string[];
   const features = t("about.features", { returnObjects: true }) as Array<{ num: string; title: string; body: string }>;
 
   return (
@@ -95,8 +96,7 @@ export default function AboutContent() {
                 transition={{ duration: 0.65, delay: 0.2 }}
                 className="space-y-5 text-white/70 text-sm leading-relaxed font-light tracking-wide max-w-[30rem]"
               >
-                <p>{t("about.p1")}</p>
-                <p>{t("about.p2")}</p>
+                {intro.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
               </motion.div>
             </div>
 
