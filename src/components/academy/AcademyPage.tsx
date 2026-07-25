@@ -39,9 +39,9 @@ const ACADEMY_GALLERY_MEDIA = [
   },
   {
     id: 6,
-    mediaSrc: "/videos/academy/testimonio_6-v2.mp4",
-    mediaSrcMobile: "/videos/academy/testimonio_6-v2.mobile.mp4",
-    posterSrc: "/videos/academy/posters/testimonio_6-v2.webp",
+    mediaSrc: "/videos/academy/testimonio_6-v3.mp4",
+    mediaSrcMobile: "/videos/academy/testimonio_6-v3.mobile.mp4",
+    posterSrc: "/videos/academy/posters/testimonio_6-v3.webp",
   },
   {
     id: 7,
