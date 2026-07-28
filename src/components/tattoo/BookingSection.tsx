@@ -85,13 +85,16 @@ const GoogleIcon = () => (
 );
 
 const GOOGLE_REVIEWS = [
-  { id: 1, name: "Laura Sánchez", time: "hace 2 semanas", text: "Increíble experiencia. El trato fue inmejorable y el tatuaje fine line quedó exactamente como lo imaginaba, súper delicado. El estudio transmite mucha paz y profesionalidad." },
-  { id: 2, name: "Marc T.", time: "hace 1 mes", text: "Muy detallista y perfeccionista. El diseño lo clavó a la primera. Todo el proceso fue muy higiénico y me sentí muy cómodo. ¡Repetiré seguro!" },
-  { id: 3, name: "Andrea V.", time: "hace 1 mes", text: "Tenía un poco de miedo por ser mi primer tatuaje, pero tienen una paciencia infinita. Me lo explicaron todo al detalle y dolió mucho menos de lo que pensaba." },
-  { id: 4, name: "Carla R.", time: "hace 2 meses", text: "Me hice un proyecto de manga entera y no puedo estar más contenta. El nivel de detalle en las sombras y las líneas es espectacular." },
-  { id: 5, name: "Javier M.", time: "hace 3 meses", text: "Un 10/10. El estudio es precioso, la limpieza impoluta y el resultado final superó mis expectativas. Muy recomendables." },
-  { id: 6, name: "Elena Gómez", time: "hace 3 meses", text: "El mejor estudio en el que he estado. Te asesoran con el diseño para que se adapte perfectamente a tu cuerpo. Trato súper cercano y profesional." },
-  { id: 7, name: "Pol F.", time: "hace 4 meses", text: "Resolvieron todas mis dudas por WhatsApp rapidísimo. El día de la cita fue genial, cero estrés y el tatuaje cicatrizó perfectamente." }
+  { id: 1, name: "Nika nika", time: "hace 2 semanas", text: "Encantada con Enric, súper atento,te aconseja la mejor opción dentro de tu idea, puntual, higiene 100%, delicado, un artista en pocas palabras." },
+  { id: 2, name: "Alicia Meneses", time: "hace un mes", text: "La mejor experiencia, literal te hace sentir en un ambiente cómodo y agradable, quedé encantada con el diseño personalizado…☺️" },
+  { id: 3, name: "nilton", time: "hace un mes", text: "Encantado con el trato recibido y satisfecho con lo que se me realizó. Lo recomiendo 100%." },
+  { id: 4, name: "Pablo A. López", time: "hace 2 meses", text: "100% recomendado, mi tatuador de confianza. Genial cómo capta mis idea y la plasma en el diseño final. Además un 10 de persona." },
+  { id: 5, name: "Arileisy figuereo", time: "hace un mes", text: "Primera vez tatuándome en Efa Tattoo y La verdad una experiencia muy bonita, los tatuajes me encantaron y el tatuador muy majo." },
+  { id: 6, name: "Laura Hernández", time: "hace 2 meses", text: "fui a hacerme dos tatuajes y salí súper contenta tanto con el resultado como con el trato repetiré seguro" },
+  { id: 7, name: "alex bautista", time: "hace un mes", text: "Increíble como siempre. Muy contento una vez más!" },
+  { id: 8, name: "Libertad González", time: "hace 2 días", text: "Simplemente maravilloso, es un tattoo con mucho sentimiento y ha sido increíble cómo ha llevado unos nombres en letra cursiva a un cielo estrellado, rápido, eficiente, estoy muy contenta a mi familia les ha encantado y yo estoy muy satisfecha GRACIAS EFA Tattoo" },
+  { id: 9, name: "Eva Ruiz", time: "hace 2 días", text: "Encantada con Enric y encantada con el tatto. Recomiendo al 💯…" },
+  { id: 10, name: "Angel", time: "hace 3 semanas", text: "Muy simpático y profesionales me a encantado el resultado una locura 11 de 10 y en persona se ve muncho mejor el tatto" },
 ];
 
 export default function BookingSection() {
@@ -454,13 +457,13 @@ export default function BookingSection() {
               {t("booking.reviewsTitle", "Lo que dicen nuestros clientes")}
             </h3>
             <div className="flex items-center gap-3">
-              <span className="text-white text-lg font-medium">4.9</span>
+              <span className="text-white text-lg font-medium">5,0</span>
               <div className="flex text-[#FFC107] text-lg">
                 ★★★★★
               </div>
               <span className="text-white/40 text-[0.7rem] tracking-wide ml-1">
                 {/* @ts-ignore */}
-                {t("booking.reviewsSubtitle", "Basado en reseñas de Google")}
+                {t("booking.reviewsSubtitle", "5,0 · 11 reseñas en Google")}
               </span>
             </div>
           </div>

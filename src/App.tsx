@@ -119,7 +119,7 @@ const homeSchema = {
       openingHoursSpecification: [
         { "@type": "OpeningHoursSpecification", dayOfWeek: ["Monday","Tuesday","Wednesday","Thursday","Friday"], opens: "10:00", closes: "19:00" },
       ],
-      aggregateRating: { "@type": "AggregateRating", ratingValue: "4.9", bestRating: "5", reviewCount: "7" },
+      aggregateRating: { "@type": "AggregateRating", ratingValue: "5", bestRating: "5", reviewCount: "11" },
     },
     {
       "@type": "WebSite",

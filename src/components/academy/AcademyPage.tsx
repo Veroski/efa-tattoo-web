@@ -57,6 +57,15 @@ const ACADEMY_GALLERY_MEDIA = [
   }
 ] as const;
 
+const ACADEMY_STORY_IMAGES = {
+  action: "/img/Academy/action.webp",
+  guidedPractice: "/img/Academy/guided-practice.webp",
+  setup: "/img/Academy/setup.webp",
+  mentoring: "/img/Academy/mentoring.webp",
+  studio: "/img/Academy/studio.webp",
+  detail: "/img/Academy/detail.webp",
+} as const;
+
 type TattooExperience = "" | "menos_6_meses" | "6_12_meses" | "mas_1_aÃ±o";
 type MainDifficulty =
   | ""
@@ -157,6 +166,33 @@ function BulletList({ items }: { items: string[] }) {
         </li>
       ))}
     </ul>
+  );
+}
+
+function AcademyImage({
+  src,
+  alt,
+  className = "",
+}: {
+  src: string;
+  alt: string;
+  className?: string;
+}) {
+  return (
+    <motion.figure
+      {...fadeUp}
+      className={`group relative overflow-hidden bg-[#0f0e0c] ${className}`}
+    >
+      <motion.img
+        src={src}
+        alt={alt}
+        loading="lazy"
+        whileHover={{ scale: 1.045 }}
+        transition={{ duration: 0.7, ease: "easeOut" }}
+        className="h-full w-full object-cover grayscale-[0.15] transition-[filter] duration-500 group-hover:grayscale-0"
+      />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#141210]/55 via-transparent to-transparent opacity-80 transition-opacity duration-500 group-hover:opacity-35" />
+    </motion.figure>
   );
 }
 
@@ -681,10 +717,10 @@ export default function AcademyPage() {
       <section className="relative overflow-hidden bg-[#141210]">
         <div className="absolute inset-0">
           <img
-            src="/img/img_1.webp"
+            src={ACADEMY_STORY_IMAGES.action}
             alt=""
             aria-hidden="true"
-            className="h-full w-full object-cover object-[center_68%] brightness-[0.22] grayscale-[0.3]"
+            className="h-full w-full object-cover object-center brightness-[0.22] grayscale-[0.3]"
           />
           <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(20,18,16,0.58)_0%,rgba(20,18,16,0.82)_60%,#141210_100%)]" />
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_58%_45%_at_50%_36%,rgba(201,185,154,0.08)_0%,transparent_72%)]" />
@@ -736,32 +772,36 @@ export default function AcademyPage() {
       </section>
 
       {/* â”€â”€ La propuesta â”€â”€ */}
-      <section className="py-18 md:py-24" style={{ backgroundColor: "#1a1714" }}>
-        <div className={`${sectionWidth} relative`}>
-          <div className="absolute left-1/2 top-0 hidden h-full w-px -translate-x-1/2 bg-white/5 md:block" />
-          <div className="mx-auto max-w-4xl text-center">
-            <motion.div
-              {...fadeUp}
-              className="mx-auto h-16 w-px bg-gradient-to-b from-transparent via-[#c9b99a]/45 to-transparent"
-            />
+      <section className="overflow-hidden py-18 md:py-24" style={{ backgroundColor: "#1a1714" }}>
+        <div className={`${sectionWidth} grid items-center gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20`}>
+          <div className="lg:sticky lg:top-28">
             <SectionHeading
               eyebrow={t("academy.proposalEyebrow")}
               title={t("academy.proposalTitle")}
               description={t("academy.proposalDesc")}
-              align="center"
             />
             <motion.p
               {...fadeUp}
               transition={{ duration: 0.65, delay: 0.1 }}
-              className="mx-auto mt-12 max-w-3xl text-xl font-light leading-relaxed tracking-wide text-white/84 md:text-2xl"
+              className="mt-9 max-w-xl border-l border-[#c9b99a]/45 pl-5 text-lg font-light leading-relaxed tracking-wide text-white/84 md:text-xl"
             >
               {t("academy.proposalQuote")}
             </motion.p>
-            <motion.div
-              {...fadeUp}
-              transition={{ duration: 0.65, delay: 0.2 }}
-              className="mx-auto mt-12 h-16 w-px bg-gradient-to-b from-[#c9b99a]/45 to-transparent"
+          </div>
+          <div className="relative grid grid-cols-12 gap-3 md:gap-5">
+            <AcademyImage
+              src={ACADEMY_STORY_IMAGES.guidedPractice}
+              alt="Práctica guiada durante un seminario EFA Tattoo"
+              className="col-span-9 aspect-[4/5]"
             />
+            <AcademyImage
+              src={ACADEMY_STORY_IMAGES.setup}
+              alt="Material preparado para la práctica de tatuaje"
+              className="col-span-6 col-start-7 -mt-20 aspect-[3/4] border-4 border-[#1a1714] md:-mt-28"
+            />
+            <div className="col-span-5 self-end pb-4 text-[0.65rem] uppercase leading-relaxed tracking-[0.32em] text-[#c9b99a]/75">
+              Técnica, criterio<br />y acompañamiento real.
+            </div>
           </div>
         </div>
       </section>
@@ -774,6 +814,23 @@ export default function AcademyPage() {
             title={t("academy.featuresTitle")}
             description={t("academy.featuresDesc")}
           />
+          <div className="mt-10 grid gap-3 sm:grid-cols-3 md:gap-5">
+            <AcademyImage
+              src={ACADEMY_STORY_IMAGES.mentoring}
+              alt="Corrección personalizada durante el seminario"
+              className="aspect-[4/3] sm:translate-y-8"
+            />
+            <AcademyImage
+              src={ACADEMY_STORY_IMAGES.detail}
+              alt="Detalle de una sesión de práctica profesional"
+              className="aspect-[4/3]"
+            />
+            <AcademyImage
+              src={ACADEMY_STORY_IMAGES.studio}
+              alt="Aprendizaje en un estudio de tatuaje profesional"
+              className="aspect-[4/3] sm:translate-y-14"
+            />
+          </div>
           <div className="mt-12 grid grid-cols-1 gap-px bg-white/8 border border-white/8 md:grid-cols-2 xl:grid-cols-3">
             {featureItems.map((item, index) => (
               <motion.article
@@ -808,7 +865,9 @@ export default function AcademyPage() {
             description={t("academy.structureDesc")}
           />
           <div className="mt-12 grid grid-cols-1 gap-px bg-white/8 border border-white/8 lg:grid-cols-2" style={{ backgroundColor: "rgba(255,255,255,0.05)" }}>
-            <motion.article {...fadeUp} className="bg-[#171411] p-8 md:p-10">
+            <motion.article {...fadeUp} className="group relative isolate overflow-hidden bg-[#171411] p-8 md:p-10">
+              <img src={ACADEMY_STORY_IMAGES.setup} alt="" aria-hidden="true" className="absolute inset-0 -z-10 h-full w-full object-cover opacity-[0.14] transition duration-700 group-hover:scale-105 group-hover:opacity-[0.22]" />
+              <div className="absolute inset-0 -z-10 bg-[#171411]/72" />
               <p className="text-[0.72rem] uppercase tracking-[0.45em] text-[#c9b99a]">
                 {t("academy.day1Label")}
               </p>
@@ -831,8 +890,10 @@ export default function AcademyPage() {
             <motion.article
               {...fadeUp}
               transition={{ duration: 0.65, delay: 0.08 }}
-              className="bg-[#171411] p-8 md:p-10"
+              className="group relative isolate overflow-hidden bg-[#171411] p-8 md:p-10"
             >
+              <img src={ACADEMY_STORY_IMAGES.guidedPractice} alt="" aria-hidden="true" className="absolute inset-0 -z-10 h-full w-full object-cover opacity-[0.14] transition duration-700 group-hover:scale-105 group-hover:opacity-[0.22]" />
+              <div className="absolute inset-0 -z-10 bg-[#171411]/72" />
               <p className="text-[0.72rem] uppercase tracking-[0.45em] text-[#c9b99a]">
                 {t("academy.day2Label")}
               </p>
@@ -865,6 +926,10 @@ export default function AcademyPage() {
             description={t("academy.profileDesc")}
             align="center"
           />
+          <div className="mx-auto mt-10 grid max-w-5xl grid-cols-2 gap-3 md:gap-5">
+            <AcademyImage src={ACADEMY_STORY_IMAGES.action} alt="Tatuaje fine line en práctica" className="aspect-[16/10]" />
+            <AcademyImage src={ACADEMY_STORY_IMAGES.mentoring} alt="Mentoría directa en la cabina" className="aspect-[16/10] translate-y-7 md:translate-y-10" />
+          </div>
           <div className="mt-12 grid grid-cols-1 gap-px bg-white/8 border border-white/8 md:grid-cols-2">
             {studentProfileItems.map((item, index) => (
               <motion.div
