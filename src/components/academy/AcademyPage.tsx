@@ -1,6 +1,8 @@
 ﻿import { useState, type ChangeEvent, type FormEvent } from "react";
 import { Helmet } from "react-helmet-async";
+import { useRef } from "react";
 import { motion } from "framer-motion";
+import { useScroll, useTransform } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import Header from "@/components/layout/Header";
 import FooterStrip from "@/components/shared/FooterStrip";
@@ -182,16 +184,25 @@ function AcademyImage({
   alt: string;
   className?: string;
 }) {
+  const imageRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: imageRef,
+    offset: ["start end", "end start"],
+  });
+  const y = useTransform(scrollYProgress, [0, 1], ["-5%", "5%"]);
+
   return (
     <motion.figure
       {...fadeUp}
+      ref={imageRef}
       className={`group relative overflow-hidden bg-[#0f0e0c] ${className}`}
     >
       <motion.img
         src={src}
         alt={alt}
         loading="lazy"
-        whileHover={{ scale: 1.045 }}
+        style={{ y, scale: 1.1 }}
+        whileHover={{ scale: 1.14 }}
         transition={{ duration: 0.7, ease: "easeOut" }}
         className="h-full w-full object-cover grayscale-[0.15] transition-[filter] duration-500 group-hover:grayscale-0"
       />
@@ -818,11 +829,11 @@ export default function AcademyPage() {
             title={t("academy.featuresTitle")}
             description={t("academy.featuresDesc")}
           />
-          <div className="mt-10 grid gap-3 sm:grid-cols-3 md:gap-5">
+          <div className="mt-10 grid items-stretch gap-3 sm:grid-cols-3 md:gap-5">
             <AcademyImage
               src={ACADEMY_STORY_IMAGES.mentoring}
               alt="Corrección personalizada durante el seminario"
-              className="aspect-[4/3] sm:translate-y-8"
+              className="aspect-[4/3]"
             />
             <AcademyImage
               src={ACADEMY_STORY_IMAGES.detail}
@@ -832,7 +843,7 @@ export default function AcademyPage() {
             <AcademyImage
               src={ACADEMY_STORY_IMAGES.studio}
               alt="Aprendizaje en un estudio de tatuaje profesional"
-              className="aspect-[4/3] sm:translate-y-14"
+              className="aspect-[4/3]"
             />
           </div>
           <div className="mt-12 grid grid-cols-1 gap-px bg-white/8 border border-white/8 md:grid-cols-2 xl:grid-cols-3">
@@ -870,7 +881,7 @@ export default function AcademyPage() {
           />
           <div className="mt-12 grid grid-cols-1 gap-px bg-white/8 border border-white/8 lg:grid-cols-2" style={{ backgroundColor: "rgba(255,255,255,0.05)" }}>
             <motion.article {...fadeUp} className="group relative isolate overflow-hidden bg-[#171411] p-8 md:p-10">
-              <img src={ACADEMY_STORY_IMAGES.technique} alt="" aria-hidden="true" className="absolute inset-0 -z-10 h-full w-full object-cover opacity-[0.14] transition duration-700 group-hover:scale-105 group-hover:opacity-[0.22]" />
+              <motion.img src={ACADEMY_STORY_IMAGES.technique} alt="" aria-hidden="true" initial={{ y: -18 }} whileInView={{ y: 18 }} viewport={{ once: true, amount: 0.2 }} transition={{ duration: 1.2, ease: "easeOut" }} className="absolute -inset-8 -z-10 h-[calc(100%+4rem)] w-[calc(100%+4rem)] max-w-none object-cover object-center opacity-[0.14] transition duration-700 group-hover:scale-105 group-hover:opacity-[0.22]" />
               <div className="absolute inset-0 -z-10 bg-[#171411]/72" />
               <p className="text-[0.72rem] uppercase tracking-[0.45em] text-[#c9b99a]">
                 {t("academy.day1Label")}
@@ -896,7 +907,7 @@ export default function AcademyPage() {
               transition={{ duration: 0.65, delay: 0.08 }}
               className="group relative isolate overflow-hidden bg-[#171411] p-8 md:p-10"
             >
-              <img src={ACADEMY_STORY_IMAGES.livePractice} alt="" aria-hidden="true" className="absolute inset-0 -z-10 h-full w-full object-cover opacity-[0.14] transition duration-700 group-hover:scale-105 group-hover:opacity-[0.22]" />
+              <motion.img src={ACADEMY_STORY_IMAGES.livePractice} alt="" aria-hidden="true" initial={{ y: 18 }} whileInView={{ y: -18 }} viewport={{ once: true, amount: 0.2 }} transition={{ duration: 1.2, ease: "easeOut" }} className="absolute -inset-8 -z-10 h-[calc(100%+4rem)] w-[calc(100%+4rem)] max-w-none object-cover object-center opacity-[0.14] transition duration-700 group-hover:scale-105 group-hover:opacity-[0.22]" />
               <div className="absolute inset-0 -z-10 bg-[#171411]/72" />
               <p className="text-[0.72rem] uppercase tracking-[0.45em] text-[#c9b99a]">
                 {t("academy.day2Label")}
@@ -932,7 +943,7 @@ export default function AcademyPage() {
           />
           <div className="mx-auto mt-10 grid max-w-5xl grid-cols-2 gap-3 md:gap-5">
             <AcademyImage src={ACADEMY_STORY_IMAGES.precision} alt="Tatuaje fine line en práctica" className="aspect-[16/10]" />
-            <AcademyImage src={ACADEMY_STORY_IMAGES.artists} alt="Mentoría directa en la cabina" className="aspect-[16/10] translate-y-7 md:translate-y-10" />
+            <AcademyImage src={ACADEMY_STORY_IMAGES.artists} alt="Mentoría directa en la cabina" className="aspect-[16/10]" />
           </div>
           <div className="mt-12 grid grid-cols-1 gap-px bg-white/8 border border-white/8 md:grid-cols-2">
             {studentProfileItems.map((item, index) => (
