@@ -64,6 +64,10 @@ const ACADEMY_STORY_IMAGES = {
   mentoring: "/img/Academy/mentoring.webp",
   studio: "/img/Academy/studio.webp",
   detail: "/img/Academy/detail.webp",
+  technique: "/img/Academy/technique.webp",
+  livePractice: "/img/Academy/live-practice.webp",
+  precision: "/img/Academy/precision.webp",
+  artists: "/img/Academy/artists.webp",
 } as const;
 
 type TattooExperience = "" | "menos_6_meses" | "6_12_meses" | "mas_1_aÃ±o";
@@ -866,7 +870,7 @@ export default function AcademyPage() {
           />
           <div className="mt-12 grid grid-cols-1 gap-px bg-white/8 border border-white/8 lg:grid-cols-2" style={{ backgroundColor: "rgba(255,255,255,0.05)" }}>
             <motion.article {...fadeUp} className="group relative isolate overflow-hidden bg-[#171411] p-8 md:p-10">
-              <img src={ACADEMY_STORY_IMAGES.setup} alt="" aria-hidden="true" className="absolute inset-0 -z-10 h-full w-full object-cover opacity-[0.14] transition duration-700 group-hover:scale-105 group-hover:opacity-[0.22]" />
+              <img src={ACADEMY_STORY_IMAGES.technique} alt="" aria-hidden="true" className="absolute inset-0 -z-10 h-full w-full object-cover opacity-[0.14] transition duration-700 group-hover:scale-105 group-hover:opacity-[0.22]" />
               <div className="absolute inset-0 -z-10 bg-[#171411]/72" />
               <p className="text-[0.72rem] uppercase tracking-[0.45em] text-[#c9b99a]">
                 {t("academy.day1Label")}
@@ -892,7 +896,7 @@ export default function AcademyPage() {
               transition={{ duration: 0.65, delay: 0.08 }}
               className="group relative isolate overflow-hidden bg-[#171411] p-8 md:p-10"
             >
-              <img src={ACADEMY_STORY_IMAGES.guidedPractice} alt="" aria-hidden="true" className="absolute inset-0 -z-10 h-full w-full object-cover opacity-[0.14] transition duration-700 group-hover:scale-105 group-hover:opacity-[0.22]" />
+              <img src={ACADEMY_STORY_IMAGES.livePractice} alt="" aria-hidden="true" className="absolute inset-0 -z-10 h-full w-full object-cover opacity-[0.14] transition duration-700 group-hover:scale-105 group-hover:opacity-[0.22]" />
               <div className="absolute inset-0 -z-10 bg-[#171411]/72" />
               <p className="text-[0.72rem] uppercase tracking-[0.45em] text-[#c9b99a]">
                 {t("academy.day2Label")}
@@ -927,8 +931,8 @@ export default function AcademyPage() {
             align="center"
           />
           <div className="mx-auto mt-10 grid max-w-5xl grid-cols-2 gap-3 md:gap-5">
-            <AcademyImage src={ACADEMY_STORY_IMAGES.action} alt="Tatuaje fine line en práctica" className="aspect-[16/10]" />
-            <AcademyImage src={ACADEMY_STORY_IMAGES.mentoring} alt="Mentoría directa en la cabina" className="aspect-[16/10] translate-y-7 md:translate-y-10" />
+            <AcademyImage src={ACADEMY_STORY_IMAGES.precision} alt="Tatuaje fine line en práctica" className="aspect-[16/10]" />
+            <AcademyImage src={ACADEMY_STORY_IMAGES.artists} alt="Mentoría directa en la cabina" className="aspect-[16/10] translate-y-7 md:translate-y-10" />
           </div>
           <div className="mt-12 grid grid-cols-1 gap-px bg-white/8 border border-white/8 md:grid-cols-2">
             {studentProfileItems.map((item, index) => (
