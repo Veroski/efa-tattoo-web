@@ -13,6 +13,7 @@ import CookieBanner from "@/components/shared/CookieBanner";
 import FooterStrip from "@/components/shared/FooterStrip";
 import PageHeader from "@/components/shared/PageHeader";
 import BookingSection from "@/components/tattoo/BookingSection";
+import TattooCarePage from "@/components/tattoo/TattooCarePage";
 
 const BASE_URL = "https://www.efa-tattoo.com";
 const OG_IMAGE = `${BASE_URL}/og-banner.jpg`;
@@ -278,6 +279,18 @@ function AvisoLegalPageWrapper() {
   );
 }
 
+function TattooCarePageWrapper() {
+  return (
+    <PageShell
+      title="Cuidados del Tatuaje"
+      description="Guía de cuidados para tu tatuaje Fine Line de EFA Tattoo Barcelona."
+      canonical={`${BASE_URL}/cuidados-tatuaje`}
+    >
+      <TattooCarePage />
+    </PageShell>
+  );
+}
+
 function NotFoundPage() {
   const { t } = useTranslation();
   return (
@@ -316,6 +329,7 @@ export default function App() {
         <Route path="/academy" element={<AcademyPageWrapper />} />
         <Route path="/privacidad" element={<PrivacidadPageWrapper />} />
         <Route path="/aviso-legal" element={<AvisoLegalPageWrapper />} />
+        <Route path="/cuidados-tatuaje" element={<TattooCarePageWrapper />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </>

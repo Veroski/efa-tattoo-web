@@ -44,6 +44,11 @@ const ROUTES = {
     description: "Aviso legal de EFA Tattoo Barcelona. Condiciones de uso del sitio web, propiedad intelectual y normativa aplicable.",
     canonical: `${BASE}/aviso-legal`,
   },
+  "/cuidados-tatuaje": {
+    title: "Cuidados del Tatuaje · EFA Tattoo Barcelona",
+    description: "Guía de cuidados para tu tatuaje Fine Line de EFA Tattoo Barcelona.",
+    canonical: `${BASE}/cuidados-tatuaje`,
+  },
 };
 
 function buildHeadTags({ title, description, canonical }) {
