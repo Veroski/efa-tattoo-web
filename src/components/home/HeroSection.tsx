@@ -20,8 +20,8 @@ export default function HeroSection() {
       >
         <img
           src="/img/img_1.webp"
-          alt=""
-          aria-hidden="true"
+          alt="Estudio de tatuaje EFA Tattoo en Barcelona, especializado en fine line y microrealismo"
+          fetchPriority="high"
           className="h-full w-full object-cover object-[58%_68%] md:object-[center_68%] brightness-[0.42] contrast-[1.08] grayscale-[0.42] saturate-[0.35]"
         />
         <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.08)_0%,rgba(255,255,255,0.03)_24%,rgba(20,18,16,0.34)_58%,rgba(20,18,16,0.7)_100%)]" />

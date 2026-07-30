@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
+import { Helmet } from "react-helmet-async";
 import { useTranslation } from "react-i18next";
-import SectionLabel from "@/components/shared/SectionLabel";
 
 type CityOption = "" | "barcelona" | "zurich";
 type FormStatus = "idle" | "loading" | "success" | "error";
@@ -96,6 +96,33 @@ const GOOGLE_REVIEWS = [
   { id: 9, name: "Eva Ruiz", time: "hace 2 días", text: "Encantada con Enric y encantada con el tatto. Recomiendo al 💯…" },
   { id: 10, name: "Angel", time: "hace 3 semanas", text: "Muy simpático y profesionales me a encantado el resultado una locura 11 de 10 y en persona se ve muncho mejor el tatto" },
 ];
+
+const BASE_URL = "https://www.efa-tattoo.com";
+
+/**
+ * Rating + reviews for the business, declared on this page because this is where the
+ * reviews are actually rendered — Google requires the markup to match visible content.
+ */
+const reviewsSchema = {
+  "@context": "https://schema.org",
+  "@type": ["LocalBusiness", "TattooParlor"],
+  "@id": `${BASE_URL}/#business`,
+  name: "EFA Tattoo",
+  url: BASE_URL,
+  aggregateRating: {
+    "@type": "AggregateRating",
+    ratingValue: "5",
+    bestRating: "5",
+    worstRating: "1",
+    reviewCount: "11",
+  },
+  review: GOOGLE_REVIEWS.map((r) => ({
+    "@type": "Review",
+    author: { "@type": "Person", name: r.name },
+    reviewRating: { "@type": "Rating", ratingValue: "5", bestRating: "5", worstRating: "1" },
+    reviewBody: r.text,
+  })),
+};
 
 export default function BookingSection() {
   const [form, setForm] = useState<BookingFormData>(initial);
@@ -450,11 +477,13 @@ export default function BookingSection() {
           GOOGLE REVIEWS CAROUSEL
           ============================================================ */}
       <div className="mt-20 md:mt-28">
+        <Helmet>
+          <script type="application/ld+json">{JSON.stringify(reviewsSchema)}</script>
+        </Helmet>
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-5">
           <div className="space-y-2">
             <h3 className="text-white uppercase tracking-[0.2em] font-light text-xl lg:text-2xl w-full" style={{ fontFamily: "var(--font-body)" }}>
-              {/* @ts-ignore */}
-              {t("booking.reviewsTitle", "Lo que dicen nuestros clientes")}
+              {t("booking.reviewsTitle")}
             </h3>
             <div className="flex items-center gap-3">
               <span className="text-white text-lg font-medium">5,0</span>
@@ -462,8 +491,7 @@ export default function BookingSection() {
                 ★★★★★
               </div>
               <span className="text-white/40 text-[0.7rem] tracking-wide ml-1">
-                {/* @ts-ignore */}
-                {t("booking.reviewsSubtitle", "5,0 · 11 reseñas en Google")}
+                {t("booking.reviewsSubtitle")}
               </span>
             </div>
           </div>

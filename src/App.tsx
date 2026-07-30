@@ -11,12 +11,14 @@ import AvisoLegalPage from "@/components/legal/AvisoLegalPage";
 import PrivacidadPage from "@/components/legal/PrivacidadPage";
 import CookieBanner from "@/components/shared/CookieBanner";
 import FooterStrip from "@/components/shared/FooterStrip";
+import LocationSection from "@/components/shared/LocationSection";
 import PageHeader from "@/components/shared/PageHeader";
 import BookingSection from "@/components/tattoo/BookingSection";
 import TattooCarePage from "@/components/tattoo/TattooCarePage";
 
 const BASE_URL = "https://www.efa-tattoo.com";
 const OG_IMAGE = `${BASE_URL}/og-banner.jpg`;
+const STREET_ADDRESS = "Carrer Còrsega 163";
 
 interface PageSEO {
   title?: string;
@@ -53,7 +55,6 @@ function SEOMeta({ title, description, canonical }: Omit<PageSEO, "children">) {
       {description && <meta name="description" content={description} />}
       {canonical && <link rel="canonical" href={canonical} />}
       <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
-      <meta property="og:type" content="website" />
       <meta property="og:locale" content="es_ES" />
       <meta property="og:locale:alternate" content="en_GB" />
       <meta property="og:site_name" content="EFA Tattoo Barcelona" />
@@ -64,13 +65,9 @@ function SEOMeta({ title, description, canonical }: Omit<PageSEO, "children">) {
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
       <meta property="og:image:alt" content="EFA Tattoo Barcelona — Fine Line & Microrealismo" />
-      <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={fullTitle} />
       {description && <meta name="twitter:description" content={description} />}
       <meta name="twitter:image" content={OG_IMAGE} />
-      {canonical && <link rel="alternate" hrefLang="es" href={canonical} />}
-      {canonical && <link rel="alternate" hrefLang="en" href={canonical} />}
-      {canonical && <link rel="alternate" hrefLang="x-default" href={canonical} />}
     </Helmet>
   );
 }
@@ -96,31 +93,94 @@ function PageShell({ title, description, canonical, children }: PageSEO) {
 
 // ── JSON-LD Schemas ────────────────────────────────────────────────────────────
 
+/**
+ * Key pages, in the order we want Google to weigh them for sitelinks. Feeds both the
+ * SiteNavigationElement graph and each page's breadcrumb trail, so the site structure
+ * is described identically everywhere.
+ */
+const SITE_PAGES = [
+  {
+    name: "Reservar cita",
+    path: "/tattoo",
+    description: "Solicita tu cita de tatuaje fine line o microrealismo en Barcelona.",
+  },
+  {
+    name: "Galería",
+    path: "/gallery",
+    description: "Más de 400 tatuajes de línea fina, microrealismo y retratos de mascotas.",
+  },
+  {
+    name: "Academia",
+    path: "/academy",
+    description: "Seminario intensivo de línea fina en Barcelona para tatuadores con experiencia.",
+  },
+  {
+    name: "Sobre Enric",
+    path: "/about",
+    description: "Conoce a Enric, tatuador fine line y microrealismo en Barcelona.",
+  },
+  {
+    name: "Cuidados del tatuaje",
+    path: "/cuidados-tatuaje",
+    description: "Guía de cuidados para que tu tatuaje fine line cure correctamente.",
+  },
+];
+
+function JsonLd({ data }: { data: object }) {
+  return (
+    <Helmet>
+      <script type="application/ld+json">{JSON.stringify(data)}</script>
+    </Helmet>
+  );
+}
+
+/** Breadcrumb trail (Inicio › página) — the structural signal behind search sitelinks. */
+function breadcrumbSchema(name: string, path: string) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Inicio", item: `${BASE_URL}/` },
+      { "@type": "ListItem", position: 2, name, item: `${BASE_URL}${path}` },
+    ],
+  };
+}
+
+const businessNode = {
+  "@type": ["LocalBusiness", "TattooParlor"],
+  "@id": `${BASE_URL}/#business`,
+  name: "EFA Tattoo",
+  url: BASE_URL,
+  logo: OG_IMAGE,
+  image: OG_IMAGE,
+  description:
+    "Estudio de tatuaje especializado en fine line y microrealismo en Barcelona. Tatuador Enric, más de 7 años de experiencia.",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: STREET_ADDRESS,
+    addressLocality: "Barcelona",
+    addressRegion: "Cataluña",
+    addressCountry: "ES",
+  },
+  hasMap: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+    `${STREET_ADDRESS}, Barcelona`,
+  )}`,
+  sameAs: ["https://www.instagram.com/efa_tattoo"],
+  priceRange: "€€€",
+  openingHoursSpecification: [
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      opens: "10:00",
+      closes: "19:00",
+    },
+  ],
+};
+
 const homeSchema = {
   "@context": "https://schema.org",
   "@graph": [
-    {
-      "@type": ["LocalBusiness", "TattooParlor"],
-      "@id": `${BASE_URL}/#business`,
-      name: "EFA Tattoo",
-      url: BASE_URL,
-      logo: OG_IMAGE,
-      image: OG_IMAGE,
-      description: "Estudio de tatuaje especializado en fine line y microrealismo en Barcelona. Tatuador Enric, más de 7 años de experiencia.",
-      address: {
-        "@type": "PostalAddress",
-        addressLocality: "Barcelona",
-        addressRegion: "Cataluña",
-        addressCountry: "ES",
-      },
-      geo: { "@type": "GeoCoordinates", latitude: 41.3851, longitude: 2.1734 },
-      sameAs: ["https://www.instagram.com/efa_tattoo"],
-      priceRange: "€€€",
-      openingHoursSpecification: [
-        { "@type": "OpeningHoursSpecification", dayOfWeek: ["Monday","Tuesday","Wednesday","Thursday","Friday"], opens: "10:00", closes: "19:00" },
-      ],
-      aggregateRating: { "@type": "AggregateRating", ratingValue: "5", bestRating: "5", reviewCount: "11" },
-    },
+    businessNode,
     {
       "@type": "WebSite",
       "@id": `${BASE_URL}/#website`,
@@ -128,7 +188,17 @@ const homeSchema = {
       name: "EFA Tattoo Barcelona",
       description: "Estudio de tatuaje fine line y microrealismo en Barcelona — Enric",
       inLanguage: ["es", "en"],
+      publisher: { "@id": `${BASE_URL}/#business` },
     },
+    ...SITE_PAGES.map((page, index) => ({
+      "@type": "SiteNavigationElement",
+      "@id": `${BASE_URL}/#nav-${page.path.slice(1)}`,
+      position: index + 1,
+      name: page.name,
+      description: page.description,
+      url: `${BASE_URL}${page.path}`,
+      isPartOf: { "@id": `${BASE_URL}/#website` },
+    })),
   ],
 };
 
@@ -138,9 +208,10 @@ const tattooSchema = {
   "@id": `${BASE_URL}/tattoo#service`,
   name: "Tatuaje Fine Line y Microrealismo en Barcelona",
   serviceType: "Tattoo Studio",
-  provider: { "@type": "LocalBusiness", name: "EFA Tattoo", url: BASE_URL },
+  provider: { "@id": `${BASE_URL}/#business` },
   areaServed: { "@type": "City", name: "Barcelona" },
-  description: "Servicio de tatuaje personalizado especializado en fine line, microrealismo y proyectos grandes. Reserva tu cita de forma online.",
+  description:
+    "Servicio de tatuaje personalizado especializado en fine line, microrealismo y proyectos grandes. Reserva tu cita de forma online.",
   url: `${BASE_URL}/tattoo`,
   offers: {
     "@type": "Offer",
@@ -156,12 +227,20 @@ const gallerySchema = {
   name: "Galería de Tatuajes EFA Tattoo — +400 Trabajos",
   description: "Galería de más de 400 tatuajes: fine line, microrealismo, proyectos grandes y retratos de mascotas realizados en el estudio EFA Tattoo Barcelona.",
   url: `${BASE_URL}/gallery`,
-  author: {
-    "@type": "Person",
-    name: "Enric",
-    jobTitle: "Tattoo Artist",
-    worksFor: { "@type": "Organization", name: "EFA Tattoo" },
-  },
+  author: { "@id": `${BASE_URL}/#enric` },
+};
+
+const tattooCareSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "@id": `${BASE_URL}/cuidados-tatuaje#article`,
+  headline: "Cuidados del tatuaje · Guía Fine Line",
+  description:
+    "Guía de cuidados para que tu tatuaje fine line cure correctamente: lavado, hidratación, señales de alarma y qué evitar.",
+  url: `${BASE_URL}/cuidados-tatuaje`,
+  inLanguage: "es",
+  author: { "@id": `${BASE_URL}/#enric` },
+  publisher: { "@id": `${BASE_URL}/#business` },
 };
 
 
@@ -171,9 +250,7 @@ function HomePage() {
       description="Enric, tatuador fine line y micro-realismo en Barcelona. Diseños únicos, precisión técnica y conexión personal. Reserva tu cita hoy."
       canonical={`${BASE_URL}/`}
     >
-      <Helmet>
-        <script type="application/ld+json">{JSON.stringify(homeSchema)}</script>
-      </Helmet>
+      <JsonLd data={homeSchema} />
       <Header />
       <HeroSection />
       <FooterStrip />
@@ -184,10 +261,11 @@ function HomePage() {
 function AboutPage() {
   return (
     <Page
-      title="Conoce a Enric · Tatuador Fine Line en Barcelona"
+      title="Enric · Tatuador Fine Line Barcelona"
       description="Conoce a Enric, tatuador barcelonés con formación médica y más de 7 años especializándose en fine line y microrealismo. Arte con criterio."
       canonical={`${BASE_URL}/about`}
     >
+      <JsonLd data={breadcrumbSchema("Sobre Enric", "/about")} />
       <Header />
       <AboutContent />
       <FooterStrip />
@@ -203,9 +281,8 @@ function GalleryPage() {
       description="Más de 400 tatuajes de línea fina, microrealismo, proyectos grandes y retratos de mascotas. Galería del estudio EFA Tattoo Barcelona."
       canonical={`${BASE_URL}/gallery`}
     >
-      <Helmet>
-        <script type="application/ld+json">{JSON.stringify(gallerySchema)}</script>
-      </Helmet>
+      <JsonLd data={gallerySchema} />
+      <JsonLd data={breadcrumbSchema("Galería", "/gallery")} />
       <Header />
       <PageHeader
         title={t("pages.galleryTitle")}
@@ -227,9 +304,8 @@ function TattooPage() {
       description="Solicita tu cita de tatuaje en EFA Tattoo Barcelona. Fine line y microrealismo personalizados. Plazas muy limitadas — rellena el formulario."
       canonical={`${BASE_URL}/tattoo`}
     >
-      <Helmet>
-        <script type="application/ld+json">{JSON.stringify(tattooSchema)}</script>
-      </Helmet>
+      <JsonLd data={tattooSchema} />
+      <JsonLd data={breadcrumbSchema("Reservar cita", "/tattoo")} />
       <Header />
       <PageHeader
         title={t("pages.tattooTitle")}
@@ -238,6 +314,7 @@ function TattooPage() {
         bg="#1e1c1a"
       />
       <BookingSection />
+      <LocationSection copyPrefix="booking" />
       <FooterStrip />
     </Page>
   );
@@ -246,10 +323,11 @@ function TattooPage() {
 function AcademyPageWrapper() {
   return (
     <Page
-      title="Seminario Fine Line Barcelona · Formación EFA 2026"
+      title="Seminario Fine Line Barcelona 2026"
       description="Seminario intensivo de línea fina en Barcelona. 2 días, grupos de 4 alumnos, práctica en piel real. Formación avanzada para tatuadores con experiencia."
       canonical={`${BASE_URL}/academy`}
     >
+      <JsonLd data={breadcrumbSchema("Academia", "/academy")} />
       <AcademyPage />
     </Page>
   );
@@ -282,10 +360,12 @@ function AvisoLegalPageWrapper() {
 function TattooCarePageWrapper() {
   return (
     <PageShell
-      title="Cuidados del Tatuaje"
-      description="Guía de cuidados para tu tatuaje Fine Line de EFA Tattoo Barcelona."
+      title="Cuidados del Tatuaje · Guía Fine Line"
+      description="Cómo cuidar tu tatuaje fine line día a día: lavado, hidratación, qué evitar durante la cicatrización y señales de alarma. Guía de EFA Tattoo Barcelona."
       canonical={`${BASE_URL}/cuidados-tatuaje`}
     >
+      <JsonLd data={tattooCareSchema} />
+      <JsonLd data={breadcrumbSchema("Cuidados del tatuaje", "/cuidados-tatuaje")} />
       <TattooCarePage />
     </PageShell>
   );

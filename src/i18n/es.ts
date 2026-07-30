@@ -96,6 +96,12 @@ const es = {
     infoP2Post: " para discutir el planteamiento visual, concretar fechas y presentarte un presupuesto a medida.",
     infoP3: "Actualmente trabajamos con plazas muy limitadas por ciudad para asegurar la máxima exclusividad en cada obra.",
     errorMsg: "Error. Revisa los datos e inténtalo de nuevo.",
+    reviewsTitle: "Lo que dicen nuestros clientes",
+    reviewsSubtitle: "5,0 · 11 reseñas en Google",
+    locationEyebrow: "El estudio",
+    locationTitle: "Cómo llegar",
+    locationDesc: "El estudio está en el corazón de L'Eixample, en Barcelona: bien conectado en metro y a pocos minutos de Diagonal. Trabajamos siempre con cita previa.",
+    locationQuote: '"Un espacio tranquilo y privado, pensado para que cada sesión se haga sin prisas y con la máxima higiene."',
   },
 
   gallery: {
@@ -300,7 +306,10 @@ const es = {
 
   footer: {
     reservar: "Reservar cita",
+    galeria: "Galería",
+    sobreEnric: "Sobre Enric",
     academia: "Academia",
+    cuidados: "Cuidados",
     copyright: "© {{year}} EFA Tattoo. Barcelona, España.",
     privacidad: "Privacidad",
     avisoLegal: "Aviso legal",
@@ -351,7 +360,13 @@ const es = {
       { title: "9. Modificaciones", content: "El titular se reserva el derecho a modificar, en cualquier momento y sin previo aviso, la presentación, configuración y contenido del Sitio, así como el presente aviso legal. Se recomienda al usuario revisarlo periódicamente." },
     ],
   },
-} as const;
+};
 
 export default es;
+
+/**
+ * Shape of the translation catalogue. Deliberately not `as const`: literal value types
+ * would make it impossible for en.ts to satisfy this type, which is the whole point —
+ * we want a missing or misspelled key to be a compile error, not a matching string.
+ */
 export type Translations = typeof es;

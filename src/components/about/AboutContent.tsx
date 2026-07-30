@@ -46,13 +46,18 @@ const fadeUp = {
   transition: { duration: 0.65, ease: "easeOut" as const },
 };
 
+/**
+ * Canonical Person node for Enric. The @id is referenced as the author from
+ * /gallery and /cuidados-tatuaje, so keep it stable.
+ */
 const personSchema = {
   "@context": "https://schema.org",
   "@type": "Person",
+  "@id": "https://www.efa-tattoo.com/#enric",
   "name": "Enric",
   "jobTitle": "Tattoo Artist",
   "description": "Tatuador especializado en fine line y micro-realismo en Barcelona, con formación de enfermero y más de 7 años de experiencia.",
-  "worksFor": { "@type": "Organization", "name": "EFA Tattoo", "url": "https://www.efa-tattoo.com" },
+  "worksFor": { "@id": "https://www.efa-tattoo.com/#business" },
   "url": "https://www.efa-tattoo.com/about",
   "sameAs": ["https://www.instagram.com/efa_tattoo"],
   "knowsAbout": ["Fine line tattoo", "Microrealismo", "Tatuaje Barcelona"],

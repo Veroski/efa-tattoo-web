@@ -7,6 +7,7 @@ import { useTranslation } from "react-i18next";
 import Header from "@/components/layout/Header";
 import FooterStrip from "@/components/shared/FooterStrip";
 import { FocusRail, type FocusRailItem } from "@/components/ui/focus-rail";
+import LocationSection from "@/components/shared/LocationSection";
 
 const ACADEMY_GALLERY_MEDIA = [
   {
@@ -72,7 +73,7 @@ const ACADEMY_STORY_IMAGES = {
   artists: "/img/Academy/artists.webp",
 } as const;
 
-type TattooExperience = "" | "menos_6_meses" | "6_12_meses" | "mas_1_aÃ±o";
+type TattooExperience = "" | "menos_6_meses" | "6_12_meses" | "mas_1_año";
 type MainDifficulty =
   | ""
   | "trazo_limpio"
@@ -324,85 +325,6 @@ function SegmentedChoices<T extends string>({
   );
 }
 
-function LocationCard() {
-  const { t } = useTranslation();
-  const [copied, setCopied] = useState(false);
-  const address = "Carrer CÃ²rsega 163, Barcelona";
-  const googleMapsNavigationUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(address)}`;
-
-  const handleCopy = async () => {
-    if (!navigator.clipboard) return;
-    try {
-      await navigator.clipboard.writeText(address);
-      setCopied(true);
-      window.setTimeout(() => setCopied(false), 1800);
-    } catch {
-      setCopied(false);
-    }
-  };
-
-  return (
-    <section className="py-18 md:py-24" style={{ backgroundColor: "#161311" }}>
-      <div className={sectionWidth}>
-        <div className="grid overflow-hidden border border-white/8 bg-[#1d1916] lg:grid-cols-[0.95fr_1.25fr]">
-          <div className="space-y-8 p-8 md:p-12">
-            <SectionHeading
-              eyebrow={t("academy.locationEyebrow")}
-              title={t("academy.locationTitle")}
-              description={t("academy.locationDesc")}
-            />
-            <div className="space-y-4 text-white/66">
-              <div className="border border-white/8 bg-black/15 p-5">
-                <p className="text-[0.72rem] uppercase tracking-[0.35em] text-[#c9b99a]">
-                  {t("academy.locationCity")}
-                </p>
-                <p className="mt-3 text-sm leading-relaxed tracking-wide">
-                  {t("academy.locationAddress")}
-                  <br />
-                  {t("academy.locationDistrict")}
-                </p>
-              </div>
-              <p className="border-l border-[#c9b99a]/35 pl-4 text-sm italic leading-relaxed tracking-wide">
-                {t("academy.locationQuote")}
-              </p>
-            </div>
-            <div className="flex flex-col gap-3 sm:flex-row">
-              <a
-                href={googleMapsNavigationUrl}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center justify-center border border-[#c9b99a] px-6 py-4 text-[0.72rem] uppercase tracking-[0.35em] text-[#c9b99a] transition-colors hover:bg-[#c9b99a] hover:text-[#141210]"
-              >
-                {t("academy.locationDirections")}
-              </a>
-              <button
-                type="button"
-                onClick={handleCopy}
-                className="inline-flex items-center justify-center border border-white/18 px-6 py-4 text-[0.72rem] uppercase tracking-[0.35em] text-white/70 transition-colors hover:border-white/40 hover:text-white"
-              >
-                {copied ? t("academy.locationCopied") : t("academy.locationCopy")}
-              </button>
-            </div>
-          </div>
-          <div className="relative min-h-[340px] border-t border-white/8 lg:border-l lg:border-t-0">
-            <iframe
-              src="https://maps.google.com/maps?q=Carrer+C%C3%B2rsega+163,+Barcelona&t=&z=15&ie=UTF8&iwloc=&output=embed"
-              title={`${t("academy.locationTitle")} â€” Barcelona`}
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              className="absolute inset-0 h-full w-full"
-              style={{ border: 0, filter: "grayscale(100%) contrast(1.05) brightness(0.88)" }}
-            />
-            <div className="absolute bottom-4 right-4 border border-white/12 bg-[#141210]/85 px-4 py-2 text-[0.68rem] uppercase tracking-[0.28em] text-white/72 backdrop-blur">
-              L&apos;Eixample
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
 function AcademyForm() {
   const { t } = useTranslation();
   const [formData, setFormData] = useState<AcademyFormData>(initialForm);
@@ -411,7 +333,7 @@ function AcademyForm() {
   const experienceOptions: Option<TattooExperience>[] = [
     { value: "menos_6_meses", label: t("academy.expOpt1") },
     { value: "6_12_meses", label: t("academy.expOpt2") },
-    { value: "mas_1_aÃ±o", label: t("academy.expOpt3") },
+    { value: "mas_1_año", label: t("academy.expOpt3") },
   ];
 
   const difficultyOptions: Option<MainDifficulty>[] = [
@@ -643,7 +565,7 @@ const courseSchema = {
   "@context": "https://schema.org",
   "@type": "Course",
   "name": "Seminario Fine Line EFA Tattoo",
-  "description": "FormaciÃ³n intensiva presencial de 2 dÃ­as para tatuadores. LÃ­nea fina, microrealismo, prÃ¡ctica en piel real y profesionalizaciÃ³n.",
+  "description": "Formación intensiva presencial de 2 días para tatuadores. Línea fina, microrealismo, práctica en piel real y profesionalización.",
   "url": "https://www.efa-tattoo.com/academy",
   "provider": { "@type": "Organization", "name": "EFA Tattoo", "url": "https://www.efa-tattoo.com" },
   "courseMode": "onsite",
@@ -656,7 +578,7 @@ const courseSchema = {
       "name": "EFA Tattoo Studio",
       "address": {
         "@type": "PostalAddress",
-        "streetAddress": "Carrer CÃ²rsega 163",
+        "streetAddress": "Carrer Còrsega 163",
         "addressLocality": "Barcelona",
         "addressCountry": "ES"
       }
@@ -670,23 +592,23 @@ const faqSchema = {
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "Â¿El seminario EFA es para principiantes?",
-      "acceptedAnswer": { "@type": "Answer", "text": "No, requiere experiencia mÃ­nima. No es un curso de iniciaciÃ³n para aprender a tatuar desde cero." }
+      "name": "¿El seminario EFA es para principiantes?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No, requiere experiencia mínima. No es un curso de iniciación para aprender a tatuar desde cero." }
     },
     {
       "@type": "Question",
-      "name": "Â¿TatÃºo en piel real durante el seminario?",
-      "acceptedAnswer": { "@type": "Answer", "text": "SÃ­, todos los alumnos trabajan en modelo real el segundo dÃ­a bajo supervisiÃ³n directa de Enric." }
+      "name": "¿Tatúo en piel real durante el seminario?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Sí, todos los alumnos trabajan en modelo real el segundo día bajo supervisión directa de Enric." }
     },
     {
       "@type": "Question",
-      "name": "Â¿Debo llevar mi propio material al seminario?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Solo necesitas llevar tu mÃ¡quina y fuente. El resto estÃ¡ incluido: fungibles y caja de agujas FineLine." }
+      "name": "¿Debo llevar mi propio material al seminario?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Solo necesitas llevar tu máquina y fuente. El resto está incluido: fungibles y caja de agujas FineLine." }
     },
     {
       "@type": "Question",
-      "name": "Â¿Se entrega certificado oficial al finalizar el seminario?",
-      "acceptedAnswer": { "@type": "Answer", "text": "SÃ­, certificado oficial firmado por EFA Tattoo con reconocimiento de nivel profesional." }
+      "name": "¿Se entrega certificado oficial al finalizar el seminario?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Sí, certificado oficial firmado por EFA Tattoo con reconocimiento de nivel profesional." }
     },
   ]
 };
@@ -728,13 +650,12 @@ export default function AcademyPage() {
       </Helmet>
       <Header />
 
-      {/* â”€â”€ Hero â”€â”€ */}
+      {/* ── Hero ── */}
       <section className="relative overflow-hidden bg-[#141210]">
         <div className="absolute inset-0">
           <img
             src={ACADEMY_STORY_IMAGES.action}
-            alt=""
-            aria-hidden="true"
+            alt="Seminario de línea fina de EFA Tattoo en Barcelona: alumnos practicando durante la formación"
             className="h-full w-full object-cover object-center brightness-[0.22] grayscale-[0.3]"
           />
           <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(20,18,16,0.58)_0%,rgba(20,18,16,0.82)_60%,#141210_100%)]" />
@@ -786,7 +707,7 @@ export default function AcademyPage() {
         </div>
       </section>
 
-      {/* â”€â”€ La propuesta â”€â”€ */}
+      {/* ── La propuesta ── */}
       <section className="overflow-hidden py-18 md:py-24" style={{ backgroundColor: "#1a1714" }}>
         <div className={`${sectionWidth} grid items-center gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20`}>
           <div className="lg:sticky lg:top-28">
@@ -821,7 +742,7 @@ export default function AcademyPage() {
         </div>
       </section>
 
-      {/* â”€â”€ Features â”€â”€ */}
+      {/* ── Features ── */}
       <section id="academy-info" className="py-18 md:py-24" style={{ backgroundColor: "#1a1714" }}>
         <div className={sectionWidth}>
           <SectionHeading
@@ -871,7 +792,7 @@ export default function AcademyPage() {
         </div>
       </section>
 
-      {/* â”€â”€ Day cards â”€â”€ */}
+      {/* ── Day cards ── */}
       <section className="py-18 md:py-24" style={{ backgroundColor: "#11100e" }}>
         <div className={sectionWidth}>
           <SectionHeading
@@ -932,7 +853,7 @@ export default function AcademyPage() {
         </div>
       </section>
 
-      {/* â”€â”€ Student profile â”€â”€ */}
+      {/* ── Student profile ── */}
       <section className="py-18 md:py-24" style={{ backgroundColor: "#1a1714" }}>
         <div className={sectionWidth}>
           <SectionHeading
@@ -976,7 +897,7 @@ export default function AcademyPage() {
         </div>
       </section>
 
-      {/* â”€â”€ Contact / Form â”€â”€ */}
+      {/* ── Contact / Form ── */}
       <section
         id="academy-contact"
         className="py-8 md:py-10"
@@ -1007,7 +928,7 @@ export default function AcademyPage() {
         </div>
       </section>
 
-      {/* â”€â”€ Media Rail â”€â”€ */}
+      {/* ── Media Rail ── */}
       <section className="bg-[#0A0A0A] py-16 md:py-20 border-t border-white/5">
         <div className="mb-10 text-center px-6">
           <p className="text-[0.68rem] uppercase tracking-[0.5em] text-[#c9b99a]">
@@ -1027,9 +948,9 @@ export default function AcademyPage() {
         />
       </section>
 
-      <LocationCard />
+      <LocationSection />
 
-      {/* â”€â”€ FAQ â”€â”€ */}
+      {/* ── FAQ ── */}
       <section className="py-18 md:py-24" style={{ backgroundColor: "#141210" }}>
         <div className={sectionWidth}>
           <SectionHeading
@@ -1061,7 +982,7 @@ export default function AcademyPage() {
       <FooterStrip />
 
       {/* ============================================================
-          SHADOW CONTENT â€” Testimonios Academy
+          SHADOW CONTENT — Testimonios Academy
           Para activar: cambiar `hidden` por el layout deseado
           ============================================================ */}
 
@@ -1071,19 +992,19 @@ export default function AcademyPage() {
           id: 1,
           name: "Laura M.",
           rating: 5,
-          text: "El curso cambiÃ³ completamente mi forma de entender el fine line. Grupos pequeÃ±os, mucha prÃ¡ctica real.",
+          text: "El curso cambió completamente mi forma de entender el fine line. Grupos pequeños, mucha práctica real.",
         },
         {
           id: 2,
           name: "Carlos R.",
           rating: 5,
-          text: "Vine sin experiencia y salÃ­ con tÃ©cnica y confianza. La atenciÃ³n personalizada marcÃ³ la diferencia.",
+          text: "Vine sin experiencia y salí con técnica y confianza. La atención personalizada marcó la diferencia.",
         },
         {
           id: 3,
-          name: "SofÃ­a D.",
+          name: "Sofía D.",
           rating: 5,
-          text: "AprendÃ­ mÃ¡s en un fin de semana que en meses por mi cuenta. Totalmente recomendado.",
+          text: "Aprendí más en un fin de semana que en meses por mi cuenta. Totalmente recomendado.",
         },
       ];
 
@@ -1093,7 +1014,7 @@ export default function AcademyPage() {
             {ACADEMY_TESTIMONIALS.map((t) => (
               <div key={t.id}>
                 <p>{t.name}</p>
-                <p>{"â˜…".repeat(t.rating)}</p>
+                <p>{"★".repeat(t.rating)}</p>
                 <p>{t.text}</p>
               </div>
             ))}

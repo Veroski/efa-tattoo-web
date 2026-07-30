@@ -1,6 +1,6 @@
 import { readFileSync, writeFileSync, mkdirSync, rmSync } from "node:fs";
 import { resolve, dirname } from "node:path";
-import { fileURLToPath } from "node:url";
+import { fileURLToPath, pathToFileURL } from "node:url";
 
 const __dir = dirname(fileURLToPath(import.meta.url));
 const root = resolve(__dir, "..");
@@ -15,7 +15,7 @@ const ROUTES = {
     canonical: `${BASE}/`,
   },
   "/about": {
-    title: "Conoce a Enric · Tatuador Fine Line en Barcelona · EFA Tattoo Barcelona",
+    title: "Enric · Tatuador Fine Line Barcelona · EFA Tattoo Barcelona",
     description: "Conoce a Enric, tatuador barcelonés con formación médica y más de 7 años especializándose en fine line y microrealismo. Arte con criterio.",
     canonical: `${BASE}/about`,
   },
@@ -30,7 +30,7 @@ const ROUTES = {
     canonical: `${BASE}/tattoo`,
   },
   "/academy": {
-    title: "Seminario Fine Line Barcelona · Formación EFA 2026 · EFA Tattoo Barcelona",
+    title: "Seminario Fine Line Barcelona 2026 · EFA Tattoo Barcelona",
     description: "Seminario intensivo de línea fina en Barcelona. 2 días, grupos de 4 alumnos, práctica en piel real. Formación avanzada para tatuadores con experiencia.",
     canonical: `${BASE}/academy`,
   },
@@ -45,8 +45,8 @@ const ROUTES = {
     canonical: `${BASE}/aviso-legal`,
   },
   "/cuidados-tatuaje": {
-    title: "Cuidados del Tatuaje · EFA Tattoo Barcelona",
-    description: "Guía de cuidados para tu tatuaje Fine Line de EFA Tattoo Barcelona.",
+    title: "Cuidados del Tatuaje · Guía Fine Line · EFA Tattoo Barcelona",
+    description: "Cómo cuidar tu tatuaje fine line día a día: lavado, hidratación, qué evitar durante la cicatrización y señales de alarma. Guía de EFA Tattoo Barcelona.",
     canonical: `${BASE}/cuidados-tatuaje`,
   },
 };
@@ -56,9 +56,6 @@ function buildHeadTags({ title, description, canonical }) {
     <meta name="description" content="${description}" />
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
     <link rel="canonical" href="${canonical}" />
-    <link rel="alternate" hreflang="es" href="${canonical}" />
-    <link rel="alternate" hreflang="en" href="${canonical}" />
-    <link rel="alternate" hreflang="x-default" href="${canonical}" />
     <meta property="og:locale" content="es_ES" />
     <meta property="og:locale:alternate" content="en_GB" />
     <meta property="og:title" content="${title}" />
@@ -72,7 +69,10 @@ function buildHeadTags({ title, description, canonical }) {
 }
 
 async function main() {
-  const { render } = await import(resolve(distDir, "server/entry-server.mjs"));
+  // pathToFileURL: on Windows a bare absolute path ("C:\...") is rejected by the ESM loader.
+  const { render } = await import(
+    pathToFileURL(resolve(distDir, "server/entry-server.mjs")).href
+  );
   const template = readFileSync(resolve(distDir, "index.html"), "utf-8");
 
   for (const [route, meta] of Object.entries(ROUTES)) {

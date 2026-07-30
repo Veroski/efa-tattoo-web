@@ -5,6 +5,16 @@ export default function FooterStrip() {
   const { t } = useTranslation();
   const year = new Date().getFullYear();
 
+  // Every key page links from every page — the internal-linking signal Google uses
+  // to work out which subpages deserve sitelinks.
+  const footerLinks = [
+    { to: "/tattoo#reserva", label: t("footer.reservar") },
+    { to: "/gallery", label: t("footer.galeria") },
+    { to: "/about", label: t("footer.sobreEnric") },
+    { to: "/academy", label: t("footer.academia") },
+    { to: "/cuidados-tatuaje", label: t("footer.cuidados") },
+  ];
+
   return (
     <footer className="border-t border-white/10 py-12 px-[4vw]">
       <div className="max-w-[1445px] mx-auto">
@@ -17,20 +27,23 @@ export default function FooterStrip() {
             EFA Tattoo
           </Link>
 
-          <nav aria-label="Footer" className="flex items-center gap-6">
-            <Link
-              to="/tattoo#booking"
-              className="text-white/50 text-[0.7rem] tracking-[0.3em] uppercase hover:text-white/80 transition-colors"
-            >
-              {t("footer.reservar")}
-            </Link>
-            <span className="text-white/20" aria-hidden="true">·</span>
-            <Link
-              to="/academy"
-              className="text-white/50 text-[0.7rem] tracking-[0.3em] uppercase hover:text-white/80 transition-colors"
-            >
-              {t("footer.academia")}
-            </Link>
+          <nav
+            aria-label="Footer"
+            className="flex flex-wrap items-center justify-center gap-x-5 gap-y-3"
+          >
+            {footerLinks.map((link, i) => (
+              <span key={link.to} className="flex items-center gap-5">
+                {i > 0 && (
+                  <span className="text-white/20" aria-hidden="true">·</span>
+                )}
+                <Link
+                  to={link.to}
+                  className="text-white/50 text-[0.7rem] tracking-[0.3em] uppercase hover:text-white/80 transition-colors"
+                >
+                  {link.label}
+                </Link>
+              </span>
+            ))}
             <span className="text-white/20" aria-hidden="true">·</span>
             <a
               href="https://instagram.com/efa_tattoo"

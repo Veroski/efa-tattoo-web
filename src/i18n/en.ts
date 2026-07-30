@@ -98,6 +98,12 @@ const en: Translations = {
     infoP2Post: " to discuss the visual concept, confirm dates and present a tailored quote.",
     infoP3: "We currently work with very limited slots per city to ensure maximum exclusivity in each piece.",
     errorMsg: "Error. Please check your details and try again.",
+    reviewsTitle: "What our clients say",
+    reviewsSubtitle: "5.0 · 11 Google reviews",
+    locationEyebrow: "The studio",
+    locationTitle: "How to get here",
+    locationDesc: "The studio sits in the heart of L'Eixample, Barcelona: well connected by metro and a few minutes from Diagonal. We always work by appointment.",
+    locationQuote: '"A calm, private space designed so every session runs unhurried and to the highest hygiene standards."',
   },
 
   gallery: {
@@ -302,7 +308,10 @@ const en: Translations = {
 
   footer: {
     reservar: "Book appointment",
+    galeria: "Gallery",
+    sobreEnric: "About Enric",
     academia: "Academy",
+    cuidados: "Aftercare",
     copyright: "© {{year}} EFA Tattoo. Barcelona, Spain.",
     privacidad: "Privacy",
     avisoLegal: "Legal notice",
