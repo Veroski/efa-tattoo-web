@@ -238,6 +238,16 @@ const es = {
         description: "Yuki comparte cómo vivió una formación diseñada para avanzar con criterio.",
         meta: "Testimonio de alumna",
       },
+      {
+        title: "Ingrid · Las Palmas de Gran Canaria",
+        description: "Ingrid cuenta cómo el seminario le ayudó a ganar confianza para desarrollar su estilo fine line.",
+        meta: "Testimonio de alumna",
+      },
+      {
+        title: "Christian Álvarez · Costa Rica",
+        description: "Christian comparte su experiencia en el seminario EFA y el valor de aprender con una guía clara y directa.",
+        meta: "Testimonio de alumno",
+      },
     ],
     soundOn: "Activar sonido",
     soundOff: "Silenciar",

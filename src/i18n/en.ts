@@ -240,6 +240,16 @@ const en: Translations = {
         description: "Yuki shares how she experienced training designed to build professional judgement.",
         meta: "Student testimonial",
       },
+      {
+        title: "Ingrid · Las Palmas de Gran Canaria",
+        description: "Ingrid shares how the seminar helped her gain confidence to develop her fine line style.",
+        meta: "Student testimonial",
+      },
+      {
+        title: "Christian Álvarez · Costa Rica",
+        description: "Christian shares his EFA seminar experience and the value of learning with clear, direct guidance.",
+        meta: "Student testimonial",
+      },
     ],
     soundOn: "Enable sound",
     soundOff: "Mute",
